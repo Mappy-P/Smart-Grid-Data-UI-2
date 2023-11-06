@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Grid Data{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="align-items: center; justify-content: center;">
+  <div class="row" id="scrollbox" style="justify-content: center;">
+    <div class="col">
+      <h1 style="visibility:hidden">simple place holder ;)</h1>
+          <div class="jumbotron" style="height: 420px; width: auto;">
+          <h1 class="display-4" style="font-size: 40px; height: 100px; width: auto;">Using Smart Grid Data to minimize electricity costs!</h1>
+              <p class="lead">P&O3</p>
+              <hr class="my-4">
+              <p>With the power of Machine Learning and state-of-the-art Data Optimization algorithms, we calculate the most efficient EV charging schedules to minimize electricity costs. <a href="/about">Learn more:</a></p>
+              <a class="btn btn-primary btn-lg" href="/demo" role="button">Launch Demo</a>
+          </div>
+    </div>
+    <div class="col-sm">
+      <h1 style="visibility:hidden">simple place holder ;)</h1>
+      <img src = "{{ url_for('static', filename='/imgs/graphhome.png') }}" style="height: 420px; width: auto;"></img>
+    </div>
+  </div>
+</div>
+
+  <div class="container-fluid box" data-aos="fade-right" style="display: flex; height: 500px; align-items: center; justify-content: center; background-image:url('https://killtheboredomdotcom.files.wordpress.com/2015/08/skyline-of-rome.jpg?w=1920&h=768&crop=1'); background-color: #000000;">
+    <div class="row" style="justify-content: center;">
+      <div class="col">
+        <h1 style="visibility:hidden">simple place holder ;)</h1>
+          <div class="jumbotron" style="height: 420px; width: auto;">
+          <h1 class="display-4" style="font-size: 40px; height: 100px; width: auto;">Using Smart Grid Data to minimize electricity costs!</h1>
+              <p class="lead">P&O3</p>
+              <hr class="my-4">
+              <p>With the power of Machine Learning and state-of-the-art Data Optimization algorithms, we calculate the most efficient EV charging schedules to minimize electricity costs. <a href="/about">Learn more:</a></p>
+              <a class="btn btn-primary btn-lg" href="/demo" role="button">Launch Demo</a>
+          </div>
+      </div>
+      <div class="col-sm">
+        <h1 style="visibility:hidden">simple place holder ;)</h1>
+        <img src = "{{ url_for('static', filename='/imgs/graphhome.png') }}" style="height: 420px; width: auto;"></img>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

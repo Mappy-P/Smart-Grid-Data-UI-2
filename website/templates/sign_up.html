@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}MonkMode - Sign Up{% endblock %}
+
+{% block content%}
+<form method="POST">
+    <h3 align="center">Sign Up</h3>
+    <div class="form-group">
+        <label for="email">Email Adress</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email adress" />
+
+        <label for="first-name">First Name</label>
+        <input type="text" class="form-control" id="first-name" name="first-name" placeholder="Enter your first name" />
+
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" />
+
+        <label for="password1">Password (Confirm)</label>
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Confirm your password" />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+{% endblock %}

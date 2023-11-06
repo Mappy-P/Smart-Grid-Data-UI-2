@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Grid Data - About{% endblock %}
+
+{% block content%}
+<h1 style="visibility:hidden">simple place holder ;)</h1>
+<div class="jumbotron">
+<h1 class="display-4">About the project</h1>
+    <p class="lead">Smart Grid Data</p>
+    <hr class="my-4">
+    <div class="container">
+      <div class ="row">
+        <div class = "col nopadding">
+          <p>As our P&O3-engineering project at the KU Leuven, we choose to work around Smart Grid Data. In this project we're being given a demand response problem.
+                    The problem requires us to </p>
+          <a class="btn btn-primary btn-lg" href="/demo" role="button">Launch Demo</a>
+        </div>
+        <div class="col">
+          <img src="{{ url_for('static', filename='/imgs/testdatapredictioncons.png') }}" style="height: 350px; width: auto;"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-aos="fade-right">Test123</div>
+{% endblock %}
