@@ -3,9 +3,9 @@
 {% block title %}Smart Grid Data{% endblock %}
 
 {% block content %}
-<div class="container-fluid" style="align-items: center; justify-content: center;">
-  <div class="row" id="scrollbox" style="justify-content: center;">
-    <div class="col">
+<div class="container-fluid" style="height: 600px; align-items: center; justify-content: center;">
+  <div class="row" style="justify-content: center;">
+    <div class="lijst hidden col">
       <h1 style="visibility:hidden">simple place holder ;)</h1>
           <div class="jumbotron" style="height: 420px; width: auto;">
           <h1 class="display-4" style="font-size: 40px; height: 100px; width: auto;">Using Smart Grid Data to minimize electricity costs!</h1>
@@ -15,30 +15,37 @@
               <a class="btn btn-primary btn-lg" href="/demo" role="button">Launch Demo</a>
           </div>
     </div>
-    <div class="col-sm">
+    <div class="lijst hidden col-sm">
       <h1 style="visibility:hidden">simple place holder ;)</h1>
       <img src = "{{ url_for('static', filename='/imgs/graphhome.png') }}" style="height: 420px; width: auto;"></img>
     </div>
   </div>
 </div>
 
-  <div class="container-fluid hidden" style="display: flex; height: 500px; align-items: center; justify-content: center; background-image:url('https://killtheboredomdotcom.files.wordpress.com/2015/08/skyline-of-rome.jpg?w=1920&h=768&crop=1'); background-color: #000000;">
-    <div class="row" style="justify-content: center;">
-      <div class="col">
-        <h1 style="visibility:hidden">simple place holder ;)</h1>
-          <div class="jumbotron" style="height: 420px; width: auto;">
-          <h1 class="display-4" style="font-size: 40px; height: 100px; width: auto;">Using Smart Grid Data to minimize electricity costs!</h1>
-              <p class="lead">P&O3</p>
-              <hr class="my-4">
-              <p>With the power of Machine Learning and state-of-the-art Data Optimization algorithms, we calculate the most efficient EV charging schedules to minimize electricity costs. <a href="/about">Learn more:</a></p>
-              <a class="btn btn-primary btn-lg" href="/demo" role="button">Launch Demo</a>
-          </div>
-      </div>
-      <div class="col-sm">
-        <h1 style="visibility:hidden">simple place holder ;)</h1>
-        <img src = "{{ url_for('static', filename='/imgs/graphhome.png') }}" style="height: 420px; width: auto;"></img>
-      </div>
+<div class="container-fluid" style="height: 250px; align-items: center; justify-content: center; background-color: #FFFFFF;">
+  <h1 style="padding-top: 25px; font-size: 50px; text-align: center; text-shadow: 3px 0px 6px rgba(0, 0, 0, 0.32);">The power of Machine Learning utilised!</h1>
+  <p class="hidden2" style="padding: 25px; padding-top: 0px !important; font-size: 25px; text-align: center;">With the Smart Grid Data project, we implement the newest advancements of Machine Learning and Data Optimization
+    to create a real-world-impact! As P&O ESAT Team 5A2, we firmly believe in the efficient usage of green-power.
+  </p>
+</div>
+
+<div class="parallax" style="justify-content: center; align-items: center;">
+  <h1 style="padding-top: 10px; vertical-align: middle; color: #FFFFFF; text-align: center; text-shadow: 3px 0px 6px rgba(0, 0, 0, 0.62);">Let's make green energy more attractive!</h1>
+</div>
+
+<div class="container-fluid" style="height: 350px;">
+  <h1 style="padding-top: 10px; text-align: center; text-shadow: 3px 0px 6px rgba(0, 0, 0, 0.32);">The Technologies used in this project:</h1>
+  <div class="row container" style="padding-top: 20px;">
+    <div class="col d-flex justify-content-center">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" style="height: 150px; width: auto;"></img>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <img src="https://victorzhou.com/static/c309c4c6a7bbdb43cf1f290786ce47ab/39600/keras-logo.png" style="height: 150px; width: auto;"></img>
     </div>
   </div>
+</div>
+
+<div class="container-fluid" style="height: 250px;">
+  <p>Credits to Sebastian, Rafael, Tom, Matti, Liam and Mathijs</p>
 </div>
 {% endblock %}

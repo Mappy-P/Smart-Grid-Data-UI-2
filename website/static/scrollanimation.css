@@ -1,0 +1,55 @@
+section {
+    display: grid !important;
+    place-items: center;
+    align-content: center;
+    min-height: 100vh !important;
+}
+
+.hidden{
+    opacity: 0 !important;
+    filter: blur(2px);
+    transform: translateX(-100%);
+    transition: all 750ms !important;
+}
+.hidden2{
+    opacity: 0 !important;
+    filter: blur(2px);
+    transform: translateY(-100%);
+    transition: all 750ms !important;
+}
+
+.show {
+    opacity: 1 !important;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+.lijst:nth-child(2) {
+    transition-delay: 150ms !important;
+}
+.lijst:nth-child(3) {
+    transition-delay: 250ms !important;
+}
+.lijst:nth-child(4) {
+    transition-delay: 300ms !important;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("https://images.pexels.com/photos/414807/pexels-photo-414807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  
+    /* Set a specific height */
+    min-height: 450px;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+@media(prefers-reduced-motion) {
+    .hidden {
+        transition: none;
+    }
+}

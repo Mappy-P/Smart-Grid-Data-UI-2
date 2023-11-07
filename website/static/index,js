@@ -1,6 +1,0 @@
-$('.box').scrollAnimate({
-  // config the animation here
-  throttle: 50,
-  duration: 300,
-  easing: "swing"
-});
