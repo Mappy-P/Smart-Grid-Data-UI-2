@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-fluid" style="height: 600px; align-items: center; justify-content: center;">
   <div class="row" style="justify-content: center;">
-    <div class="lijst hidden col">
+    <div class="lijst hidden col" style="justify-content: center;">
       <h1 style="visibility:hidden">simple place holder ;)</h1>
           <div class="jumbotron" style="height: 420px; width: auto;">
           <h1 class="display-4" style="font-size: 40px; height: 100px; width: auto;">Using Smart Grid Data to minimize electricity costs!</h1>
@@ -15,7 +15,7 @@
               <a class="btn btn-primary btn-lg" href="/demo" role="button">Launch Demo</a>
           </div>
     </div>
-    <div class="lijst hidden col-sm">
+    <div class="lijst hidden col-sm" style="justify-content: center;">
       <h1 style="visibility:hidden">simple place holder ;)</h1>
       <img src = "{{ url_for('static', filename='/imgs/graphhome.png') }}" style="height: 420px; width: auto;"></img>
     </div>
@@ -30,17 +30,24 @@
 </div>
 
 <div class="parallax" style="justify-content: center; align-items: center;">
-  <h1 style="padding-top: 10px; vertical-align: middle; color: #FFFFFF; text-align: center; text-shadow: 3px 0px 6px rgba(0, 0, 0, 0.62);">Let's make green energy more attractive!</h1>
+  <div class="container" style="padding-top: 110px;">
+  <h1 style="padding-top: 0px; vertical-align: middle; font-size: 60px; color: #FFFFFF; text-align: center; text-shadow: 5px 2px 9px rgba(0, 0, 0, 0.91);">Let's make green energy more attractive!</h1>
+  <p style="padding-top: 0px; font-size: 30px; color:white; font-weight: bold; text-align: center; vertical-align: middle; text-shadow: 1px -1px 2px rgba(255, 255, 255, 0.17);">Helping the world by making green energy the most cost-efficient energy source</p>
+  </div>
 </div>
 
 <div class="container-fluid" style="height: 350px;">
-  <h1 style="padding-top: 10px; text-align: center; text-shadow: 3px 0px 6px rgba(0, 0, 0, 0.32);">The Technologies used in this project:</h1>
+  <h1 style="padding-top: 20px; text-align: center; text-shadow: 3px 0px 6px rgba(0, 0, 0, 0.32);">Technologies used in this project:</h1>
   <div class="row container" style="padding-top: 20px;">
     <div class="col d-flex justify-content-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" style="height: 150px; width: auto;"></img>
+      <a href="https://www.python.org/">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" style="height: 150px; width: auto;"></img>
+      </a>
     </div>
     <div class="col d-flex justify-content-center">
-      <img src="https://victorzhou.com/static/c309c4c6a7bbdb43cf1f290786ce47ab/39600/keras-logo.png" style="height: 150px; width: auto;"></img>
+      <a href="https://keras.io/">
+        <img src="https://victorzhou.com/static/c309c4c6a7bbdb43cf1f290786ce47ab/39600/keras-logo.png" style="height: 150px; width: auto; padding-left: 20px;"></img>
+      </a>
     </div>
   </div>
 </div>
