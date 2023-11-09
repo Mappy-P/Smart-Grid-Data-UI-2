@@ -9,3 +9,7 @@ def home():
 @views.route('/about')
 def about():
     return render_template('about.html')
+
+@views.route('/demo', methods=['GET', 'POST'])
+def demo():
+    return render_template('demo.html')
