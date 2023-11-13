@@ -2,9 +2,9 @@ from optimisation.optimisation import ChargingPlanner
 from optimisation.immediatecharging import DumbChargingPlanner
 
 def simulate_day(date, cars): # not dynamic: no updates on predicted data
-    predicted_consumption, real_consumption = predict_consumptie(date, 0)
-    predicted_production, real_production = predicted_productie(date, 0)
-    predicted_prices, real_prices = predict_prijzen(date, 0)
+    predicted_consumption, real_consumption = models.predictConsumptie(date, 0)
+    predicted_production, real_production = predictedProductie(date, 0)
+    predicted_prices, real_prices = predictPrijzen(date, 0)
 
     predicted_consumption = [x * 0.8 for x in predicted_consumption]
     real_consumption = [x * 0.8 for x in real_consumption]
