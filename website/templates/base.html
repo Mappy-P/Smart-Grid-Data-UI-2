@@ -49,6 +49,28 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);">
               </a>
             </nav>
             <!-- Main Content Here -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="alert alert-succes alert-dismissable fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
             <div class="container-fluid" style="align-items: center; justify-content: center;">
               <div class="row">
                 <div class="col-12" style="padding: 0;">
