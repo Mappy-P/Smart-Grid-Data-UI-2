@@ -106,6 +106,9 @@ class ChargingPlanner:
             self.predicted_energy_cost += self.energy_to_buy[time]*self.energy_price[time]
         self.get_scheme()
 
+    def get_cars(self):
+        return self.cars
+
     def get_scheme(self): # visual representation of charging scheme
         for car in self.cars:
             for time in range(self.N): 
@@ -121,14 +124,19 @@ class ChargingPlanner:
     def get_predicted_energy_cost(self):
         return self.predicted_energy_cost
 
-    def get_real_energy_cost():
+    def get_real_energy_cost(self, real_energy_price, real_solar_surplus):
         pass
 
     def get_predicted_solar_revenue(self):
         return self.predicted_solar_revenue
 
+    def get_real_solar_revenue(self, real_solar_surplus, real_injection_price):
+
     def get_predicted_profit(self):
         return self.predicted_solar_revenue-self.predicted_energy_cost
+
+    def get_real_profit(self, real_energy_price, real_soar_surplus, real_injection_price):
+        return self.get_real_solar_revenue(real_solar_surplus, real_injection_price)-self.get_real_energy_cost(real_energy_price, real_solar_surplus)
 
 c1 = Car(1, 77, 32, 90)
 c2 = Car(2, 77, 21, 60)
