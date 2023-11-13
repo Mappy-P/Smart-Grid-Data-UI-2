@@ -27,3 +27,9 @@ def simulate_day(date, cars): # not dynamic: no updates on predicted data
 def create_charge_vis(cars):
     pass #TODO: create visualisation with matplotlib
     
+c1 = Car(1, 77, 32, 90)
+c2 = Car(2, 77, 21, 60)
+c3 = Car(3, 74.25, 21, 55)
+
+cars_to_add = [c1,c2,c3]
+simulate_day(123, cars_to_add)

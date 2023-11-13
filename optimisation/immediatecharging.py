@@ -1,6 +1,6 @@
 import csv
 
-from car import Car
+from optimisation.car import Car
 
 class DumbChargingPlanner:
 
@@ -83,7 +83,7 @@ c3 = Car(3, 74.25 , 21, 55 )
 
 cars_to_add = [c1,c2,c3]
 
-file = open('examples/energie2018-10-09.csv', encoding='utf-8-sig')
+file = open('optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
 csvreader = csv.reader(file)
 
 available_solar = []

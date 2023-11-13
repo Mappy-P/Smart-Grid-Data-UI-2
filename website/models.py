@@ -10,7 +10,19 @@ def predictConsumptie(start, duration): #De duration is 0 als je voor 1 dag wilt
     return predictie, echteWaarden
 
 def predictProductie(start, duration):
-    pass
+    file = open('optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
+    csvreader = csv.reader(file)
+
+    available_solar = []
+    for row in csvreader:
+        available_solar.append(float(row[0]))
+    return available_solar, available_solar
 
 def predictPrijzen(start, duration):
-    pass
+    file = open('optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
+    csvreader = csv.reader(file)
+
+    new_energy_price = []
+    for row in csvreader:
+        new_energy_price.append(float(row[0])/100) #prijs in cent
+    
