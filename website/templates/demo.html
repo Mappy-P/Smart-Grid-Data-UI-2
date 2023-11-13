@@ -3,5 +3,46 @@
 {% block title %}Smart Grid Data - Demo{% endblock %}
 
 {% block content %}
-
+<div class="container-fluid">
+  <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
+  <div class="row justify-content-center">
+    <div class="col">
+      <div class="jumbotron" style="width: 550px;">
+        <h1 class="display-4" style="font-size: 40px; padding-top: 0px;">Configure the calculation:</h1>
+            <p class="lead">DEMO</p>
+            <hr class="my-4">
+              <form method="POST">
+                <div class="form-group">
+                  <div class="row" style="padding-left: 15px;">
+                    <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation">
+                      <option selected>Choose the type of calculation you want to make</option>
+                      <option value="1">Prediction of the energy consumption</option>
+                      <option value="2">Prediction of the solar production</option>
+                      <option value="3">Prediction of the electricity prices</option>
+                      <option value="3">Full simulation of charging</option>
+                    </select>
+                  </div>
+            
+                    <div class="row">
+                      <div class="col">
+                          <label for="startDate">Start</label>
+                          <input id="startDate" name="startDate" class="form-control" type="date" />
+                      </div>
+                      <div class="col">
+                          <label for="endDate">End</label>
+                          <input id="endDate" name="endDate" class="form-control" type="date" />
+                      </div>
+                    </div>
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Run Calculation!</button>
+              </form>
+            </hr>
+      </div>
+    </div>
+    <div class="col">
+      <h1>Results:</h1>
+    </div>
+  </div>
+</div>
 {% endblock %}

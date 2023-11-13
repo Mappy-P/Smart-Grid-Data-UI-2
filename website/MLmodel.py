@@ -33,7 +33,7 @@ class DemoModel:
     self.model = keras.models.load_model(model)
     self.df = pd.read_csv(data)
 
-    def predict(self, start, duration):
+    def predict(self, start, duration): #De duration is 0 als je voor 1 dag wilt voorspellen. x als je voor x extra dagen wilt voorspellen.
         self.df['Value'] = self.scaler.fit_transform(self.df[['Value']])
         createDataSet(start, duration)
         prediction, realValues = getPredictionResults(start, duration)
