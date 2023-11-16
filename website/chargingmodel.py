@@ -5,8 +5,8 @@ import models
 
 def simulate_day(date, cars): # not dynamic: no updates on predicted data
     predicted_consumption, real_consumption = models.predictConsumptie(date, 0)
-    predicted_production, real_production = predictedProductie(date, 0)
-    predicted_prices, real_prices = predictPrijzen(date, 0)
+    predicted_production, real_production = models.predictProductie(date, 0)
+    predicted_prices, real_prices = models.predictPrijzen(date, 0)
 
     predicted_consumption = [x * 0.8 for x in predicted_consumption]
     real_consumption = [x * 0.8 for x in real_consumption]
@@ -17,10 +17,10 @@ def simulate_day(date, cars): # not dynamic: no updates on predicted data
     real_injection_price = max(0, average_real_price/10)
     charge_cap = 11/4
 
-    predicted_surplus = predicted_production-predicted_consumption
+    predicted_surplus = [x-y for x, y in zip(predicted_production, predicted_consumption)]
 
     planner = ChargingPlanner(predicted_surplus, predicted_prices, predicted_injection_price, charge_cap)
-    dumbplanner = DumbChargingPlanner(predicted_surplus, predicted_price, charge_cap)
+    dumbplanner = DumbChargingPlanner(predicted_surplus, predicted_prices, predicted_injection_price, charge_cap)
 
     charged_cars_smart = planner.get_cars()
     charged_cars_dumb = dumbplanner.get_cars()
