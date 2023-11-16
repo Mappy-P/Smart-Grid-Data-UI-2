@@ -20,7 +20,7 @@ class ChargingPlanner:
 
     #start_time inclusive end_time exclusive
     def add_car(self, to_charge, start_time, end_time):
-        if (end_time-start_time)*charge_cap < to_charge:
+        if (end_time-start_time)*self.charge_cap < to_charge:
             raise Exception('Car can never be charged :((')
         self.cars.append(Car(self.number_of_cars, to_charge, start_time, end_time))
         self.number_of_cars += 1
@@ -60,8 +60,8 @@ class ChargingPlanner:
                 i += 1
         self.predicted_solar_revenue = 0.
         for time in range(self.N):
-            if (energy_price[time] >= injection_price): # VRAAG JORIS
-                self.predicted_solar_revenue += self.energy_to_sell[time]*injection_price
+            if (self.energy_price[time] >= self.injection_price): # VRAAG JORIS
+                self.predicted_solar_revenue += self.energy_to_sell[time]*self.injection_price
         self.get_scheme()
 
         #for car in self.cars:

@@ -18,7 +18,7 @@ class DumbChargingPlanner:
 
     #start_time inclusive end_time exclusive
     def add_car(self, to_charge, start_time, end_time):
-        if (end_time-start_time)*charge_cap < to_charge:
+        if (end_time-start_time)*self.charge_cap < to_charge:
             raise Exception('Car can never be charged :((')
         self.cars.append(Car(self.number_of_cars, to_charge, start_time, end_time))
         self.number_of_cars += 1
@@ -42,15 +42,15 @@ class DumbChargingPlanner:
         for car in self.cars:
             for time in range(car.get_start(), car.get_end() + 1):
                 if car.get_to_charge_left() > 0:
-                    charge_amount = min(charge_cap, car.get_to_charge_left())
+                    charge_amount = min(self.charge_cap, car.get_to_charge_left())
                     energy_to_sell[time] -= charge_amount
                     car.set_charging(time, charge_amount)
                 else:
-                    charge_amount = min(charge_cap, car.get_to_charge_left())
+                    charge_amount = min(self.charge_cap, car.get_to_charge_left())
                     car.set_charging(time, charge_amount)
                     self.energy_to_buy[time] += charge_amount
-                    self.energy_cost += charge_amount * energy_price[time]
-        self.solar_revenue = injection_price*sum(energy_to_sell)
+                    self.energy_cost += charge_amount * self.energy_price[time]
+        self.solar_revenue = self.injection_price*sum(energy_to_sell)
         
         
  

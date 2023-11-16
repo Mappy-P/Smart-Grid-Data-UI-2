@@ -19,15 +19,33 @@ def simulate_day(date, cars): # not dynamic: no updates on predicted data
 
     predicted_surplus = [x-y for x, y in zip(predicted_production, predicted_consumption)]
 
-    planner = ChargingPlanner(predicted_surplus, predicted_prices, predicted_injection_price, charge_cap)
+    smartplanner = ChargingPlanner(predicted_surplus, predicted_prices, predicted_injection_price, charge_cap)
     dumbplanner = DumbChargingPlanner(predicted_surplus, predicted_prices, predicted_injection_price, charge_cap)
 
-    charged_cars_smart = planner.get_cars()
+    for car in cars:
+        smartplanner.add_car(car.get_to_charge_left(), car.get_start(), car.get_end())
+        dumbplanner.add_car(car.get_to_charge_left(), car.get_start(), car.get_end())
+
+    charged_cars_smart = smartplanner.get_cars()
     charged_cars_dumb = dumbplanner.get_cars()
+    print(len(charged_cars_smart))
+
+    create_charge_vis(charged_cars_dumb)
+    create_charge_vis(charged_cars_smart)
 
 
 def create_charge_vis(cars):
-    pass #TODO: create visualisation with matplotlib
+    N = 24*4
+    for car in cars:
+        for time in range(N): 
+            if car.get_charging(time) > 11/4*0.99: # hash if car is charging at that point in time at full capacity
+                print('#',end='')
+            elif car.get_charging(time) > 0.45: # circle if car is charging at that point in time at partial capacity
+                print('o',end='')
+            else: # dit if car is not charging
+                print('.',end='')
+        print()
+    print('------------------------------------------------------------------------------------------------')
     
 c1 = Car(1, 77, 32, 90)
 c2 = Car(2, 77, 21, 60)
