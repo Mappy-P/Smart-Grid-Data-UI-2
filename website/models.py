@@ -11,7 +11,7 @@ def predictConsumptie(start, duration): #De duration is 0 als je voor 1 dag wilt
     return predictie, echteWaarden
 
 def predictProductie(start, duration):
-    file = open('website/assets/optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
+    file = open('website/assets/optimisation/examples/day1.csv', encoding='utf-8-sig')
     csvreader = csv.reader(file)
 
     available_solar = []

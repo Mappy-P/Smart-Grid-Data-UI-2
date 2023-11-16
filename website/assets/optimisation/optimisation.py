@@ -1,5 +1,5 @@
 import csv
-from car import Car
+from assets.optimisation.car import Car
 
    
 class ChargingPlanner:
@@ -20,7 +20,7 @@ class ChargingPlanner:
 
     #start_time inclusive end_time exclusive
     def add_car(self, to_charge, start_time, end_time):
-        if (end_time-start_time)*charge_cap < to_charge:
+        if (end_time-start_time)*self.charge_cap < to_charge:
             raise Exception('Car can never be charged :((')
         self.cars.append(Car(self.number_of_cars, to_charge, start_time, end_time))
         self.number_of_cars += 1
@@ -35,7 +35,7 @@ class ChargingPlanner:
     def __recompute(self, offset):
         for car in self.cars:
             car.reset(offset)
-        #for car in self.cars:  
+        #for car in self.cars:
         #    print(car.get_id(), ' tocharge ',car.get_to_charge_left())
         self.cars.sort(key=lambda car: car.get_to_charge_left()/(car.get_end()-max(car.get_start(), offset)), reverse=True)
         #self.cars.sort(key=lambda car: car.get_end())
@@ -60,8 +60,8 @@ class ChargingPlanner:
                 i += 1
         self.predicted_solar_revenue = 0.
         for time in range(self.N):
-            if (energy_price[time] >= injection_price): # VRAAG JORIS
-                self.predicted_solar_revenue += self.energy_to_sell[time]*injection_price
+            if (self.energy_price[time] >= self.injection_price): # VRAAG JORIS
+                self.predicted_solar_revenue += self.energy_to_sell[time]*self.injection_price
         self.get_scheme()
 
         #for car in self.cars:
@@ -106,6 +106,9 @@ class ChargingPlanner:
             self.predicted_energy_cost += self.energy_to_buy[time]*self.energy_price[time]
         self.get_scheme()
 
+    def get_cars(self):
+        return self.cars
+
     def get_scheme(self): # visual representation of charging scheme
         for car in self.cars:
             for time in range(self.N): 
@@ -121,66 +124,72 @@ class ChargingPlanner:
     def get_predicted_energy_cost(self):
         return self.predicted_energy_cost
 
-    def get_real_energy_cost():
+    def get_real_energy_cost(self, real_energy_price, real_solar_surplus):
         pass
 
     def get_predicted_solar_revenue(self):
         return self.predicted_solar_revenue
 
+    def get_real_solar_revenue(self, real_solar_surplus, real_injection_price):
+        pass
+
     def get_predicted_profit(self):
         return self.predicted_solar_revenue-self.predicted_energy_cost
 
-c1 = Car(1, 77, 32, 90)
-c2 = Car(2, 77, 21, 60)
-c3 = Car(3, 74.25, 21, 55)
+    def get_real_profit(self, real_energy_price, real_soar_surplus, real_injection_price):
+        return self.get_real_solar_revenue(real_solar_surplus, real_injection_price)-self.get_real_energy_cost(real_energy_price, real_solar_surplus)
 
-cars_to_add = [c1,c2,c3]
+#c1 = Car(1, 77, 32, 90)
+#c2 = Car(2, 77, 21, 60)
+#c3 = Car(3, 74.25, 21, 55)
 
-file = open('examples/energie2018-10-09.csv', encoding='utf-8-sig')
-csvreader = csv.reader(file)
+#cars_to_add = [c1,c2,c3]
 
-available_solar = []
-for row in csvreader:
-    available_solar.append(float(row[0])/10)
+#file = open('website/assets/optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
+#csvreader = csv.reader(file)
 
-file = open('examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
-csvreader = csv.reader(file)
+#available_solar = []
+#for row in csvreader:
+#    available_solar.append(float(row[0])/10)
 
-energy_price = []
-for row in csvreader:
-    energy_price.append(float(row[0])/100) #prijs in cent
+#file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
+#csvreader = csv.reader(file)
 
-charge_cap = 11/4
-injection_price = 0.1
+#energy_price = []
+#for row in csvreader:
+#    energy_price.append(float(row[0])/100) #prijs in cent
 
-planner = ChargingPlanner(available_solar, energy_price, injection_price, charge_cap)
-for car in cars_to_add:
-    planner.add_car(car.get_to_charge_left(), car.get_start(), car.get_end())
+#charge_cap = 11/4
+#injection_price = 0.1
+
+#planner = ChargingPlanner(available_solar, energy_price, injection_price, charge_cap)
+#for car in cars_to_add:
+#    planner.add_car(car.get_to_charge_left(), car.get_start(), car.get_end())
 
 #planner.get_scheme()
-print(planner.get_predicted_solar_revenue())
-print(planner.get_predicted_energy_cost())
-print(planner.get_predicted_profit())
+#print(planner.get_predicted_solar_revenue())
+#print(planner.get_predicted_energy_cost())
+#print(planner.get_predicted_profit())
 
-file = open('examples/available_solar_example.csv', encoding='utf-8-sig')
-csvreader = csv.reader(file)
+#file = open('website/assets/optimisation/examples/available_solar_example.csv', encoding='utf-8-sig')
+#csvreader = csv.reader(file)
 
-new_available_solar = []
-for row in csvreader:
-    new_available_solar.append(float(row[0])/10)
+#new_available_solar = []
+#for row in csvreader:
+#    new_available_solar.append(float(row[0])/10)
 
-file = open('examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
-csvreader = csv.reader(file)
+#file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
+#csvreader = csv.reader(file)
 
-new_energy_price = []
-for row in csvreader:
-    new_energy_price.append(float(row[0])/100) #prijs in cent
+#new_energy_price = []
+#for row in csvreader:
+#    new_energy_price.append(float(row[0])/100) #prijs in cent
 
-planner.update(45, new_available_solar, new_energy_price)
+#planner.update(45, new_available_solar, new_energy_price)
 
-print(planner.get_predicted_solar_revenue())
-print(planner.get_predicted_energy_cost())
-print(planner.get_predicted_profit())
+#print(planner.get_predicted_solar_revenue())
+#print(planner.get_predicted_energy_cost())
+#print(planner.get_predicted_profit())
 
 
 #check validiteit van input data
