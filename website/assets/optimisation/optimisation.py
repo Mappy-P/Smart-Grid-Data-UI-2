@@ -1,5 +1,5 @@
 import csv
-from optimisation.car import Car
+from assets.optimisation.car import Car
 
    
 class ChargingPlanner:
@@ -145,14 +145,14 @@ c3 = Car(3, 74.25, 21, 55)
 
 cars_to_add = [c1,c2,c3]
 
-file = open('optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
+file = open('website/assets/optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
 csvreader = csv.reader(file)
 
 available_solar = []
 for row in csvreader:
     available_solar.append(float(row[0])/10)
 
-file = open('optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
+file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
 csvreader = csv.reader(file)
 
 energy_price = []
@@ -171,14 +171,14 @@ print(planner.get_predicted_solar_revenue())
 print(planner.get_predicted_energy_cost())
 print(planner.get_predicted_profit())
 
-file = open('optimisation/examples/available_solar_example.csv', encoding='utf-8-sig')
+file = open('website/assets/optimisation/examples/available_solar_example.csv', encoding='utf-8-sig')
 csvreader = csv.reader(file)
 
 new_available_solar = []
 for row in csvreader:
     new_available_solar.append(float(row[0])/10)
 
-file = open('optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
+file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
 csvreader = csv.reader(file)
 
 new_energy_price = []

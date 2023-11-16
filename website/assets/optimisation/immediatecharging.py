@@ -1,6 +1,6 @@
 import csv
 
-from optimisation.car import Car
+from assets.optimisation.car import Car
 
 class DumbChargingPlanner:
 
@@ -79,18 +79,18 @@ class DumbChargingPlanner:
 
 c1 = Car(1, 77, 32, 90)
 c2 = Car(2, 77, 21, 60)
-c3 = Car(3, 74.25 , 21, 55 )
+c3 = Car(3, 74.25, 21, 55)
 
 cars_to_add = [c1,c2,c3]
 
-file = open('optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
+file = open('website/assets/optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
 csvreader = csv.reader(file)
 
 available_solar = []
 for row in csvreader:
     available_solar.append(float(row[0])/10)
 
-file = open('examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
+file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
 csvreader = csv.reader(file)
 
 energy_price = []

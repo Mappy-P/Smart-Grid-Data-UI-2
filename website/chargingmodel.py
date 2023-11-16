@@ -1,5 +1,7 @@
-from optimisation.optimisation import ChargingPlanner
-from optimisation.immediatecharging import DumbChargingPlanner
+from assets.optimisation.optimisation import ChargingPlanner
+from assets.optimisation.immediatecharging import DumbChargingPlanner
+from assets.optimisation.car import Car
+import models
 
 def simulate_day(date, cars): # not dynamic: no updates on predicted data
     predicted_consumption, real_consumption = models.predictConsumptie(date, 0)
