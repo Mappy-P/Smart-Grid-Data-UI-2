@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-import optimisation
+#from optimisation.optimisation import ChargingPlanner
 
 views = Blueprint('views', __name__)
 
@@ -18,3 +18,4 @@ def demo():
         startDate = request.form.get('startDate')
         endDate = request.form.get('endDate')
     return render_template('demo.html')
+

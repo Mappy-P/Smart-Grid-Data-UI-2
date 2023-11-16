@@ -1,5 +1,5 @@
 import csv
-from car import Car
+from optimisation.car import Car
 
    
 class ChargingPlanner:
