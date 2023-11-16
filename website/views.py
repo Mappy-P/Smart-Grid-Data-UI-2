@@ -1,6 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
-from . import models
-from datetime import datetime
+from flask import Blueprint, render_template, request, redirect, url_for
 import optimisation
 
 views = Blueprint('views', __name__)
@@ -17,6 +15,7 @@ def about():
 def demo():
     if request.method == 'POST':
         typeOfCalculation = request.form.get('typeOfCalculation')
+<<<<<<< HEAD
         startDate = datetime.strptime(request.form.get('startDate'), '%Y-%m-%d')
         endDate = datetime.strptime(request.form.get('endDate'), '%Y-%m-%d')
 
@@ -42,3 +41,8 @@ def demo():
         werkelijk = None
 
     return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
+=======
+        startDate = request.form.get('startDate')
+        endDate = request.form.get('endDate')
+    return render_template('demo.html')
+>>>>>>> 229e468b6957c8d15d6eab727a5f25b97f38a86e
