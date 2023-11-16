@@ -35,7 +35,7 @@ class ChargingPlanner:
     def __recompute(self, offset):
         for car in self.cars:
             car.reset(offset)
-        #for car in self.cars:
+        #for car in self.cars:  
         #    print(car.get_id(), ' tocharge ',car.get_to_charge_left())
         self.cars.sort(key=lambda car: car.get_to_charge_left()/(car.get_end()-max(car.get_start(), offset)), reverse=True)
         #self.cars.sort(key=lambda car: car.get_end())
