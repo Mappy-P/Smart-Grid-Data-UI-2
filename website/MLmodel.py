@@ -32,20 +32,34 @@ class DemoModel:
     self.scaler = MinMaxScaler(feature_range=(0, 1))
     self.model = keras.models.load_model(model)
     self.df = pd.read_csv(data)
+    
+  def createDataSet(self, start, duration):
+    self.X, self.Y = split_series(self.df['Value'], 1440, 96)
+    self.X = self.X[start:start + duration + 1]
+    self.Y = self.Y[start:start + duration + 1]
+    
+  def getPredictionResults(self, start, duration):
+    prediction = self.model.predict(self.X)
+    yhat = list()
+    for x in prediction:
+      for y in x:
+        lijst = list()
+        lijst.append(y)
+        yhat.append(lijst)
+    yhat = np.array(yhat)
+    yhat = self.scaler.inverse_transform(yhat)
 
-    def predict(self, start, duration): #De duration is 0 als je voor 1 dag wilt voorspellen. x als je voor x extra dagen wilt voorspellen.
-        self.df['Value'] = self.scaler.fit_transform(self.df[['Value']])
-        createDataSet(start, duration)
-        prediction, realValues = getPredictionResults(start, duration)
-        return prediction, realValues
-    
-    def createDataSet(self, start, duration):
-      self.X, self.Y = split_series(self.df['Value'], 1440, 96)
-      self.X = self.X[start:start + duration + 1]
-      self.Y = self.Y[start:start + duration + 1]
-    
-    def getPredictionResults(self, start, duration):
-      prediction = self.model.predict(self.X)
-      self.df['Value'] = self.scaler.inverse_transform(self.df[['Value']])
-      realValues = self.df['Value'][start*96 + 1440: start*96 + 1440 + (duration + 1)*96]
-      return prediction, realValues
+    predictionInList = list()
+    for x in prediction:
+      for y in x:
+        predictionInList.append(y)
+
+    self.df['Value'] = self.scaler.inverse_transform(self.df[['Value']])
+    realValues = self.df['Value'][start*96 + 1440: start*96 + 1440 + (duration + 1)*96]
+    return predictionInList, realValues
+
+  def predictValues(self, start, duration): #De duration is 0 als je voor 1 dag wilt voorspellen. x als je voor x extra dagen wilt voorspellen.
+    self.df['Value'] = self.scaler.fit_transform(self.df[['Value']])
+    self.createDataSet(start, duration)
+    prediction, realValues = self.getPredictionResults(start, duration)
+    return prediction, realValues
