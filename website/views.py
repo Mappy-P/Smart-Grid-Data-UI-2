@@ -19,3 +19,6 @@ def demo():
         endDate = request.form.get('endDate')
     return render_template('demo.html')
 
+@views.route('/aboutus')
+def aboutus():
+    return render_template('about_us.html')

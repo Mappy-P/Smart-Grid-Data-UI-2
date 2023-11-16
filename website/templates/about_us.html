@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}About us{% endblock %}
+
+{% block content%}
+<h1 style="visibility:hidden">simple place holder ;)</h1>
+<div class="jumbotron">
+<h1 class="display-4">About us</h1>
+    <hr class="my-4">
+
+    <div class="container">
+        <!-- mathijs -->
+        <div class = "row" style = "padding-top: 30px;">
+            <div class = "col-4 nopadding">
+                <img src="{{ url_for('static', filename='/imgs/pf1.jpg') }}" style="height: 270px; width: auto;border-radius: 50%;overflow: hidden;"/>
+            </div>
+            <div class = "col nopadding">
+                <h3>Mathijs Andries</h3>
+                <p style = "padding-top: 30px"> phd in piemol</p>
+            </div>
+
+        </div>
+        <!-- matti -->
+        <div class = "row" style = "padding-top: 30px";>
+            <div class = "col-4 nopadding">
+                <img src="{{ url_for('static', filename='/imgs/pf2.jpg') }}" style="height: 270px; width: auto;border-radius: 50%;overflow: hidden;"/>
+            </div>
+            <div class = "col nopadding">
+                <h3>Sebastian Weiermann</h3>
+            </div>
+
+        </div>
+        <div class = "row" style = "padding-top: 30px";>
+            <div class = "col-4 nopadding">
+                <img src="{{ url_for('static', filename='/imgs/pf3.jpg') }}" style="height: 270px; width: auto;border-radius: 50%;overflow: hidden;"/>
+            </div>
+            <div class = "col nopadding">
+                <h3>Liam Duchene</h3>
+            </div>
+
+        </div>
+        <div class = "row" style = "padding-top: 30px";>
+            <div class = "col-4 nopadding">
+                <img src="{{ url_for('static', filename='/imgs/pf4.jpg') }}" style="height: 270px; width: 270px;border-radius: 50%;overflow: hidden;"/>
+            </div>
+            <div class = "col nopadding">
+                <h3>Matti Boelen</h3>
+            </div>
+
+        </div>
+        <div class = "row" style = "padding-top: 30px";>
+            <div class = "col-4 nopadding">
+                <img src="{{ url_for('static', filename='/imgs/pf5.jpg') }}" style="height: 270px; width: auto;border-radius: 50%;overflow: hidden;"/>
+            </div>
+            <div class = "col nopadding">
+                <h3>Tom Goossens</h3>
+            </div>
+
+        </div>
+        <div class = "row" style = "padding-top: 30px";>
+            <div class = "col-4 nopadding">
+                <img src="{{ url_for('static', filename='/imgs/pf6.jpg') }}" style="height: 270px; width: auto;border-radius: 50%;overflow: hidden;"/>
+            </div>
+            <div class = "col nopadding">
+                <h3>Rafael Demaerel</h3>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+{%endblock%}
