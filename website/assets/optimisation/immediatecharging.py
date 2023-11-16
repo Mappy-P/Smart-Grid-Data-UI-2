@@ -1,6 +1,6 @@
 import csv
 
-from car import Car
+from assets.optimisation.car import Car
 
 class DumbChargingPlanner:
 
@@ -18,7 +18,7 @@ class DumbChargingPlanner:
 
     #start_time inclusive end_time exclusive
     def add_car(self, to_charge, start_time, end_time):
-        if (end_time-start_time)*charge_cap < to_charge:
+        if (end_time-start_time)*self.charge_cap < to_charge:
             raise Exception('Car can never be charged :((')
         self.cars.append(Car(self.number_of_cars, to_charge, start_time, end_time))
         self.number_of_cars += 1
@@ -42,15 +42,15 @@ class DumbChargingPlanner:
         for car in self.cars:
             for time in range(car.get_start(), car.get_end() + 1):
                 if car.get_to_charge_left() > 0:
-                    charge_amount = min(charge_cap, car.get_to_charge_left())
+                    charge_amount = min(self.charge_cap, car.get_to_charge_left())
                     energy_to_sell[time] -= charge_amount
                     car.set_charging(time, charge_amount)
                 else:
-                    charge_amount = min(charge_cap, car.get_to_charge_left())
+                    charge_amount = min(self.charge_cap, car.get_to_charge_left())
                     car.set_charging(time, charge_amount)
                     self.energy_to_buy[time] += charge_amount
-                    self.energy_cost += charge_amount * energy_price[time]
-        self.solar_revenue = injection_price*sum(energy_to_sell)
+                    self.energy_cost += charge_amount * self.energy_price[time]
+        self.solar_revenue = self.injection_price*sum(energy_to_sell)
         
         
  
@@ -76,35 +76,38 @@ class DumbChargingPlanner:
     def get_profit(self):
         return self.solar_revenue - self.energy_cost
 
+    def get_cars(self):
+        return self.cars
 
-c1 = Car(1, 77, 32, 90)
-c2 = Car(2, 77, 21, 60)
-c3 = Car(3, 74.25 , 21, 55 )
 
-cars_to_add = [c1,c2,c3]
+#c1 = Car(1, 77, 32, 90)
+#c2 = Car(2, 77, 21, 60)
+#c3 = Car(3, 74.25, 21, 55)
 
-file = open('examples/energie2018-10-09.csv', encoding='utf-8-sig')
-csvreader = csv.reader(file)
+#cars_to_add = [c1,c2,c3]
 
-available_solar = []
-for row in csvreader:
-    available_solar.append(float(row[0])/10)
+#file = open('website/assets/optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
+#csvreader = csv.reader(file)
 
-file = open('examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
-csvreader = csv.reader(file)
+#available_solar = []
+#for row in csvreader:
+#    available_solar.append(float(row[0])/10)
 
-energy_price = []
-for row in csvreader:
-    energy_price.append(float(row[0])/100) #prijs in cent
+#file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
+#csvreader = csv.reader(file)
 
-charge_cap = 11/4
-injection_price = 0.1
+#energy_price = []
+#for row in csvreader:
+#    energy_price.append(float(row[0])/100) #prijs in cent
 
-planner = DumbChargingPlanner(available_solar, energy_price, injection_price, charge_cap)
-for car in cars_to_add:
-    planner.add_car(car.get_to_charge_left(), car.get_start(), car.get_end())
+#charge_cap = 11/4
+#injection_price = 0.1
 
-planner.get_scheme()
-print(planner.get_profit())
-print(planner.get_expected_energy_cost())
-print(planner.get_solar_revenue())
+#planner = DumbChargingPlanner(available_solar, energy_price, injection_price, charge_cap)
+#for car in cars_to_add:
+#    planner.add_car(car.get_to_charge_left(), car.get_start(), car.get_end())
+
+#planner.get_scheme()
+#print(planner.get_profit())
+#print(planner.get_expected_energy_cost())
+#print(planner.get_solar_revenue())
