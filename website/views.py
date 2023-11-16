@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import models
 from datetime import datetime
-import optimisation
+from .assets import optimisation
 
 views = Blueprint('views', __name__)
 

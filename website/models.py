@@ -1,4 +1,4 @@
-from MLmodel import DemoModel
+from .MLmodel import DemoModel
 import csv
 
 
