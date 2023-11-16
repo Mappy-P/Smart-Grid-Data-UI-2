@@ -50,13 +50,17 @@ class DemoModel:
     yhat = self.scaler.inverse_transform(yhat)
 
     predictionInList = list()
-    for x in prediction:
+    for x in yhat:
       for y in x:
-        predictionInList.append(y)
+        predictionInList.append(str(y))
 
     self.df['Value'] = self.scaler.inverse_transform(self.df[['Value']])
     realValues = self.df['Value'][start*96 + 1440: start*96 + 1440 + (duration + 1)*96]
-    return predictionInList, realValues
+    realValuesInList = list()
+    for x in realValues:
+      realValuesInList.append(str(x))
+
+    return predictionInList, realValuesInList
 
   def predictValues(self, start, duration): #De duration is 0 als je voor 1 dag wilt voorspellen. x als je voor x extra dagen wilt voorspellen.
     self.df['Value'] = self.scaler.fit_transform(self.df[['Value']])

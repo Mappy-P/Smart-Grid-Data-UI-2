@@ -22,13 +22,23 @@ def demo():
 
         if startDate > endDate:
             flash("Your end-date cannot be before your start-date", category='error')
+            predictie = None
+            datums = None
+            werkelijk = None
 
         else:
             duration = (endDate - startDate).days
             beginDateData = datetime.strptime('2018-01-11', '%Y-%m-%d')
             start = (startDate - beginDateData).days
-            predictie = models.predictConsumptie(start, duration)
+            predictionResults = models.predictConsumptie(start, duration)
+            predictie = predictionResults[0]
+            werkelijk = predictionResults[1]
+            datums = list()
+            for i in range(len(predictie)):
+                datums.append(str(i))
     else:
         predictie = None
+        datums = None
+        werkelijk = None
 
-    return render_template('demo.html', result = predictie)
+    return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
