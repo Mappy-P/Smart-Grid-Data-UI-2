@@ -12,7 +12,7 @@ def split_series(series, n_past, n_future):
   # n_future ==> aantal volgende observaties (96 = 4*24)
   #
   X, y = list(), list()
-  for window_start in range(0, len(series), 96):
+  for window_start in range(0, len(series), n_future):
     past_end = window_start + n_past
     future_end = past_end + n_future
     if future_end > len(series):
@@ -32,9 +32,20 @@ class DemoModel:
     self.scaler = MinMaxScaler(feature_range=(0, 1))
     self.model = keras.models.load_model(model)
     self.df = pd.read_csv(data)
+    if model == (r'website/assets/model.h5'):
+      self.type = 'consumptie'
+    elif model == (r'website/assets/Solar_model.h5'):
+      self.type = 'productie'
+    else:
+      self.type = 'prijzen'
     
   def createDataSet(self, start, duration):
-    self.X, self.Y = split_series(self.df['Value'], 1440, 96)
+    if self.type =='consumptie':
+      self.X, self.Y = split_series(self.df['Value'], 1440, 96)
+    elif self.type == 'productie':
+      self.X, self.Y = split_series(self.df['Value'], 325, 64)
+    elif self.type == 'prijzen':
+      self.X, self.Y = split_series(self.df['Value'], 325, 64)
     self.X = self.X[start:start + duration + 1]
     self.Y = self.Y[start:start + duration + 1]
     
