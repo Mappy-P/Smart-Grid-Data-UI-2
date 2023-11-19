@@ -29,7 +29,7 @@ def demo():
 
         else:
             duration = (endDate - startDate).days
-            beginDateData = datetime.strptime('2018-01-11', '%Y-%m-%d')
+            beginDateData = datetime.strptime('2018-01-16', '%Y-%m-%d')
             start = (startDate - beginDateData).days
             if typeOfCalculation == '1':
                 predictionResults = models.predictConsumptie(start, duration)

@@ -45,7 +45,7 @@ class DemoModel:
     elif self.type == 'productie':
       self.X, self.Y = split_series(self.df['Value'], 325, 64)
     elif self.type == 'prijzen':
-      self.X, self.Y = split_series(self.df['Value'], 325, 64)
+      self.X, self.Y = split_series(self.df['Value'], 85, 17)
     self.X = self.X[start:start + duration + 1]
     self.Y = self.Y[start:start + duration + 1]
     
@@ -66,7 +66,15 @@ class DemoModel:
         predictionInList.append(str(y))
 
     self.df['Value'] = self.scaler.inverse_transform(self.df[['Value']])
-    realValues = self.df['Value'][start*96 + 1440: start*96 + 1440 + (duration + 1)*96]
+    if self.type == 'consumptie':
+      realValues = self.df['Value'][start*96 + 1440: start*96 + 1440 + (duration + 1)*96]
+      print(self.df['Timestamp'][start*96 + 1440])
+    elif self.type == 'productie':
+      realValues = self.df['Value'][start*64 + 960: start*64 + 960 + (duration + 1)*64]
+      print(self.df['Timestamp'][start*64 + 960])
+    elif self.type == 'prijzen':
+      realValues = self.df['Value'][start*17 + 255: start*17 + 255 + (duration + 1)*17]
+      print(self.df['Date'][start*17 + 255])
     realValuesInList = list()
     for x in realValues:
       realValuesInList.append(str(x))

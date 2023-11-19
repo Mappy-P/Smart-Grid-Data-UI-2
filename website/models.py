@@ -6,10 +6,10 @@ linkconsumptie = (r'website/assets/model.h5') #Het ML model van consumptie
 linkconsumptiedata = (r'website/assets/data/consumption_EnergyVille.csv')
 
 linkproductie = (r'website/assets/Solar_model.h5') #Het ML model van solar productie
-linkproductiedata = (r'website/assets/data/solar_PV_EnergyVille.csv')
+linkproductiedata = (r'website/assets/data/Solar_6tot10.csv')
 
 linkprijzen = (r'website/assets/Belpex_model.h5') #Het ML model van Belpex prijzen
-linkprijzendata = (r'website/assets/data/Belpex_20182023.csv')
+linkprijzendata = (r'website/assets/data/Belpex_6tot10.csv')
 
 def predictConsumptie(start, duration): #De duration is 0 als je voor 1 dag wilt voorspellen. x als je voor x extra dagen wilt voorspellen.
     consumptieModel = DemoModel(linkconsumptie, linkconsumptiedata)
