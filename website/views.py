@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import models
 from datetime import datetime
 from .assets import optimisation
+from .assets.optimisation.car import Car
 
 views = Blueprint('views', __name__)
 
@@ -38,8 +39,14 @@ def demo():
             elif typeOfCalculation == '3':
                 predictionResults = models.predictPrijzen(start, duration)
             elif typeOfCalculation == '4':
+                c1 = Car(1, 77, 32, 90)
+                c2 = Car(2, 77, 21, 60)
+                c3 = Car(3, 74.25, 21, 55)
+
+                cars_to_add = [c1,c2,c3]
+                models.simulate(start, cars_to_add)
                 predictie = None
-                datums = None
+                datum = None
                 werkelijk = None
             elif typeOfCalculation == '0':
                 flash('Choose the type of calculation you want our model to run.', category='error')
