@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 # from flask_sqlalchemy import SQLAlchemy
 
 # db = SQLAlchemy()
@@ -7,6 +7,9 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
     app.secret_key="anystringhere_ZUIGMIJNLULRAFAEL"
+    @app.errorhandler(404) 
+    def not_found(e): 
+        return render_template("404.html") 
     # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     # db.init_app(app)
 
