@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Page not Found{% endblock %}
+
+{% block content%}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col">
+          <h1 style="text-align: center;">We were unable to find the page you were looking for :(</h1>
+          <img  class="hidden" src="{{ url_for('static', filename='/imgs/404.jpg') }}" style="height: 400px; width: auto; margin-left: auto; margin-right: auto; display: block;"/>
+        </div>
+</div>
+{%endblock%}
