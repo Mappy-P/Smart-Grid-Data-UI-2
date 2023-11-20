@@ -42,12 +42,16 @@ class DemoModel:
   def createDataSet(self, start, duration):
     if self.type =='consumptie':
       self.X, self.Y = split_series(self.df['Value'], 1440, 96)
+      self.X = self.X[start:start + duration + 1]
+      self.Y = self.Y[start:start + duration + 1]
     elif self.type == 'productie':
-      self.X, self.Y = split_series(self.df['Value'], 325, 64)
+      self.X, self.Y = split_series(self.df['Value'], 325, 65)
+      self.X = self.X[start + 10:start + 10 + duration + 1]
+      self.Y = self.Y[start + 10:start + 10 + duration + 1]
     elif self.type == 'prijzen':
       self.X, self.Y = split_series(self.df['Value'], 85, 17)
-    self.X = self.X[start:start + duration + 1]
-    self.Y = self.Y[start:start + duration + 1]
+      self.X = self.X[start + 10:start + 10 + duration + 1]
+      self.Y = self.Y[start + 10:start + 10 + duration + 1]
     
   def getPredictionResults(self, start, duration):
     prediction = self.model.predict(self.X)
@@ -68,21 +72,27 @@ class DemoModel:
     self.df['Value'] = self.scaler.inverse_transform(self.df[['Value']])
     if self.type == 'consumptie':
       realValues = self.df['Value'][start*96 + 1440: start*96 + 1440 + (duration + 1)*96]
+      dates = self.df['Timestamp'][start*96 + 1440: start*96 + 1440 + (duration + 1)*96]
       print(self.df['Timestamp'][start*96 + 1440])
     elif self.type == 'productie':
-      realValues = self.df['Value'][start*64 + 960: start*64 + 960 + (duration + 1)*64]
-      print(self.df['Timestamp'][start*64 + 960])
+      realValues = self.df['Value'][start*65 + 975: start*65 + 975 + (duration + 1)*65]
+      dates = self.df['Timestamp'][start*65 + 975: start*65 + 975 + (duration + 1)*65]
+      print(self.df['Timestamp'][start*65 + 975])
     elif self.type == 'prijzen':
       realValues = self.df['Value'][start*17 + 255: start*17 + 255 + (duration + 1)*17]
+      dates = self.df['Date'][start*17 + 255: start*17 + 255 + (duration + 1)*17]
       print(self.df['Date'][start*17 + 255])
     realValuesInList = list()
+    datesInList = list()
     for x in realValues:
       realValuesInList.append(str(x))
+    for x in dates:
+      datesInList.append(str(x))
 
-    return predictionInList, realValuesInList
+    return predictionInList, realValuesInList, datesInList
 
   def predictValues(self, start, duration): #De duration is 0 als je voor 1 dag wilt voorspellen. x als je voor x extra dagen wilt voorspellen.
     self.df['Value'] = self.scaler.fit_transform(self.df[['Value']])
     self.createDataSet(start, duration)
-    prediction, realValues = self.getPredictionResults(start, duration)
-    return prediction, realValues
+    prediction, realValues, dates = self.getPredictionResults(start, duration)
+    return prediction, realValues, self.type, dates

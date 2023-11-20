@@ -27,6 +27,7 @@ def demo():
             predictie = None
             datums = None
             werkelijk = None
+            soort = None
 
         else:
             duration = (endDate - startDate).days
@@ -48,20 +49,22 @@ def demo():
                 predictie = None
                 datum = None
                 werkelijk = None
+                soort = None
             elif typeOfCalculation == '0':
                 flash('Choose the type of calculation you want our model to run.', category='error')
                 predictie = None
                 datums = None
                 werkelijk = None
+                soort = None
                 return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
             predictie = predictionResults[0]
             werkelijk = predictionResults[1]
-            datums = list()
-            for i in range(len(predictie)):
-                datums.append(str(i))
+            soort = predictionResults[2]
+            datums = predictionResults[3]
     else:
         predictie = None
         datums = None
         werkelijk = None
+        soort = None
 
-    return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
+    return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk, soort = soort)
