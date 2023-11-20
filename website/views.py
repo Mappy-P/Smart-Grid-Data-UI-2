@@ -51,9 +51,10 @@ def demo():
                 cars_to_add = [c1,c2,c3]
                 models.simulate(start, cars_to_add)
                 predictie = None
-                datum = None
+                datums = None
                 werkelijk = None
                 soort = None
+                return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
             elif typeOfCalculation == '0':
                 flash('Choose the type of calculation you want our model to run.', category='error')
                 predictie = None

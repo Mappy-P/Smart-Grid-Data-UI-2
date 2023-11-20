@@ -30,22 +30,29 @@ def predictPrijzen(start, duration):
     return predictie, echteWaarden, soort, dates
     
 def simulate(date, cars):
-    predicted_consumption, real_consumption = predictConsumptie(date, 0)
-    predicted_production, real_production = predictProductie(date, 0)
-    predicted_prices, real_prices = predictPrijzen(date, 0)
-    print(predicted_consumption)
-    print(real_consumption)
-    print(predicted_production)
-    print(real_production)
-    print(predicted_prices)
-    print(real_prices)
-
+    predicted_consumption, real_consumption, _, _ = predictConsumptie(date, 0)
+    predicted_production, real_production, _, _ = predictProductie(date, 0)
+    predicted_prices, real_prices, _, _ = predictPrijzen(date, 0)
+    print(len(predicted_consumption))
+    print(len(real_consumption))
+    print(len(predicted_production))
+    print(len(real_production))
+    print(len(predicted_prices))
+    print(len(real_prices))
 
     predicted_consumption = [float(x) * 0.8 for x in predicted_consumption]
     real_consumption = [float(x) * 0.8 for x in real_consumption]
-    predicted_production = [float(x) for x in predicted_consumption]
-    real_production = [float(x) for x in real_consumption]
-    predicted_prices = [float(x) for x in predicted_prices]
-    real_prices = [float(x) for x in real_prices]
+    predicted_production = ([0] * (8*4)) + [float(x) for x in predicted_consumption] + ([0] * (2*4-1))
+    real_production = ([0] * (8*4)) + [float(x) for x in real_consumption] + ([0] * (2*4-1))
+    predicted_prices = ([0] * (8*4)) + [float(x) for i in range(4) for x in predicted_prices] + ([0] * (2*4-1))
+    real_prices = ([0] * (8*4)) + [float(x) for i in range(4) for x in real_prices] + ([0] * (2*4-1))
+
+    print(len(predicted_consumption))
+    print(len(real_consumption))
+    print(len(predicted_production))
+    print(len(real_production))
+    print(len(predicted_prices))
+    print(len(real_prices))
+
 
     chargingmodel.simulate_day(date, cars, predicted_consumption, real_consumption, predicted_production, real_production, predicted_prices, real_prices)
