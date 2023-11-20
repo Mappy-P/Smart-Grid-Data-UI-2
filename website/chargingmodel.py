@@ -1,15 +1,8 @@
-from assets.optimisation.optimisation import ChargingPlanner
-from assets.optimisation.immediatecharging import DumbChargingPlanner
-from assets.optimisation.car import Car
-import models
+from .assets.optimisation.optimisation import ChargingPlanner
+from .assets.optimisation.immediatecharging import DumbChargingPlanner
+from .assets.optimisation.car import Car
 
-def simulate_day(date, cars): # not dynamic: no updates on predicted data
-    predicted_consumption, real_consumption = models.predictConsumptie(date, 0)
-    predicted_production, real_production = models.predictProductie(date, 0)
-    predicted_prices, real_prices = models.predictPrijzen(date, 0)
-
-    predicted_consumption = [x * 0.8 for x in predicted_consumption]
-    real_consumption = [x * 0.8 for x in real_consumption]
+def simulate_day(date, cars, predicted_consumption, real_consumption, predicted_production, real_production, predicted_prices, real_prices): # not dynamic: no updates on predicted data
 
     average_predicted_price = sum(predicted_prices)/len(predicted_prices)
     average_real_price = sum(real_prices)/len(real_prices)
@@ -52,4 +45,4 @@ c2 = Car(2, 77, 21, 60)
 c3 = Car(3, 74.25, 21, 55)
 
 cars_to_add = [c1,c2,c3]
-simulate_day(0, cars_to_add)
+#simulate_day(0, cars_to_add)

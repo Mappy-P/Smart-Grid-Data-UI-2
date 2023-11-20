@@ -1,6 +1,6 @@
 import csv
 
-from assets.optimisation.car import Car
+from .car import Car
 
 class DumbChargingPlanner:
 
