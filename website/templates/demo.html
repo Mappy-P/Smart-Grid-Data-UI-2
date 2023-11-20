@@ -49,7 +49,7 @@
   </div>
 </div>
 
-{% if result %}
+{% if soort == 'consumptie' %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer>
   const labels = {{ datums | tojson}};
@@ -64,6 +64,76 @@
       },
       {
           label: 'EnergieConsumptie - Werkelijk',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ werkelijk | tojson}},
+      }
+    ]
+  };
+
+  const config = {
+      type: 'line',
+      data: data,
+      options: { maintainAspectRatio: false }
+  };
+
+  const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+  );
+
+</script>
+{% endif %}
+{% if soort == 'productie' %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer>
+  const labels = {{ datums | tojson}};
+
+  const data = {
+      labels: labels,
+      datasets: [{
+          label: 'SolarProductie - Voorspeld',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: {{ result | tojson}},
+      },
+      {
+          label: 'SolarProductie - Werkelijk',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ werkelijk | tojson}},
+      }
+    ]
+  };
+
+  const config = {
+      type: 'line',
+      data: data,
+      options: { maintainAspectRatio: false }
+  };
+
+  const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+  );
+
+</script>
+{% endif %}
+{% if soort == 'prijzen' %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer>
+  const labels = {{ datums | tojson}};
+
+  const data = {
+      labels: labels,
+      datasets: [{
+          label: 'Belpex spotprijzen - Voorspeld',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: {{ result | tojson}},
+      },
+      {
+          label: 'Belpex spotprijzen - Werkelijk',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ werkelijk | tojson}},
