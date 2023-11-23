@@ -4,9 +4,9 @@
 
 {% block content %}
 <div class="container-fluid">
-  <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
   <div class="row justify-content-center">
     <div class="col">
+    <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
       <div class="jumbotron" style="width: 550px;">
         <h1 class="display-4" style="font-size: 40px; padding-top: 0px;">Configure the calculation:</h1>
             <p class="lead">DEMO</p>
@@ -15,22 +15,22 @@
                 <div class="form-group">
                   <div class="row" style="padding-left: 15px;">
                     <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation">
-                      <option selected>Choose the type of calculation you want to make</option>
+                      <option value="0" selected>Choose the type of calculation you want to make</option>
                       <option value="1">Prediction of the energy consumption</option>
                       <option value="2">Prediction of the solar production</option>
                       <option value="3">Prediction of the electricity prices</option>
-                      <option value="3">Full simulation of charging</option>
+                      <option value="4">Full simulation of charging</option>
                     </select>
                   </div>
             
                     <div class="row">
                       <div class="col">
                           <label for="startDate">Start</label>
-                          <input id="startDate" name="startDate" class="form-control" type="date" min="2018-01-11" max="2023-09-29"/>
+                          <input id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                       </div>
                       <div class="col">
                           <label for="endDate">End</label>
-                          <input id="endDate" name="endDate" class="form-control" type="date" min="startDate" max="2023-09-29"/>
+                          <input id="endDate" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                       </div>
                     </div>
                 </div>
@@ -39,17 +39,17 @@
               </form>
             </hr>
       </div>
-    </div>
-    <div class="col">
+  </div>
+  <div class="col">
       <h1>Results:</h1>
       <div style="height: 70vh; width: 80%;">
         <canvas id="myChart"></canvas>
       </div>
-    </div>
+  </div>
   </div>
 </div>
 
-{% if result %}
+{% if soort == 'consumptie' %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer>
   const labels = {{ datums | tojson}};
@@ -64,6 +64,76 @@
       },
       {
           label: 'EnergieConsumptie - Werkelijk',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ werkelijk | tojson}},
+      }
+    ]
+  };
+
+  const config = {
+      type: 'line',
+      data: data,
+      options: { maintainAspectRatio: false }
+  };
+
+  const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+  );
+
+</script>
+{% endif %}
+{% if soort == 'productie' %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer>
+  const labels = {{ datums | tojson}};
+
+  const data = {
+      labels: labels,
+      datasets: [{
+          label: 'SolarProductie - Voorspeld',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: {{ result | tojson}},
+      },
+      {
+          label: 'SolarProductie - Werkelijk',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ werkelijk | tojson}},
+      }
+    ]
+  };
+
+  const config = {
+      type: 'line',
+      data: data,
+      options: { maintainAspectRatio: false }
+  };
+
+  const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+  );
+
+</script>
+{% endif %}
+{% if soort == 'prijzen' %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer>
+  const labels = {{ datums | tojson}};
+
+  const data = {
+      labels: labels,
+      datasets: [{
+          label: 'Belpex spotprijzen - Voorspeld',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: {{ result | tojson}},
+      },
+      {
+          label: 'Belpex spotprijzen - Werkelijk',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ werkelijk | tojson}},

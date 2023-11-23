@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from . import models
 from datetime import datetime
 from .assets import optimisation
+from .assets.optimisation.car import Car
 
 views = Blueprint('views', __name__)
 
@@ -16,10 +17,15 @@ def about():
 def aboutus():
     return render_template('about_us.html')
 
+@views.route('/about-us')
+def about_us():
+    return render_template('about_us.html')
+
 @views.route('/demo', methods=['GET', 'POST'])
 def demo():
     if request.method == 'POST':
         typeOfCalculation = request.form.get('typeOfCalculation')
+        print(typeOfCalculation)
         startDate = datetime.strptime(request.form.get('startDate'), '%Y-%m-%d')
         endDate = datetime.strptime(request.form.get('endDate'), '%Y-%m-%d')
 
@@ -28,20 +34,45 @@ def demo():
             predictie = None
             datums = None
             werkelijk = None
+            soort = None
 
         else:
             duration = (endDate - startDate).days
-            beginDateData = datetime.strptime('2018-01-11', '%Y-%m-%d')
+            beginDateData = datetime.strptime('2018-01-16', '%Y-%m-%d')
             start = (startDate - beginDateData).days
-            predictionResults = models.predictConsumptie(start, duration)
+            if typeOfCalculation == '1':
+                predictionResults = models.predictConsumptie(start, duration)
+            elif typeOfCalculation == '2':
+                predictionResults = models.predictProductie(start, duration)
+            elif typeOfCalculation == '3':
+                predictionResults = models.predictPrijzen(start, duration)
+            elif typeOfCalculation == '4':
+                c1 = Car(1, 77, 32, 90)
+                c2 = Car(2, 77, 21, 60)
+                c3 = Car(3, 74.25, 21, 55)
+
+                cars_to_add = [c1,c2,c3]
+                models.simulate(start, cars_to_add)
+                predictie = None
+                datums = None
+                werkelijk = None
+                soort = None
+                return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
+            elif typeOfCalculation == '0':
+                flash('Choose the type of calculation you want our model to run.', category='error')
+                predictie = None
+                datums = None
+                werkelijk = None
+                soort = None
+                return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
             predictie = predictionResults[0]
             werkelijk = predictionResults[1]
-            datums = list()
-            for i in range(len(predictie)):
-                datums.append(str(i))
+            soort = predictionResults[2]
+            datums = predictionResults[3]
     else:
         predictie = None
         datums = None
         werkelijk = None
+        soort = None
 
-    return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
+    return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk, soort = soort)
