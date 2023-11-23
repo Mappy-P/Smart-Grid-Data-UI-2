@@ -12,6 +12,9 @@ def home():
 @views.route('/about')
 def about():
     return render_template('about.html')
+@views.route('/aboutus')
+def aboutus():
+    return render_template('about_us.html')
 
 @views.route('/demo', methods=['GET', 'POST'])
 def demo():
