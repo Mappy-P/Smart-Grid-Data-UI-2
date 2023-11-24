@@ -3,8 +3,9 @@
 {% block title %}Smart Grid Data - About{% endblock %}
 
 {% block content%}
+<div class="container"> 
 <h1 style="visibility:hidden">simple place holder ;)</h1>
-<div class="jumbotron">
+<div class="jumbotron";">
 <h1 class="display-4">About the project</h1>
     <p class="lead">Smart Grid Data</p>
     <hr class="my-4">
@@ -17,29 +18,35 @@
              The company has a lot of solarpannels which supplies a lot of green energy that we want to put as much as possible in charging the cars.
               In order for us to create a efficient algorithm we have to first predict the incoming solar energy data. This is made possible with something called "machine learning" </p>
                       
-                      <img src="{{ url_for('static', filename='/imgs/intro-to-neural-networks-scikit-learn-3.png') }}" style="height: 270px; width: auto;"/>
+                      <img class="lijst hidden col" src="{{ url_for('static', filename='/imgs/intro-to-neural-networks-scikit-learn-3.png') }}" style="height: 270px; width: auto;"/>
           </div>            
                     <div class="col nopadding">
-                      <img  src="{{ url_for('static', filename='/imgs/energyville1_pv_met_mijnschacht.jpg') }}" style="height: 290px; width: auto;"/>
+                      <img  class="lijst hidden col" src="{{ url_for('static', filename='/imgs/energyville1_pv_met_mijnschacht.jpg') }}" style="height: 290px; width: auto;"/>
                       
                     <h2 style = 'padding-top: 50px; text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);"'>What's machine learning?</h2>
                     <p > Machine learning is a field of artificial intelligence that focuses on developing algorithms and models capable of learning from data.
                     These are clever systems that can recognize certain patterns that humans most of the times can't see. Machine learning has various applications, 
                     from image recognition and language processing to predictive analytics which we are going to use it for.
-                    The algorithm
-                    In order to charge the cars as effient as possible we want to put as much </p>
+                    <a href="/ml" style="color: blue;">Click here</a> 
+                    for more information about the machine learning we use.
+                     </p>
 
                     </div>
          
         </div>
+      </div>
+    </div>
+  </div>
         
+    <div class = "row" style="justify-content:center; align-items: center;">  
+      <div class="container" >
+      <div class="jumbotron">
+      <div class="container" style=" justify-content:center;  ">
         
-        </div>
-        
-        <div class="container" style = "background-color:#FFFFFF">
         <div class = "row">
+
           
-          <h1 class= "hidden" style = 'padding-top: 10px; text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);"'>For reference</h1>
+          <h2 style = 'padding-top: 10px; text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);'>For reference</h2>
           </div>
           <div class = "row">
             
@@ -61,14 +68,20 @@
         <div class ="row">
           <p class="hidden2" style = 'padding-top: 40px;'>For reference we compare a dumb charging strategy compared with our algorithm. 
             The "dumb" strategy charges the cars immediately when the it's plugged in and it stops when the battery is full.
-             This method okay for use at home but not when charging 20 cars on a day. 
-             That's why you can see on the right that the charging times are more spread during the day and more at noon, because then the sun is at it's highest.</p>
+             This method great for use at home but not when charging a lot of cars a day. 
+             On the left graph we see the direct charging method, there's a big peak in the morning when all the employee's arrive at the company and start charging their cars.
+            As you may realize there's not a lot of sun shining in the morning thus the company needs to also buy a lot of energy.
+          The right graph shows a way of charging where the peak is more spread around the day and more concentrated at noon because that's the moment the sun shines the brightest.
+        If you want to learn more about the algorithms
+        <a href="/data-optimization" style="color: blue;">click here</a>
+        .
+      </p>
 
         </div>
       
 
         <div class ="row">
-          <h1  style = 'padding-top: 35px;  text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);"'>Our demo</h1>
+          <h1  style = 'padding-top: 35px;  text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);'>Our demo</h1>
           <br>
           <p class= "hidden2"> 
             We've made a demo for you to use and see the difference between "dumb" charging and our way of "smart" charging. With "dumb" we mean charging the cars immediately without considiring waiting for more sun to come true and charge the cars a green way.
@@ -77,6 +90,10 @@
         </div>
           
             <br>
+          </div>
+        </div>
+        </div>
+        </div>  
           </div>
           </div>
         </div>
