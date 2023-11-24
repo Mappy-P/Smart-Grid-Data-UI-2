@@ -32,7 +32,6 @@ def demo():
             datums = None
             werkelijk = None
             soort = None
-
         else:
             duration = (endDate - startDate).days
             beginDateData = datetime.strptime('2018-01-16', '%Y-%m-%d')
@@ -73,3 +72,23 @@ def demo():
         soort = None
 
     return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk, soort = soort)
+
+@views.route('/charge', methods=['GET', 'POST'])
+def charge():
+    xs = None
+    yys_smart = None
+    yys_dumb = None
+
+    if request.method == 'POST':
+        chosen_date = datetime.strptime(request.form.get('chosenDate'), '%Y-%m-%d')
+        beginDateData = datetime.strptime('2018-01-16', '%Y-%m-%d')
+        date = (chosen_date - beginDateData).days
+        c1 = Car(1, 77, 32, 90)
+        c2 = Car(2, 77, 21, 60)
+        c3 = Car(3, 74.25, 21, 55)
+
+        cars_to_add = [c1,c2,c3]
+        xs, yys_smart, yys_dumb = models.simulate(date, cars_to_add)
+        return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb)
+
+    return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb)

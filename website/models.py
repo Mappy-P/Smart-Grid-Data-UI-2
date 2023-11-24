@@ -42,17 +42,19 @@ def simulate(date, cars):
 
     predicted_consumption = [float(x) * 0.8 for x in predicted_consumption]
     real_consumption = [float(x) * 0.8 for x in real_consumption]
-    predicted_production = ([0] * (8*4)) + [float(x) for x in predicted_consumption] + ([0] * (2*4-1))
-    real_production = ([0] * (8*4)) + [float(x) for x in real_consumption] + ([0] * (2*4-1))
-    predicted_prices = ([0] * (8*4)) + [float(x) for i in range(4) for x in predicted_prices] + ([0] * (2*4-1))
-    real_prices = ([0] * (8*4)) + [float(x) for i in range(4) for x in real_prices] + ([0] * (2*4-1))
+    predicted_production = ([0] * (6*4)) + [float(x) for x in predicted_production] + ([0] * (2*4-1))
+    real_production = ([0] * (6*4)) + [float(x) for x in real_production] + ([0] * (2*4-1))
+    predicted_prices = ([0] * (6*4)) + [float(x) for i in range(4) for x in predicted_prices] + ([0] * (2*4))
+    real_prices = ([0] * (6*4)) + [float(x) for i in range(4) for x in real_prices] + ([0] * ((2-1)*4))
 
     print(len(predicted_consumption))
     print(len(real_consumption))
     print(len(predicted_production))
+    print(predicted_production)
     print(len(real_production))
     print(len(predicted_prices))
     print(len(real_prices))
 
 
-    chargingmodel.simulate_day(date, cars, predicted_consumption, real_consumption, predicted_production, real_production, predicted_prices, real_prices)
+    return chargingmodel.simulate_day(date, cars, predicted_consumption, real_consumption, predicted_production, real_production, predicted_prices, real_prices)
+

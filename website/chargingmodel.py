@@ -2,6 +2,7 @@ from .assets.optimisation.optimisation import ChargingPlanner
 from .assets.optimisation.immediatecharging import DumbChargingPlanner
 from .assets.optimisation.car import Car
 
+
 def simulate_day(date, cars, predicted_consumption, real_consumption, predicted_production, real_production, predicted_prices, real_prices): # not dynamic: no updates on predicted data
 
     average_predicted_price = sum(predicted_prices)/len(predicted_prices)
@@ -23,26 +24,24 @@ def simulate_day(date, cars, predicted_consumption, real_consumption, predicted_
     charged_cars_dumb = dumbplanner.get_cars()
     print(len(charged_cars_smart))
 
-    create_charge_vis(charged_cars_dumb)
-    create_charge_vis(charged_cars_smart)
+    xs, yys_smart = charge_vis_data(charged_cars_smart)
+    xs, yys_dumb = charge_vis_data(charged_cars_dumb)
+    return xs, yys_smart, yys_dumb
 
-
-def create_charge_vis(cars):
+def charge_vis_data(cars):
     N = 24*4
+    xs = [*range(N)]
+    yys = []
     for car in cars:
-        for time in range(N): 
-            if car.get_charging(time) > 11/4*0.99: # hash if car is charging at that point in time at full capacity
-                print('#',end='')
-            elif car.get_charging(time) > 0.45: # circle if car is charging at that point in time at partial capacity
-                print('o',end='')
-            else: # dit if car is not charging
-                print('.',end='')
-        print()
-    print('------------------------------------------------------------------------------------------------')
+        ys = []
+        for time in range(N):
+            ys.append(car.get_charging(time))
+        yys.append(ys)
+    return xs, yys
     
-c1 = Car(1, 77, 32, 90)
-c2 = Car(2, 77, 21, 60)
-c3 = Car(3, 74.25, 21, 55)
+#c1 = Car(1, 77, 32, 90)
+#c2 = Car(2, 77, 21, 60)
+#c3 = Car(3, 74.25, 21, 55)
 
-cars_to_add = [c1,c2,c3]
+#cars_to_add = [c1,c2,c3]
 #simulate_day(0, cars_to_add)
