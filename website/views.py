@@ -78,9 +78,9 @@ def demo():
 
 @views.route('/charge', methods=['GET', 'POST'])
 def charge():
-    xs = None
-    yys_smart = None
-    yys_dumb = None
+    xs = []
+    yys_smart = [[]]
+    yys_dumb = [[]]
 
     if request.method == 'POST':
         chosen_date = datetime.strptime(request.form.get('chosenDate'), '%Y-%m-%d')
@@ -92,6 +92,8 @@ def charge():
 
         cars_to_add = [c1,c2,c3]
         xs, yys_smart, yys_dumb = models.simulate(date, cars_to_add)
+        #yys_smart = zip(yys_smart)
+        #yys_dumb = zip(yys_dumb)
         return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb)
 
     return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb)

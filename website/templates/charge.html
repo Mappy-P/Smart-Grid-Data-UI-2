@@ -27,43 +27,80 @@
       </div>
   </div>
   <div class="col">
-      <h1>Results:</h1>
-      {% for i in range(( yys | length )) %}
-      <div style="height: 70vh; width: 80%;">
-        <canvas id="myChart{{i}}"></canvas>
-      </div>
+      <h1>Smart charging:</h1>
+      {% for ys in smart %}
+        <div>
+          <canvas id="myChartS{{loop.index}}"></canvas>
+        </div>
+      {% endfor %}
+      <h1>Dumb Charging:</h1>
+      {% for ys in dumb %}
+        <div>
+          <canvas id="myChartD{{loop.index}}"></canvas>
+        </div>
       {% endfor %}
   </div>
   </div>
 </div>
 
-{% for i in range(( yys | length )) %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer>
   const labels = {{ xs | tojson}};
+</script>
+{% for ys in smart %}
+<script defer>
 
-  const data = {
+  const dataS{{loop.index}} = {
       labels: labels,
-      {
+      datasets: [{
           label: 'Charge Smart',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
-          data: {{ yys[loop.index0] | tojson}},
+          data: {{ ys | tojson}},
       }
     ]
   };
 
-  const config = {
+  const configS{{loop.index}} = {
       type: 'line',
-      data: data,
+      data: dataS{{loop.index}},
       options: { maintainAspectRatio: false }
   };
 
-  const myChart = new Chart(
-      document.getElementById('myChart{{i}}'),
-      config
+  const myChartS{{loop.index}} = new Chart(
+      document.getElementById('myChartS{{loop.index}}'),
+      configS{{loop.index}}
   );
 
 </script>
 {% endfor %}
+
+{% for ys in dumb %}
+<script defer>
+
+  const dataD{{loop.index}} = {
+      labels: labels,
+      datasets: [{
+          label: 'Charge Dumb',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ ys | tojson}},
+      }
+    ]
+  };
+
+  const configD{{loop.index}} = {
+      type: 'line',
+      data: dataD{{loop.index}},
+      options: { maintainAspectRatio: false }
+  };
+
+  const myChartD{{loop.index}} = new Chart(
+      document.getElementById('myChartD{{loop.index}}'),
+      configD{{loop.index}}
+  );
+
+</script>
+{% endfor %}
+
 {% endblock %}
