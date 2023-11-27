@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Smart Grid Data - Demo{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col">
+    <h1>Smart Grid Data <span class="badge bg-secondary">DEMO of Charging</span></h1>
+      <div class="jumbotron" style="width: 550px;">
+        <h1 class="display-4" style="font-size: 40px; padding-top: 0px;">Configure the calculation:</h1>
+            <p class="lead">DEMO</p>
+            <hr class="my-4">
+              <form method="POST">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col">
+                        <label for="chosenDate">Date</label>
+                        <input id="chosenDate" name="chosenDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                    </div>
+                  </div>
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Run Calculation!</button>
+              </form>
+            </hr>
+      </div>
+  </div>
+  <div class="col">
+      <h1>Smart charging:</h1>
+      {% for ys in smart %}
+        <div>
+          <canvas id="myChartS{{loop.index}}"></canvas>
+        </div>
+      {% endfor %}
+      <h1>Dumb Charging:</h1>
+      {% for ys in dumb %}
+        <div>
+          <canvas id="myChartD{{loop.index}}"></canvas>
+        </div>
+      {% endfor %}
+  </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer>
+  const labels = {{ xs | tojson}};
+</script>
+{% for ys in smart %}
+<script defer>
+
+  const dataS{{loop.index}} = {
+      labels: labels,
+      datasets: [{
+          label: 'Charge Smart',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ ys | tojson}},
+      }
+    ]
+  };
+
+  const configS{{loop.index}} = {
+      type: 'bar',
+      data: dataS{{loop.index}},
+      options: { maintainAspectRatio: false }
+  };
+
+  const myChartS{{loop.index}} = new Chart(
+      document.getElementById('myChartS{{loop.index}}'),
+      configS{{loop.index}}
+  );
+
+</script>
+{% endfor %}
+
+{% for ys in dumb %}
+<script defer>
+
+  const dataD{{loop.index}} = {
+      labels: labels,
+      datasets: [{
+          label: 'Charge Dumb',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ ys | tojson}},
+      }
+    ]
+  };
+
+  const configD{{loop.index}} = {
+      type: 'bar',
+      data: dataD{{loop.index}},
+      options: { maintainAspectRatio: false }
+  };
+
+  const myChartD{{loop.index}} = new Chart(
+      document.getElementById('myChartD{{loop.index}}'),
+      configD{{loop.index}}
+  );
+
+</script>
+{% endfor %}
+
+{% endblock %}
