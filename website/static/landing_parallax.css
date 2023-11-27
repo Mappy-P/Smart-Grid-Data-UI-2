@@ -1,0 +1,77 @@
+.achtergrond{
+    position: absolute;
+    z-index: 1;
+}
+
+.koeltoren{
+    position: absolute;
+    z-index: 2;
+}
+
+.text{
+    position: absolute;
+    z-index: 5;
+    top: calc(50% + 225px) !important;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 2px 1px 4px rgba(0, 0, 0, 1);
+}
+.text h1{
+    font-weight: 600;
+    font-size: 4rem;
+}
+
+.auto{
+    position: absolute;
+    z-index: 7;
+}
+
+.windmolen{
+    position: absolute;
+    z-index: 3;
+}
+
+.straatlamp{
+    position: absolute;
+    z-index: 6;
+}
+
+.landing_parallax{
+    width: 636.65px;
+    height: 449.4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: 0.67s cubic-bezier(0.2, 0.49, 0.32, 0.99);
+}
+
+.bos{
+    position: absolute;
+    width: 636.65px;
+    height: 449.4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+.parallax-holder{
+    position: relative;
+    height: 420px;
+    width: 595px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.vignette{
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 65%, rgba(0,0,0,0.7));
+}

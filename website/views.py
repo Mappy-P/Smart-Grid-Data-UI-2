@@ -13,13 +13,14 @@ def home():
 @views.route('/about')
 def about():
     return render_template('about.html')
-@views.route('/aboutus')
-def aboutus():
-    return render_template('about_us.html')
 
 @views.route('/about-us')
 def about_us():
     return render_template('about_us.html')
+
+@views.route('/ml')
+def ml():
+    return render_template('ml.html')
 
 @views.route('/demo', methods=['GET', 'POST'])
 def demo():
