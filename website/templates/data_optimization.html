@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Data Optimization{% endblock %}
+
+        
+{% block content%}
+<div class="container"> 
+    <h1 style="visibility:hidden">simple place holder ;</h1>
+    <div class="jumbotron";>
+    <h1 class="display-4">Data Optimization</h1>
+        <p class="lead">Smart grid data</p>
+        <hr class="my-4">
+        <div class="container">
+            <div class ="row">
+                <div class = "row">
+                <div class = "col nopadding">
+                    <h2>Objective</h2>
+                    <p>
+                        The main goal of the algorithm is trying to find an efficient
+                         and green way to charge cars at EnergyVille making use of the solar
+                          energy provided by the solar panels installed at EnergyVille.</p>
+                          
+                
+                </div>
+                <div class = "col nopadding">
+                    <img class="lijst hidden col" src="{{ url_for('static', filename='/imgs/charging (2).png') }}" style="height: 170px; width: auto;align-self: center;"/>
+                </div>
+                </div>
+               <div class = "row">
+                <div class = "col nopadding">   
+                    <img class="lijst hidden col" src="{{ url_for('static', filename='/imgs/input.png') }}" style="height: 170px; width: auto;"/>
+                </div>  
+                <div class = "col nopadding"> 
+                    <h2>Input</h2>
+                  
+                    <p>The inputs of the algorithm consists of predicted data of the green solar energy and consumption energy of the company.
+                         It’s the excess energy, solar energy after consumption that will be used to charge the cars.
+                          Also the predicted Belpex (Belgian Power Exchange) prices will be used,
+                           so we know when to buy energy as cheap as possible.</p>
+
+                    </div>
+                           
+                </div> 
+                <div class = "row"> 
+                    <div class = "col nopadding"> 
+                    <h2 style = "padding-top: 50px">The Algorithm</h2>
+                </div>  
+            </div> 
+                <div class = "row">  
+                    <div class = "col nopadding"> 
+                    <h4 style = "padding-top: 15px">In General</h4>     
+                    <p>The energy data used by the algorithm is given per quarter of an hour.
+                         Therefore the charging scheme also works per quarter of an hour.
+                          To charge the cars as efficient as possible the algorithm will need to make 
+                          use of the available solar energy as much as possible and buy energy when the Belpex prices are at it’s lowest.
+                           So the algorithm can be split into two loops.</p>
+                </div>
+            </div>
+                
+                <div class = "row">
+                <div class = "col nopadding">  
+                    <h4>First Loop</h4>
+                    <p>The first loop will only use available solar energy to charge the cars,
+                         this loop will make a partial charging scheme.
+                          To do this the loop will iterate true each car and charge them with the available solar energy.
+                           Sometimes there will be excess energy and this will be injected into the net, making a small profit.
+                            Most of the time the cars aren’t completely charged and
+                             that’s were the second loop comes in to play.</p>
+                </div>
+                <div class = "col nopadding">         
+                    AIDS
+                        
+                </div>
+                </div>
+                <div class = "row">
+                <div class = "col nopadding">         
+                    BEVER
+                </div>
+                <div class = "col nopadding">
+                    <h4>Second Loop</h4>
+                    <p>Now that the partial scheme is made some cars still need to be charged at full capacity, so some extra energy needs to be bought. Thanks to machine learning we have an idea of when the Belpex prices will be at their lowest and we know when to buy energy and charge the cars who still need to be charged.</p>
+                </div>
+
+                </div>
+                 
+                
+                <div class = "row">
+                    <h2>Assumptions</h2>
+                    <p>To make an efficient and fast running algorithm certain assumptions are made. We assume Belpex prices aren’t going to be negative meaning you receive money when buying from the net. In this algorithm it’s not going to be the most optimal when prices are negative because it thinks it’s best to charge cars with solar energy instead of buying energy.</p>
+                </div> 
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
