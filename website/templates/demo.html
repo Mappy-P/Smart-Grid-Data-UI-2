@@ -3,8 +3,18 @@
 {% block title %}Smart Grid Data - Demo{% endblock %}
 
 {% block content %}
+<div id = "alertId" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong>Choose a date before proceeding!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
 <div class="container-fluid">
-  <div class="row justify-content-center">
+  <div id='firstRow' class="row justify-content-center">
     <div class="col">
     <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
       <div class="jumbotron" style="width: 550px;">
@@ -15,10 +25,10 @@
                 <div class="form-group">
                   <div class="row" style="padding-left: 15px;">
                     <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation">
-                      <option value="0" selected>Choose the type of calculation you want to make</option>
-                      <option value="1">Prediction of the energy consumption</option>
-                      <option value="2">Prediction of the solar production</option>
-                      <option value="3">Prediction of the electricity prices</option>
+                      <option class='non-sim' value="0" selected>Choose the type of calculation you want to make</option>
+                      <option class='non-sim' value="1">Prediction of the energy consumption</option>
+                      <option class='non-sim' value="2">Prediction of the solar production</option>
+                      <option class='non-sim' value="3">Prediction of the electricity prices</option>
                       <option value="4">Full simulation of charging</option>
                     </select>
                   </div>
@@ -26,16 +36,23 @@
                     <div class="row">
                       <div class="col">
                           <label for="startDate">Start</label>
-                          <input id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                          <input value="" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                       </div>
-                      <div class="col">
+                      <div class="col" id="endDateCol">
                           <label for="endDate">End</label>
                           <input id="endDate" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                       </div>
                     </div>
+                    <div class="row" id="aantalAutosRow" style="display: none;">
+                      <div class="col">
+                        <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 6):</label>
+                        <input value="" type="number" id="aantalAutos" name="aantalAutos" min="1" max="6">
+                      </div>
+                    </div>
                 </div>
             
-                <button type="submit" class="btn btn-primary">Run Calculation!</button>
+                <button id='other-button' type="submit" class="btn btn-primary">Run Calculation!</button>
+                <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none;">Run Calculation!</button>
               </form>
             </hr>
       </div>
@@ -46,6 +63,13 @@
         <canvas id="myChart"></canvas>
       </div>
   </div>
+  </div>
+  <div id='secondRow' class="row justify-content-center" style="display: none; padding-top: 7vh;">
+    <div class="col">
+      <div id="autosOutput" style="background-color: aliceblue; border-radius: 25px; height: 70vh;">
+      
+      </div>
+    </div>
   </div>
 </div>
 
