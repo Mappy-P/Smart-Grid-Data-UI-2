@@ -25,6 +25,7 @@
     if (date == '' || aantalAutos== ''){
       document.getElementById('alertId').style.display = 'block';
     }else{
+      document.getElementById('endDate').value = date;
       document.getElementById('firstRow').style.display = 'none';
       document.getElementById('secondRow').style.display = 'block';
 
@@ -42,7 +43,7 @@
 
         var text = document.createElement('h2');
         optiesText.appendChild(text);
-        text.textContent = 'Wagen ' + (i + 1) + ':';
+        text.textContent = 'Car ' + (i + 1) + ':';
 
         var optiesType = document.createElement('div');
         autoOpties.appendChild(optiesType);
@@ -51,15 +52,16 @@
         var Type = document.createElement('select');
         optiesType.appendChild(Type);
         Type.classList.add('form-select');
+        Type.classList.add('soort-auto');
 
         var hybrydeOptie = document.createElement('option');
         Type.appendChild(hybrydeOptie);
-        hybrydeOptie.textContent = 'Hybride Wagen';
+        hybrydeOptie.textContent = 'Hybrid Car';
         hybrydeOptie.value = 1;
 
         var elektrischeOptie = document.createElement('option');
         Type.appendChild(elektrischeOptie);
-        elektrischeOptie.textContent = 'Elektrische Wagen';
+        elektrischeOptie.textContent = 'Electrical Car';
         elektrischeOptie.value = 2;
 
         var huidigPercentage = document.createElement('input');
@@ -101,6 +103,8 @@
         sliderValue2.classList.add('col');
         sliderValue2.id = 'huidigPercentageGewenst' + (i + 1);
         sliderValue2.textContent=gewenstPercentage.value;
+        sliderValue2.classList.add('sliderValue');
+        sliderValue.classList.add('sliderValue');
         
         autoOpties.appendChild(optiesGewenstPercentage);
         optiesGewenstPercentage.appendChild(sliderValue2);
@@ -110,6 +114,7 @@
         aankomstVertrek.classList.add('col');
         var aankomstVertrekHolder = document.createElement('div');
         aankomstVertrekHolder.classList.add('row');
+        aankomstVertrekHolder.classList.add('aankomstVertrekHolder');
         var aankomstHolder = document.createElement('div');
         aankomstHolder.classList.add('col');
         var vertrekHolder = document.createElement('div');

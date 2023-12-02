@@ -14,6 +14,7 @@
   </div>
 </div>
 <div class="container-fluid">
+  <form method="POST">
   <div id='firstRow' class="row justify-content-center">
     <div class="col">
     <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
@@ -21,7 +22,6 @@
         <h1 class="display-4" style="font-size: 40px; padding-top: 0px;">Configure the calculation:</h1>
             <p class="lead">DEMO</p>
             <hr class="my-4">
-              <form method="POST">
                 <div class="form-group">
                   <div class="row" style="padding-left: 15px;">
                     <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation">
@@ -53,7 +53,6 @@
             
                 <button id='other-button' type="submit" class="btn btn-primary">Run Calculation!</button>
                 <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none;">Run Calculation!</button>
-              </form>
             </hr>
       </div>
   </div>
@@ -66,11 +65,37 @@
   </div>
   <div id='secondRow' class="row justify-content-center" style="display: none; padding-top: 7vh;">
     <div class="col">
-      <div id="autosOutput" style="background-color: aliceblue; border-radius: 25px; height: 70vh;">
-      
+      <div style="background-color: aliceblue; border-radius: 25px; height: 70vh;">
+        <div class="row">
+          <div class="col">
+            <h2 style="display: none;">Car 1:</h2>
+          </div>
+          <div class="col" style="height: 50px;"> 
+            <h2 style="font-size: 16px; padding-bottom: 0px;">Type of Car:</h2>
+            <p class = 'uitleg1'style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Hybrid: x kwh</p>
+            <p class="uitleg2" style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Electrical: y kwh</p>
+          </div>
+          <div class="col">
+            <h2 style="font-size: 16px;">Battery Percentage at arrival</h2>
+          </div>
+          <div class="col">
+            <h2 style="font-size: 16px;">Desired Battery Percentage at departure</h2>
+          </div>
+          <div class="col">
+            <h2 style="font-size: 16px;">Time of arrival</h2>
+            <h2 style="font-size: 16px; transform: translate(0, -8px); padding-top: 1px;">Time of Departure</h2>
+          </div>
+        </div>
+        <div>
+          <div id="autosOutput"></div>
+          <div class="row">
+            <button id='submit-fullsim' type="submit" class="btn btn-primary" style="transform: translate(+35px, 0px);">Run Calculation!</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 {% if soort == 'consumptie' %}

@@ -3,6 +3,7 @@ from . import models
 from datetime import datetime
 from .assets import optimisation
 from .assets.optimisation.car import Car
+import numpy as np
 
 views = Blueprint('views', __name__)
 
@@ -31,6 +32,8 @@ def demo():
     if request.method == 'POST':
         typeOfCalculation = request.form.get('typeOfCalculation')
         print(typeOfCalculation)
+        print(request.form.get('startDate'))
+        print(request.form.get('endDate'))
         startDate = datetime.strptime(request.form.get('startDate'), '%Y-%m-%d')
         endDate = datetime.strptime(request.form.get('endDate'), '%Y-%m-%d')
 
@@ -51,17 +54,22 @@ def demo():
             elif typeOfCalculation == '3':
                 predictionResults = models.predictPrijzen(start, duration)
             elif typeOfCalculation == '4':
-                c1 = Car(1, 77, 32, 90)
-                c2 = Car(2, 77, 21, 60)
-                c3 = Car(3, 74.25, 21, 55)
+                cars = list()
+                for i in range(5):
+                    try:
+                        aankomst = int(request.form.get('aankomstUur')[0:2])*4 + int(request.form.get('aankomstUur')[3:])/15
+                        vertrek = int(request.form.get('vertrekUur')[0:2])*4 + int(request.form.get('vertrekUur')[3:])/15
+                        cars.append(Car(i + 1, float(request.form.get('gewenstPercentage' + str(i + 1))) - float(request.form.get('huidigPercentage' + str(i + 1))), aankomst, vertrek))
+                    except:
+                        break
+                cars = np.asarray(cars)
 
-                cars_to_add = [c1,c2,c3]
-                models.simulate(start, cars_to_add)
+                xs, yys_smart, yys_dumb = models.simulate(start, cars)
                 predictie = None
                 datums = None
                 werkelijk = None
                 soort = None
-                return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
+                return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb)
             elif typeOfCalculation == '0':
                 flash('Choose the type of calculation you want our model to run.', category='error')
                 predictie = None
