@@ -1,0 +1,43 @@
+.autoOpties{
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+.soort-auto{
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% + 40px), calc(-50% + 20px));
+}
+
+.inputPercentage{
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% - 10px), calc(-50% - 37px));
+}
+
+.outputPercentage{
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% - 10px), calc(-50% - 37px));
+}
+
+.sliderValue{
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% - 10px), calc(-50% - 37px)); 
+}
+
+.aankomstVertrekHolder{
+    top: 50%;
+    transform: translate(0px, calc(-50% + 20px)); 
+}
+
+.uitleg1{
+    top: 50%;
+    transform: translate(0px, calc(-50% - 5px)); 
+}
+
+.uitleg2{
+    top: 50%;
+    transform: translate(0px, calc(-50% - 15px)); 
+}
