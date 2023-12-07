@@ -80,11 +80,20 @@
         var sliderValue = document.createElement('div');
         sliderValue.classList.add('col');
         sliderValue.id = 'huidigPercentageAankomst' + (i + 1);
+        sliderValue.name = 'huidigPercentageAankomst' + (i + 1);
         sliderValue.textContent=huidigPercentage.value;
+
+        sliderInput = document.createElement('input');
+        sliderInput.id = 'percentageAankomst' + (i + 1);
+        sliderInput.name = 'percentageAankomst' + (i + 1);
+        sliderInput.type = 'text';
+        sliderInput.style.display = 'none';
+        sliderInput.value = huidigPercentage.value;
         
         autoOpties.appendChild(optiesHuidigPercentage);
         optiesHuidigPercentage.appendChild(sliderValue);
         optiesHuidigPercentage.appendChild(huidigPercentage);
+        optiesHuidigPercentage.appendChild(sliderInput);
 
         var gewenstPercentage = document.createElement('input');
         gewenstPercentage.id = "gewenstPercentage" + (i + 1);
@@ -102,13 +111,22 @@
         var sliderValue2 = document.createElement('div');
         sliderValue2.classList.add('col');
         sliderValue2.id = 'huidigPercentageGewenst' + (i + 1);
+        sliderValue2.name = 'huidigPercentageGewenst' + (i + 1);
         sliderValue2.textContent=gewenstPercentage.value;
         sliderValue2.classList.add('sliderValue');
         sliderValue.classList.add('sliderValue');
+
+        sliderInput2 = document.createElement('input');
+        sliderInput2.id = 'percentageGewenst' + (i + 1);
+        sliderInput2.name = 'percentageGewenst' + (i + 1);
+        sliderInput2.type = 'text';
+        sliderInput2.style.display = 'none';
+        sliderInput2.value = gewenstPercentage.value;
         
         autoOpties.appendChild(optiesGewenstPercentage);
         optiesGewenstPercentage.appendChild(sliderValue2);
         optiesGewenstPercentage.appendChild(gewenstPercentage);
+        optiesGewenstPercentage.appendChild(sliderInput2);
 
         var aankomstVertrek = document.createElement('div');
         aankomstVertrek.classList.add('col');
@@ -159,6 +177,7 @@
       sliders.forEach(slider => {
         slider.addEventListener('input', function inputdynamic() {
         slider.previousElementSibling.textContent = slider.value;
+        slider.nextElementSibling.value = slider.value;
       });
       });
       
@@ -166,6 +185,7 @@
       sliders2.forEach(slider2 => {
         slider2.addEventListener('input', function outputdynamic() {
         slider2.previousElementSibling.textContent = slider2.value;
+        slider2.nextElementSibling.value = slider2.value;
       });
       });
     }

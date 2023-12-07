@@ -57,14 +57,28 @@ def demo():
                 cars = list()
                 for i in range(5):
                     try:
-                        aankomst = int(request.form.get('aankomstUur')[0:2])*4 + int(request.form.get('aankomstUur')[3:])/15
-                        vertrek = int(request.form.get('vertrekUur')[0:2])*4 + int(request.form.get('vertrekUur')[3:])/15
-                        cars.append(Car(i + 1, float(request.form.get('gewenstPercentage' + str(i + 1))) - float(request.form.get('huidigPercentage' + str(i + 1))), aankomst, vertrek))
+                        print(request.form.get(('aankomstUur' + str(i + 1))))
+                        aankomst = int(request.form.get(('aankomstUur' + str(i + 1)))[0:2])*4 + int(request.form.get(('aankomstUur' + str(i + 1)))[3:])/15
+                        aankomst = int(aankomst)
+                        print(aankomst)
+                        vertrek = int(request.form.get(('vertrekUur' + str(i + 1)))[0:2])*4 + int(request.form.get(('vertrekUur' + str(i + 1)))[3:])/15
+                        vertrek = int(vertrek)
+                        print(vertrek)
+                        print('auto ' + str(i + 1))
+                        print(request.form.get('percentageGewenst1'))
+                        print(request.form.get('percentageGewenst' + str(i + 1)))
+                        cars.append(Car(i + 1, (float(request.form.get('percentageGewenst' + str(i + 1))) - float(request.form.get('percentageAankomst' + str(i + 1))))*0.4, aankomst, vertrek))
                     except:
                         break
+
                 cars = np.asarray(cars)
+                print('Dit zijn de autos:')
+                print(cars)
 
                 xs, yys_smart, yys_dumb = models.simulate(start, cars)
+                print(xs)
+                print(yys_smart)
+                print(yys_dumb)
                 predictie = None
                 datums = None
                 werkelijk = None
