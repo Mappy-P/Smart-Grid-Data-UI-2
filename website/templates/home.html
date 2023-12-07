@@ -5,9 +5,9 @@
 {% block content %}
 <div class="container-fluid" style="height: 600px; align-items: center; justify-content: center;">
   <div class="row" style="justify-content: center;">
-    <div class="lijst hidden col" style="justify-content: center;">
+    <div class="lijst hidden col" style="justify-content: center; z-index: 2;">
       <h1 style="visibility:hidden">simple place holder ;)</h1>
-          <div class="jumbotron" style="height: 420px; width: auto;">
+          <div class="jumbotron" style="height: 420px; width: 595px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
           <h1 class="display-4" style="font-size: 40px; height: 100px; width: auto;">Using Smart Grid Data to minimize electricity costs!</h1>
               <p class="lead">P&O3</p>
               <hr class="my-4">
@@ -17,7 +17,18 @@
     </div>
     <div class="lijst hidden col-sm" style="justify-content: center;">
       <h1 style="visibility:hidden">simple place holder ;)</h1>
-      <img src = "{{ url_for('static', filename='/imgs/graphhome.png') }}" style="height: 420px; width: auto;"></img>
+      <div class="parallax-holder" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="vignette"></div>
+        <img src = "{{ url_for('static', filename='/imgs/landing_parallax/achtergrond2.png') }}" data-speedx="0.0275" data-speedy="0.037" data-speedz="0" data-rotation="0" class="landing_parallax achtergrond"></img>
+        <img src = "{{ url_for('static', filename='/imgs/landing_parallax/koeltoren.png') }}" data-speedx="0.0275" data-speedy="0.03" data-speedz="0.200" data-rotation="0.06" class="landing_parallax koeltoren"></img>
+        <img src = "{{ url_for('static', filename='/imgs/landing_parallax/bos.png') }}" class="bos landing_parallax" data-speedx="0.0275" data-speedy="0.037" data-speedz="0" data-rotation="0"></img>
+        <img src = "{{ url_for('static', filename='/imgs/landing_parallax/windmolen.png') }}" data-speedx="0.025" data-speedy="0.025" data-speedz="0.200" data-rotation="0.07" class="landing_parallax windmolen"></img>
+        <div class="text landing_parallax" data-speedx="0.0225" data-speedy="0.03" data-speedz="0.090" data-rotation="0.04">
+          <h1>SmartCharge</h1>
+        </div>
+        <img src = "{{ url_for('static', filename='/imgs/landing_parallax/straatlamp.png') }}" data-speedx="0.02" data-speedy="0.018" data-speedz="0.15" data-rotation="0.02"class="landing_parallax straatlamp"></img>
+        <img src = "{{ url_for('static', filename='/imgs/landing_parallax/auto.png') }}" data-speedx="0.018" data-speedy="0.025" data-speedz="0.07" data-rotation="0.007" class="landing_parallax auto"></img>
+      </div>
     </div>
   </div>
 </div>
