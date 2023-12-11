@@ -14,15 +14,15 @@ def simulate_day(date, cars, predicted_consumption, real_consumption, predicted_
     predicted_surplus = [max(0., x-y) for x, y in zip(predicted_production, predicted_consumption)]
     real_surplus = [max(0., x-y) for x, y in zip(real_production, real_consumption)]
 
-    print("prices")
-    print(predicted_prices)
-    print(real_prices)
-    print("surplus")
-    print(predicted_surplus)
-    print(real_surplus)
-    print("injection")
-    print(predicted_injection_price)
-    print(real_injection_price)
+    #print("prices")
+    #print(predicted_prices)
+    #print(real_prices)
+    #print("surplus")
+    #print(predicted_surplus)
+    #print(real_surplus)
+    #print("injection")
+    #print(predicted_injection_price)
+    #print(real_injection_price)
 
 
     #print(predicted_surplus)
