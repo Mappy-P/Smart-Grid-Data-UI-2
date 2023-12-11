@@ -91,19 +91,35 @@
   </div>
   </form>
 
-  <div class="row">
-      <h1>Smart charging:</h1>
-      {% for ys in smart %}
-        <div>
-          <canvas id="myChartS{{loop.index}}"></canvas>
-        </div>
-      {% endfor %}
-      <h1>Dumb Charging:</h1>
-      {% for ys in dumb %}
-        <div>
-          <canvas id="myChartD{{loop.index}}"></canvas>
-        </div>
-      {% endfor %}
+  <div class="col">
+      <h1>Metrics:</h1>
+      <h3>Predicted cost of Smart Charging</h3>
+      {{predicted_smart_cost}}
+      <h3>Real cost of Smart Charging:</h3>
+      {{real_smart_cost}}
+      <h3>Predicted cost of Dumb Charging</h3>
+      {{predicted_dumb_cost}}
+      <h3>Real cost of Dumb Charging:</h3>
+      {{real_dumb_cost}}
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col">
+        <h1>Smart charging scheme:</h1>
+        {% for ys in smart %}
+          <div>
+            <canvas id="myChartS{{loop.index}}"></canvas>
+          </div>
+        {% endfor %}
+    </div>
+    <div class="col">
+      <h1>Dumb charging scheme:</h1>
+        {% for ys in dumb %}
+          <div>
+            <canvas id="myChartD{{loop.index}}"></canvas>
+          </div>
+        {% endfor %}
+    </div>
   </div>
   </div>
 </div>
