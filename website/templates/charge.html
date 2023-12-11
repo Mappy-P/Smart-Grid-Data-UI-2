@@ -13,86 +13,90 @@
     </div>
   </div>
 </div>
-<div class="container-fluid">
-  <form method="POST">
-  <div id='firstRow' class="row justify-content-center">
-    <div class="col">
-    <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
-      <div class="jumbotron" style="width: 550px;">
-        <h1 class="display-4" style="font-size: 40px; padding-top: 0px;">Configure the calculation:</h1>
-            <p class="lead">DEMO</p>
-            <hr class="my-4">
-                <div class="form-group">
-                  <div class="row" style="padding-left: 15px;">
-                    <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation">
-                      <option class='non-sim' value="0" selected>Choose the type of calculation you want to make</option>
-                      <option class='non-sim' value="1">Prediction of the energy consumption</option>
-                      <option class='non-sim' value="2">Prediction of the solar production</option>
-                      <option class='non-sim' value="3">Prediction of the electricity prices</option>
-                      <option value="4">Full simulation of charging</option>
-                    </select>
-                  </div>
-            
-                    <div class="row">
-                      <div class="col">
-                          <label for="startDate">Start</label>
-                          <input value="" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+
+<div class="row">
+  <div class="col">
+    <div class="container-fluid">
+      <form method="POST">
+      <div id='firstRow' class="row justify-content-center">
+        <div class="col">
+        <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
+          <div class="jumbotron" style="width: 550px;">
+            <h1 class="display-4" style="font-size: 40px; padding-top: 0px;">Configure the calculation:</h1>
+                <p class="lead">DEMO</p>
+                <hr class="my-4">
+                    <div class="form-group">
+                      <div class="row" style="padding-left: 15px;">
+                        <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation">
+                          <option class='non-sim' value="0" selected>Choose the type of calculation you want to make</option>
+                          <option class='non-sim' value="1">Prediction of the energy consumption</option>
+                          <option class='non-sim' value="2">Prediction of the solar production</option>
+                          <option class='non-sim' value="3">Prediction of the electricity prices</option>
+                          <option value="4">Full simulation of charging</option>
+                        </select>
                       </div>
-                      <div class="col" id="endDateCol">
-                          <label for="endDate">End</label>
-                          <input id="endDate" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
-                      </div>
+                
+                        <div class="row">
+                          <div class="col">
+                              <label for="startDate">Start</label>
+                              <input value="" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                          </div>
+                          <div class="col" id="endDateCol">
+                              <label for="endDate">End</label>
+                              <input id="endDate" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                          </div>
+                        </div>
+                        <div class="row" id="aantalAutosRow" style="display: none;">
+                          <div class="col">
+                            <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 6):</label>
+                            <input value="" type="number" id="aantalAutos" name="aantalAutos" min="1" max="6">
+                          </div>
+                        </div>
                     </div>
-                    <div class="row" id="aantalAutosRow" style="display: none;">
-                      <div class="col">
-                        <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 6):</label>
-                        <input value="" type="number" id="aantalAutos" name="aantalAutos" min="1" max="6">
-                      </div>
-                    </div>
-                </div>
-            
-                <button id='other-button' type="submit" class="btn btn-primary">Run Calculation!</button>
-                <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none;">Run Calculation!</button>
-            </hr>
-      </div>
-  </div>
-  </div>
-  <div id='secondRow' class="row justify-content-center" style="display: none; padding-top: 7vh;">
-    <div class="col">
-      <div style="background-color: aliceblue; border-radius: 25px; height: 70vh;">
-        <div class="row">
-          <div class="col">
-            <h2 style="display: none;">Car 1:</h2>
-          </div>
-          <div class="col" style="height: 50px;"> 
-            <h2 style="font-size: 16px; padding-bottom: 0px;">Type of Car:</h2>
-            <p class = 'uitleg1'style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Hybrid: x kwh</p>
-            <p class="uitleg2" style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Electrical: y kwh</p>
-          </div>
-          <div class="col">
-            <h2 style="font-size: 16px;">Battery Percentage at arrival</h2>
-          </div>
-          <div class="col">
-            <h2 style="font-size: 16px;">Desired Battery Percentage at departure</h2>
-          </div>
-          <div class="col">
-            <h2 style="font-size: 16px;">Time of arrival</h2>
-            <h2 style="font-size: 16px; transform: translate(0, -8px); padding-top: 1px;">Time of Departure</h2>
-          </div>
-        </div>
-        <div>
-          <div id="autosOutput"></div>
-          <div class="row">
-            <button id='submit-fullsim' type="submit" class="btn btn-primary" style="transform: translate(+35px, 0px);">Run Calculation!</button>
+                
+                    <button id='other-button' type="submit" class="btn btn-primary">Run Calculation!</button>
+                    <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none;">Run Calculation!</button>
+                </hr>
           </div>
         </div>
       </div>
-    </div>
+      <div id='secondRow' class="row justify-content-center" style="display: none; padding-top: 7vh;">
+        <div class="col">
+          <div style="background-color: aliceblue; border-radius: 25px; height: 70vh;">
+            <div class="row">
+              <div class="col">
+                <h2 style="display: none;">Car 1:</h2>
+              </div>
+              <div class="col" style="height: 50px;"> 
+                <h2 style="font-size: 16px; padding-bottom: 0px;">Type of Car:</h2>
+                <p class = 'uitleg1'style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Hybrid: x kwh</p>
+                <p class="uitleg2" style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Electrical: y kwh</p>
+              </div>
+              <div class="col">
+                <h2 style="font-size: 16px;">Battery Percentage at arrival</h2>
+              </div>
+              <div class="col">
+                <h2 style="font-size: 16px;">Desired Battery Percentage at departure</h2>
+              </div>
+              <div class="col">
+                <h2 style="font-size: 16px;">Time of arrival</h2>
+                <h2 style="font-size: 16px; transform: translate(0, -8px); padding-top: 1px;">Time of Departure</h2>
+              </div>
+            </div>
+            <div>
+              <div id="autosOutput"></div>
+              <div class="row">
+                <button id='submit-fullsim' type="submit" class="btn btn-primary" style="transform: translate(+35px, 0px);">Run Calculation!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
-  </form>
 
   <div class="col">
-      <h1>Metrics:</h1>
+    <h1>Metrics:</h1>
       <h3>Predicted cost of Smart Charging</h3>
       {{predicted_smart_cost}}
       <h3>Real cost of Smart Charging:</h3>
@@ -103,6 +107,7 @@
       {{real_dumb_cost}}
     </div>
   </div>
+</div>
   <div class="row justify-content-center">
     <div class="col">
         <h1>Smart charging scheme:</h1>
@@ -119,6 +124,14 @@
             <canvas id="myChartD{{loop.index}}"></canvas>
           </div>
         {% endfor %}
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col">
+      <canvas id="powersmart"></canvas>
+    </div>
+    <div class="col">
+      <canvas id="powerdumb"></canvas>
     </div>
   </div>
   </div>
@@ -145,7 +158,15 @@
   const configS{{loop.index}} = {
       type: 'bar',
       data: dataS{{loop.index}},
-      options: { maintainAspectRatio: false }
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
   };
 
   const myChartS{{loop.index}} = new Chart(
@@ -173,7 +194,15 @@
   const configD{{loop.index}} = {
       type: 'bar',
       data: dataD{{loop.index}},
-      options: { maintainAspectRatio: false }
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
   };
 
   const myChartD{{loop.index}} = new Chart(
@@ -183,5 +212,73 @@
 
 </script>
 {% endfor %}
+
+<script defer>
+
+  const dataPS = {
+      labels: labels,
+      datasets: [{
+          label: 'Power use of Smart charging',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ power_smart | tojson}},
+      }
+    ]
+  };
+
+  const configPS = {
+      type: 'bar',
+      data: dataPS,
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+  };
+
+  const myChartPS = new Chart(
+      document.getElementById('powersmart'),
+      configPS
+  );
+
+</script>
+
+<script defer>
+
+  const dataPD = {
+      labels: labels,
+      datasets: [{
+          label: 'Power use of Dumb Charging',
+          backgroundColor: 'rgb(51, 51, 255)',
+          borderColor: 'rgb(51, 51, 255)',
+          data: {{ power_dumb | tojson}},
+      }
+    ]
+  };
+
+  const configPD = {
+      type: 'bar',
+      data: dataPD,
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+  };
+
+  const myChartPD = new Chart(
+      document.getElementById('powerdumb'),
+      configPD
+  );
+
+</script>
 
 {% endblock %}
