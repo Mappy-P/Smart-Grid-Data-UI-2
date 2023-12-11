@@ -66,6 +66,7 @@
 
         var huidigPercentage = document.createElement('input');
         huidigPercentage.id = "huidigPercentage" + (i + 1);
+        huidigPercentage.setAttribute('auto', (i + 1));
         huidigPercentage.type = 'range';
         huidigPercentage.min = 0;
         huidigPercentage.max = 100;
@@ -97,8 +98,9 @@
 
         var gewenstPercentage = document.createElement('input');
         gewenstPercentage.id = "gewenstPercentage" + (i + 1);
+        gewenstPercentage.setAttribute('auto', (i + 1));
         gewenstPercentage.type = 'range';
-        gewenstPercentage.min = 0;
+        gewenstPercentage.min = 50;
         gewenstPercentage.max = 100;
         gewenstPercentage.value = 50;
         gewenstPercentage.step = 2;
@@ -148,6 +150,8 @@
         aankomst.min='06:00';
         aankomst.max='22:00';
         aankomst.step = '900';
+        aankomst.classList.add('aankomst');
+        aankomst.setAttribute('auto', (i + 1));
 
         aankomstVertrekHolder.appendChild(aankomstHolder);
         aankomstHolder.appendChild(aankomst);
@@ -178,6 +182,12 @@
         slider.addEventListener('input', function inputdynamic() {
         slider.previousElementSibling.textContent = slider.value;
         slider.nextElementSibling.value = slider.value;
+        if (parseInt(document.getElementById('gewenstPercentage' + (slider.getAttribute('auto'))).value) < parseInt(slider.value)){
+          document.getElementById('gewenstPercentage' + (slider.getAttribute('auto'))).value = slider.value;
+          document.getElementById('huidigPercentageGewenst' + (slider.getAttribute('auto'))).textContent = slider.value;
+          document.getElementById('percentageGewenst' + (slider.getAttribute('auto'))).value = slider.value;
+        }else{}
+        document.getElementById('gewenstPercentage' + (slider.getAttribute('auto'))).min = slider.value;
       });
       });
       
@@ -186,6 +196,13 @@
         slider2.addEventListener('input', function outputdynamic() {
         slider2.previousElementSibling.textContent = slider2.value;
         slider2.nextElementSibling.value = slider2.value;
+      });
+      });
+
+      const aankomstUren = document.querySelectorAll('.aankomst');
+      aankomstUren.forEach(aankomst => {
+        aankomst.addEventListener('input', function aankomstdynamic() {
+        document.getElementById('vertrekUur' + aankomst.getAttribute('auto')).min = aankomst.value;
       });
       });
     }

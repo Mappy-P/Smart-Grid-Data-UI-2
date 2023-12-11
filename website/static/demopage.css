@@ -13,12 +13,14 @@
     top: 50%;
     left: 50%;
     transform: translate(calc(-50% - 10px), calc(-50% - 37px));
+    transition: 0.67s cubic-bezier(0.2, 0.49, 0.32, 0.99);
 }
 
 .outputPercentage{
     top: 50%;
     left: 50%;
     transform: translate(calc(-50% - 10px), calc(-50% - 37px));
+    transition: 0.67s cubic-bezier(0.2, 0.49, 0.32, 0.99);
 }
 
 .sliderValue{
