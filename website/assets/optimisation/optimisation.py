@@ -102,7 +102,7 @@ class ChargingPlanner:
                     self.energy_to_buy[time_price[i][0]] += charge_amount
                     i += 1
         for time in range(self.N):
-            print(self.energy_to_buy[time])
+            #print(self.energy_to_buy[time])
             self.predicted_energy_cost += self.energy_to_buy[time]*self.energy_price[time]
         self.get_scheme()
 

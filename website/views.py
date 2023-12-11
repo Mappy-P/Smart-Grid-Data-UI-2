@@ -31,9 +31,9 @@ def ml():
 def demo():
     if request.method == 'POST':
         typeOfCalculation = request.form.get('typeOfCalculation')
-        print(typeOfCalculation)
-        print(request.form.get('startDate'))
-        print(request.form.get('endDate'))
+        #print(typeOfCalculation)
+        #print(request.form.get('startDate'))
+        #print(request.form.get('endDate'))
         startDate = datetime.strptime(request.form.get('startDate'), '%Y-%m-%d')
         endDate = datetime.strptime(request.form.get('endDate'), '%Y-%m-%d')
 
@@ -57,25 +57,29 @@ def demo():
                 cars = list()
                 for i in range(5):
                     try:
-                        print(request.form.get(('aankomstUur' + str(i + 1))))
+                        #print(request.form.get(('aankomstUur' + str(i + 1))))
                         aankomst = int(request.form.get(('aankomstUur' + str(i + 1)))[0:2])*4 + int(request.form.get(('aankomstUur' + str(i + 1)))[3:])/15
                         aankomst = int(aankomst)
-                        print(aankomst)
+                        #print(aankomst)
                         vertrek = int(request.form.get(('vertrekUur' + str(i + 1)))[0:2])*4 + int(request.form.get(('vertrekUur' + str(i + 1)))[3:])/15
                         vertrek = int(vertrek)
-                        print(vertrek)
-                        print('auto ' + str(i + 1))
-                        print(request.form.get('percentageGewenst1'))
-                        print(request.form.get('percentageGewenst' + str(i + 1)))
+                        #print(vertrek)
+                        #print('auto ' + str(i + 1))
+                        #print(request.form.get('percentageGewenst1'))
+                        #print(request.form.get('percentageGewenst' + str(i + 1)))
                         cars.append(Car(i + 1, (float(request.form.get('percentageGewenst' + str(i + 1))) - float(request.form.get('percentageAankomst' + str(i + 1))))*0.4, aankomst, vertrek))
                     except:
                         break
 
                 cars = np.asarray(cars)
-                print('Dit zijn de autos:')
-                print(cars)
+                #print('Dit zijn de autos:')
+                #print(cars)
 
                 xs, yys_smart, yys_dumb, predicted_smart_cost, real_smart_cost, predicted_dumb_cost, real_dumb_cost = models.simulate(start, cars)
+                power_smart = [sum(col) for col in zip(*yys_smart)]
+                power_dumb = [sum(col) for col in zip(*yys_dumb)]
+                print(power_smart)
+                print(power_dumb)
                 predicted_smart_cost = str(round(predicted_smart_cost/100, 2))
                 real_smart_cost = str(round(real_smart_cost/100, 2))
                 predicted_dumb_cost = str(round(predicted_dumb_cost/100, 2))
@@ -84,7 +88,7 @@ def demo():
                 datums = None
                 werkelijk = None
                 soort = None
-                return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb, predicted_smart_cost = predicted_smart_cost, real_smart_cost = real_smart_cost, predicted_dumb_cost = predicted_dumb_cost, real_dumb_cost = real_dumb_cost)
+                return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb, predicted_smart_cost = predicted_smart_cost, real_smart_cost = real_smart_cost, predicted_dumb_cost = predicted_dumb_cost, real_dumb_cost = real_dumb_cost, power_smart = power_smart, power_dumb = power_dumb)
             elif typeOfCalculation == '0':
                 flash('Choose the type of calculation you want our model to run.', category='error')
                 predictie = None
