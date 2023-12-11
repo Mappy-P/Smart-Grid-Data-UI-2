@@ -11,7 +11,7 @@
 .text{
     position: absolute;
     z-index: 5;
-    top: calc(50% + 225px) !important;
+    top: calc(50% + 30vh) !important;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -41,8 +41,8 @@
 }
 
 .landing_parallax{
-    width: 636.65px;
-    height: 449.4px;
+    width: 98.5291666669vh;
+    height: 69.55vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -52,8 +52,8 @@
 
 .bos{
     position: absolute;
-    width: 636.65px;
-    height: 449.4px;
+    width: 98.5291666669vh;
+    height: 69.55vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -62,8 +62,8 @@
 
 .parallax-holder{
     position: relative;
-    height: 420px;
-    width: 595px;
+    width: 92.083vh;
+    height: 65vh;
     overflow: hidden;
     border-radius: 6px;
 }
