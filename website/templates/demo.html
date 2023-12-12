@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="container-fluid">
-  <form method="POST">
+  <form method="POST" id="calcData">
   <div id='firstRow' class="row justify-content-center" style="display: block;">
     <div class="col">
     <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
@@ -48,19 +48,19 @@
                     <div class="row" id="aantalAutosRow" style="display: none;">
                       <div class="col">
                         <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 6):</label>
-                        <input value="" type="number" id="aantalAutos" name="aantalAutos" min="1" max="6">
+                        <input value="1" type="number" id="aantalAutos" name="aantalAutos" min="1" max="6" onkeydown="return event.key != 'Enter';">
                       </div>
                     </div>
                 </div>
             
-                <button id='other-button' type="submit" class="btn btn-primary"style="height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
+                <button id='other-button' onclick="submitForm()" type="button" class="btn btn-primary"style="height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
                 <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Configure Cars</p></button>
             </hr>
       </div>
   </div>
   <div class="col">
       <h1>Results:</h1>
-      <div style="height: 90vmin; width: 80vmin;">
+      <div style="height: 70vh; width: 80vw;">
         <canvas id="myChart"></canvas>
       </div>
   </div>
@@ -92,7 +92,7 @@
           <div id="autosOutput"></div>
           <div class="row" style="padding-top: 4vmin;">
             <div class="col-10" style="padding-left: 2vmin;">
-              <button id='submit-fullsim' type="submit" class="btn btn-primary" style="padding-left: 0vmin; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
+              <button id='submit-fullsim' type="button" onclick="submitForm()" class="btn btn-primary" style="padding-left: 0vmin; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
             </div>
             <div class="col-1" style="padding-right: 2vmin;">
               <a id="back" href="/demo" class="btn btn-primary" type="button" style="padding-right:1vmin; padding-left: 0vmin; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Back</p></a>

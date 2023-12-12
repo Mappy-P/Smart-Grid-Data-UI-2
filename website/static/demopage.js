@@ -270,5 +270,9 @@
     document.getElementById('alertId').style.display = 'none';
   }
 
+  function submitForm() {
+    document.getElementById("calcData").submit();  // uncomment deze regel als je het formulier wilt indienen
+  }
+
 
 
