@@ -32,7 +32,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(calc(-50% - 6vh), calc(-50% - 4vh));
+    transform: translate(calc(-50% - 6vmin), calc(-50% - 4vmin));
 }
 
 .aankomstVertrekHolder{

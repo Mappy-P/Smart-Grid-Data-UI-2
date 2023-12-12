@@ -6,7 +6,7 @@
 <div id = "alertId" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
   <div class="row">
     <div class="col">
-      <strong>Choose a date before proceeding!</strong>
+      <strong>Choose a date or amount of cars before proceeding!</strong>
     </div>
     <div class="col">
       <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
@@ -20,7 +20,7 @@
     <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
       <div class="jumbotron" style="width: 92.083vmin;">
         <h1 class="display-4" style="font-size: 6.19vmin; padding-top: 0px;">Configure the calculation:</h1>
-            <p class="lead" style="font-size: 3vh;">DEMO</p>
+            <p class="lead" style="font-size: 3vmin;">DEMO</p>
             <hr class="my-4" style="padding-top: 0vh; padding-bottom: 0vh;  margin-top: 1vmin !important; margin-bottom: 1vmin !important;">
                 <div class="form-group">
                   <div class="row" style="padding-left: 2.8vmin; padding-right: 2.8vmin;">
@@ -34,11 +34,11 @@
                   </div>
             
                     <div class="row" style="padding-left: 2.8vmin; padding-right: 2.8vmin;">
-                      <div class="col" style="float: left; padding-left: 0vh; padding-right: 0vh;">
+                      <div class="col" style="float: left; padding-left: 0vmin; padding-right: 0vmin;">
                           <label for="startDate">Start</label>
                           <input value="" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                       </div>
-                      <div class="col" id="endDateCol" style="margin-left: 0vh; margin-right: 0vh; padding-left: 0vh; padding-right: 0vh;">
+                      <div class="col" id="endDateCol" style="margin-left: 0vmin; margin-right: 0vmin; padding-left: 0vh; padding-right: 0vh;">
                         <div class="row" style="float: right; margin-left: 0vh; margin-right: 0vh; padding-left: 0vh; padding-right: 0vh;">
                           <label for="endDate">End</label>
                           <input id="endDate" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
@@ -53,27 +53,27 @@
                     </div>
                 </div>
             
-                <button id='other-button' type="submit" class="btn btn-primary"style="height: 6.19vh; text-align: center; justify-content: center;"><p style="font-size: 3.09vh; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
-                <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none; height: 6.19vh; text-align: center; justify-content: center;"><p style="font-size: 3.09vh; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Configure Cars</p></button>
+                <button id='other-button' type="submit" class="btn btn-primary"style="height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
+                <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Configure Cars</p></button>
             </hr>
       </div>
   </div>
   <div class="col">
       <h1>Results:</h1>
-      <div style="height: 70vh; width: 80%;">
+      <div style="height: 90vmin; width: 80vmin;">
         <canvas id="myChart"></canvas>
       </div>
   </div>
   </div>
   <div id='secondRow' class="row justify-content-center" style="display: none; padding-top: 7vh;">
     <div class="col">
-      <div class="container" style="background-color: aliceblue; border-radius: 5vh; height: 80vh; padding: 3vh;">
+      <div class="container" style="background-color: aliceblue; border-radius: 5vmin; min-height: 80vh; padding: 3vmin;">
         <div class="row">
           <div class="col" style="height: 11vmin;">
             <h2 style="display: none; font-size: 3vmin; padding-left: 2vmin;">Car 1:</h2>
           </div>
           <div class="col" style="height: 11vmin; padding: 1vmin;">
-            <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5min; padding-bottom: 1vmin;">Type of Car:</h2>
+            <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5vmin; padding-bottom: 1vmin;">Type of Car:</h2>
             <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: x kwh</p>
             <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electrical: y kwh</p>
           </div>
@@ -91,11 +91,11 @@
         <div>
           <div id="autosOutput"></div>
           <div class="row" style="padding-top: 4vmin;">
-            <div class="col-11" style="padding-left: 2vmin;">
-              <button id='submit-fullsim' type="submit" class="btn btn-primary" style="padding-left: 0vmin; height: 6.19vh; text-align: center; justify-content: center;"><p style="font-size: 3.09vh; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
+            <div class="col-10" style="padding-left: 2vmin;">
+              <button id='submit-fullsim' type="submit" class="btn btn-primary" style="padding-left: 0vmin; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
             </div>
             <div class="col-1" style="padding-right: 2vmin;">
-              <a id="back" href="/demo" class="btn btn-primary" type="button" style="padding-right:0vmin; padding-left: 0vmin; height: 6.19vh; text-align: center; justify-content: center;"><p style="font-size: 3.09vh; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Back</p></a>
+              <a id="back" href="/demo" class="btn btn-primary" type="button" style="padding-right:1vmin; padding-left: 0vmin; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Back</p></a>
             </div>
           </div>
         </div>
