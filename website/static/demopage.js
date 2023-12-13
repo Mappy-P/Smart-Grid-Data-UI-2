@@ -50,6 +50,8 @@
         optiesType.classList.add('col');
 
         var Type = document.createElement('select');
+        Type.id = "optie" + (i+1);
+        Type.name = "optie" + (i+1);
         optiesType.appendChild(Type);
         Type.classList.add('form-select');
         Type.classList.add('soort-auto');

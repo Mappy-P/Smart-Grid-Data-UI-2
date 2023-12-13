@@ -28,8 +28,9 @@ class ChargingPlanner:
 
     #don't change whether loading or not for every point in time before offset (this is in the past)
     def update(self, offset, new_solar_surplus, new_energy_prices):
-        self.solar_surplus = new_solar_surplus.copy()
-        self.energy_price = new_energy_prices.copy()
+        for time in range(offset, self.N):
+            self.solar_surplus[time] = new_solar_surplus[time]
+            self.energy_price[time] = new_energy_prices[time]
         self.__recompute(offset)
 
     def __recompute(self, offset):
@@ -59,8 +60,8 @@ class ChargingPlanner:
                 i += 1
         self.predicted_solar_revenue = 0.
         for time in range(self.N):
-            if (self.energy_price[time] >= self.injection_price and self.energy_to_sell[time] > 0.): # VRAAG JORIS
-                self.predicted_solar_revenue += self.energy_to_sell[time]*self.injection_price
+            if (self.energy_price[time] >= 0 and self.energy_to_sell[time] > 0.): # VRAAG JORIS
+                self.predicted_solar_revenue += self.energy_to_sell[time]*min(self.injection_price, self.energy_price[time])
         self.get_scheme()
 
         #for car in self.cars:
@@ -104,6 +105,7 @@ class ChargingPlanner:
         for time in range(self.N):
             #print(self.energy_to_buy[time])
             self.predicted_energy_cost += self.energy_to_buy[time]*self.energy_price[time]
+        self.cars.sort(key=lambda x: x.get_id())
         self.get_scheme()
 
     def get_cars(self):
@@ -147,14 +149,14 @@ class ChargingPlanner:
         #six = 24
         #ten = 89
         for time in range(self.N):
-            if (real_injection_price > real_energy_price[time]):
+            if (real_energy_price[time] < 0.):
                 continue
             energy_used = 0.
             for car in self.cars:
                 energy_used += car.get_charging(time)
             energy_diff = energy_used - real_solar_surplus[time]
             if (energy_diff < 0.):
-                real_solar_revenue += (-energy_diff)*real_injection_price
+                real_solar_revenue += (-energy_diff)*min(real_injection_price, real_energy_price[time])
         return real_solar_revenue
 
     def get_predicted_profit(self):
