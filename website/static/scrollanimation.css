@@ -39,7 +39,7 @@ section {
     background-image: url("https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   
     /* Set a specific height */
-    min-height: 400px;
+    min-height: 50vh;
   
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
