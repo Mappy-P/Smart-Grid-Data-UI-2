@@ -30,6 +30,11 @@
       document.getElementById('firstRow').style.display = 'none';
       document.getElementById('secondRow').style.display = 'block';
 
+      var stats = document.querySelectorAll('.generalStatistics');
+      stats.forEach(stat => {
+        stat.style.display = 'none';
+      });
+
       var outputDiv = document.getElementById('autosOutput');
       outputDiv.innerHTML = '';
 

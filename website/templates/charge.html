@@ -39,12 +39,12 @@
                         <div class="row" style="padding-left: 2.8vmin; padding-right: 2.8vmin;">
                           <div class="col" style="float: left; padding-left: 0vmin; padding-right: 0vmin;">
                               <label for="startDate">Start</label>
-                              <input value="" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                              <input value="2018-01-16" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                           </div>
                           <div class="col" id="endDateCol" style="margin-left: 0vmin; margin-right: 0vmin; padding-left: 0vh; padding-right: 0vh;">
                             <div class="row" style="float: right; margin-left: 0vh; margin-right: 0vh; padding-left: 0vh; padding-right: 0vh;">
                               <label for="endDate">End</label>
-                              <input id="endDate" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                              <input id="endDate" value="2018-01-16"  name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                             </div>
                           </div>
                         </div>
@@ -71,8 +71,8 @@
               </div>
               <div class="col" style="height: 11vmin; padding: 1vmin;">
                 <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5vmin; padding-bottom: 1vmin;">Type of Car:</h2>
-                <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: 15 kwh</p>
-                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electric: 75 kwh</p>
+                <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: x kwh</p>
+                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electrical: y kwh</p>
               </div>
               <div class="col" style="padding: 1vmin;">
                 <h2 style="font-size: 3vmin;">Battery Percentage at arrival</h2>
@@ -102,8 +102,9 @@
       </form>
     </div>
 
-  <div id="metrics" class="col">
+  <div class="generalStatistics col" style="padding-left: 1.5vw">
     <h1>Metrics:</h1>
+    <div>
       <h3>Predicted cost of Smart Charging</h3>
       {{predicted_smart_cost}}
       <h3>Real cost of Smart Charging:</h3>
@@ -112,6 +113,7 @@
       {{predicted_dumb_cost}}
       <h3>Real cost of Dumb Charging:</h3>
       {{real_dumb_cost}}
+    </div>
   </div>
 </div>
 </div>
@@ -175,9 +177,6 @@
         plugins: {
           legend: {
             display: false
-          },
-          tooltip: {
-            enabled: false // <-- this option disables tooltips
           }
         }
       }
@@ -213,9 +212,6 @@
         plugins: {
           legend: {
             display: false
-          },
-          tooltip: {
-            enabled: false // <-- this option disables tooltips
           }
         }
       }
@@ -250,9 +246,6 @@
         plugins: {
           legend: {
             display: false
-          },
-          tooltip: {
-            enabled: false // <-- this option disables tooltips
           }
         }
       }
@@ -286,9 +279,6 @@
         plugins: {
           legend: {
             display: false
-          },
-          tooltip: {
-            enabled: false // <-- this option disables tooltips
           }
         }
       }
