@@ -19,6 +19,7 @@
   }
   
   function proceedCalc(){
+    //document.getElementById("metrics").style.display = 'none';
     var date = document.getElementById('startDate').value;
     var aantalAutos = document.getElementById('aantalAutos').value;
     console.log(document.getElementById('aantalAutos').value);
@@ -279,6 +280,7 @@
 
   function submitForm() {
     document.getElementById("calcData").submit();  // uncomment deze regel als je het formulier wilt indienen
+    //document.getElementById("metrics").style.display = 'block';
   }
 
 
