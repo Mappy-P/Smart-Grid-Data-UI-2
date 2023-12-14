@@ -142,7 +142,7 @@
         gewenstPercentage.type = 'range';
         gewenstPercentage.min = 50;
         gewenstPercentage.max = 100;
-        gewenstPercentage.value = 50;
+        gewenstPercentage.value = 70;
         gewenstPercentage.step = 2;
         // gewenstPercentage.classList.add('col');
         gewenstPercentage.classList.add('outputPercentage');
