@@ -23,13 +23,13 @@
     <script defer src="{{url_for('static', filename='demopage.js')}}"></script>
     <script defer src="{{url_for('static', filename='timepicker-bs4.js')}}"></script>
 
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/imgs/favicon.ico') }}"> 
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='/imgs/favicon.png')}}" sizes="32x32"> 
 
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 
 <body style="background-color: #8BC6EC;
-background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);">
+background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%); overflow-x: hidden;">
     <div class="off-canvas-wrapper">
         <div id="off_canvas" class="off-canvas">
           <!-- Navbar -->
@@ -83,7 +83,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);">
 
             <div class="container-fluid" style="align-items: center; justify-content: center;">
               <div class="row">
-                <div class="col-12" style="padding: 0;">
+                <div class="col-12" style="padding: 0; flex-flow: column wrap !important; display: flex !important;">
                         {% block content %}
                         {% endblock %}
                 </div>

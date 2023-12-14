@@ -6,7 +6,7 @@
 <div id = "alertId" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
   <div class="row">
     <div class="col">
-      <strong>Choose a date before proceeding!</strong>
+      <strong>Choose a date or amount of cars before proceeding!</strong>
     </div>
     <div class="col">
       <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
@@ -14,82 +14,89 @@
   </div>
 </div>
 <div class="container-fluid">
-  <form method="POST">
-  <div id='firstRow' class="row justify-content-center">
+  <form method="POST" id="calcData">
+  <div id='firstRow' class="row justify-content-center" style="display: block;">
     <div class="col">
     <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
-      <div class="jumbotron" style="width: 550px;">
-        <h1 class="display-4" style="font-size: 40px; padding-top: 0px;">Configure the calculation:</h1>
-            <p class="lead">DEMO</p>
-            <hr class="my-4">
+      <div class="jumbotron" style="width: 92.083vmin;">
+        <h1 class="display-4" style="font-size: 6.19vmin; padding-top: 0px;">Configure the calculation:</h1>
+            <p class="lead" style="font-size: 3vmin;">DEMO</p>
+            <hr class="my-4" style="padding-top: 0vh; padding-bottom: 0vh;  margin-top: 1vmin !important; margin-bottom: 1vmin !important;">
                 <div class="form-group">
-                  <div class="row" style="padding-left: 15px;">
-                    <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation">
-                      <option class='non-sim' value="0" selected>Choose the type of calculation you want to make</option>
-                      <option class='non-sim' value="1">Prediction of the energy consumption</option>
-                      <option class='non-sim' value="2">Prediction of the solar production</option>
-                      <option class='non-sim' value="3">Prediction of the electricity prices</option>
-                      <option value="4">Full simulation of charging</option>
+                  <div class="row" style="padding-left: 2.8vmin; padding-right: 2.8vmin;">
+                    <select class="form-select" aria-label="Default select example" id="typeOfCalculation" name="typeOfCalculation" style="width: fit-content; min-width: 82.5vmin;">
+                      <option class='non-sim' value="0" selected><p style="font-size: 5vmin;">Choose the type of calculation you want to make</p></option>
+                      <option class='non-sim' value="1"><p style="font-size: 5vmin;">Prediction of the energy consumption</p></option>
+                      <option class='non-sim' value="2"><p style="font-size: 5vmin;">Prediction of the solar production</p></option>
+                      <option class='non-sim' value="3"><p style="font-size: 5vmin;">Prediction of the electricity prices</p></option>
+                      <option value="4"><p style="font-size: 5vmin;">Full simulation of charging</p></option>
                     </select>
                   </div>
             
-                    <div class="row">
-                      <div class="col">
+                    <div class="row" style="padding-left: 2.8vmin; padding-right: 2.8vmin;">
+                      <div class="col" style="float: left; padding-left: 0vmin; padding-right: 0vmin;">
                           <label for="startDate">Start</label>
-                          <input value="" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                          <input value="2018-01-16" id="startDate" name="startDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
                       </div>
-                      <div class="col" id="endDateCol">
+                      <div class="col" id="endDateCol" style="margin-left: 0vmin; margin-right: 0vmin; padding-left: 0vh; padding-right: 0vh;">
+                        <div class="row" style="float: right; margin-left: 0vh; margin-right: 0vh; padding-left: 0vh; padding-right: 0vh;">
                           <label for="endDate">End</label>
-                          <input id="endDate" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                          <input id="endDate" value="2018-01-16" name="endDate" class="form-control" type="date" min="2018-01-16" max="2023-09-29"/>
+                        </div>
                       </div>
                     </div>
                     <div class="row" id="aantalAutosRow" style="display: none;">
                       <div class="col">
                         <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 6):</label>
-                        <input value="" type="number" id="aantalAutos" name="aantalAutos" min="1" max="6">
+                        <input value="1" type="number" id="aantalAutos" name="aantalAutos" min="1" max="6" onkeydown="return event.key != 'Enter';">
                       </div>
                     </div>
                 </div>
             
-                <button id='other-button' type="submit" class="btn btn-primary">Run Calculation!</button>
-                <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none;">Run Calculation!</button>
+                <button id='other-button' onclick="submitForm()" type="button" class="btn btn-primary"style="height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
+                <button onclick="proceedCalc()" type="button" id="full-sim-button" class="btn btn-primary" style="display: none; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Configure Cars</p></button>
             </hr>
       </div>
   </div>
   <div class="col">
       <h1>Results:</h1>
-      <div style="height: 70vh; width: 80%;">
+      <div style="height: 70vh; width: 80vw;">
         <canvas id="myChart"></canvas>
       </div>
   </div>
   </div>
   <div id='secondRow' class="row justify-content-center" style="display: none; padding-top: 7vh;">
     <div class="col">
-      <div style="background-color: aliceblue; border-radius: 25px; height: 70vh;">
+      <div class="container" style="background-color: aliceblue; border-radius: 5vmin; min-height: 80vh; padding: 3vmin;">
         <div class="row">
-          <div class="col">
-            <h2 style="display: none;">Car 1:</h2>
+          <div class="col" style="height: 11vmin;">
+            <h2 style="display: none; font-size: 3vmin; padding-left: 2vmin;">Car 1:</h2>
           </div>
-          <div class="col" style="height: 50px;"> 
-            <h2 style="font-size: 16px; padding-bottom: 0px;">Type of Car:</h2>
-            <p class = 'uitleg1'style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Hybrid: x kwh</p>
-            <p class="uitleg2" style="font-size: 12px; padding-top:0px; padding-bottom: 0px; height: 9px;">Electrical: y kwh</p>
+          <div class="col" style="height: 11vmin; padding: 1vmin;">
+            <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5vmin; padding-bottom: 1vmin;">Type of Car:</h2>
+            <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: x kwh</p>
+            <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electrical: y kwh</p>
           </div>
-          <div class="col">
-            <h2 style="font-size: 16px;">Battery Percentage at arrival</h2>
+          <div class="col" style="padding: 1vmin;">
+            <h2 style="font-size: 3vmin;">Battery Percentage at arrival</h2>
           </div>
-          <div class="col">
-            <h2 style="font-size: 16px;">Desired Battery Percentage at departure</h2>
+          <div class="col" style="padding: 1vmin;">
+            <h2 style="font-size: 3vmin;">Desired Battery Percentage at departure</h2>
           </div>
-          <div class="col">
-            <h2 style="font-size: 16px;">Time of arrival</h2>
-            <h2 style="font-size: 16px; transform: translate(0, -8px); padding-top: 1px;">Time of Departure</h2>
+          <div class="col" style="padding: 1vmin;">
+            <h2 style="font-size: 3vmin;">Time of arrival</h2>
+            <h2 style="font-size: 3vmin; transform: translate(0, -1vh); padding-top: 0.3vh;">Time of Departure</h2>
           </div>
         </div>
         <div>
           <div id="autosOutput"></div>
-          <div class="row">
-            <button id='submit-fullsim' type="submit" class="btn btn-primary" style="transform: translate(+35px, 0px);">Run Calculation!</button>
+          <div class="row" style="padding-top: 4vmin;">
+            <div class="col-10" style="padding-left: 2vmin;">
+              <button id='submit-fullsim' type="button" onclick="submitForm()" class="btn btn-primary" style="padding-left: 0vmin; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Run Calculation!</p></button>
+            </div>
+            <div class="col-1" style="padding-right: 2vmin;">
+              <a id="back" href="/demo" class="btn btn-primary" type="button" style="padding-right:1vmin; padding-left: 0vmin; height: 6.19vmin; text-align: center; justify-content: center;"><p style="font-size: 3.09vmin; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">Back</p></a>
+            </div>
           </div>
         </div>
       </div>

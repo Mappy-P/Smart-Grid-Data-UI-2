@@ -11,7 +11,7 @@
 .text{
     position: absolute;
     z-index: 5;
-    top: calc(50% + 225px) !important;
+    top: calc(50% + 40vh) !important;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -19,10 +19,12 @@
     text-transform: uppercase;
     color: white;
     text-shadow: 2px 1px 4px rgba(0, 0, 0, 1);
+    opacity: 0;
 }
 .text h1{
     font-weight: 600;
-    font-size: 4rem;
+    font-size: 12vmin;
+    transition: 0.83s cubic-bezier(0.2, 0.49, 0.32, 0.99);
 }
 
 .auto{
@@ -41,19 +43,19 @@
 }
 
 .landing_parallax{
-    width: 636.65px;
-    height: 449.4px;
+    width: 98.5291666669vmin;
+    height: 69.55vmin;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    transition: 0.67s cubic-bezier(0.2, 0.49, 0.32, 0.99);
+    transition: 0.83s cubic-bezier(0.2, 0.49, 0.32, 0.99);
 }
 
 .bos{
     position: absolute;
-    width: 636.65px;
-    height: 449.4px;
+    width: 98.5291666669vmin;
+    height: 69.55vmin;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -62,10 +64,10 @@
 
 .parallax-holder{
     position: relative;
-    height: 420px;
-    width: 595px;
+    width: 92.083vmin;
+    height: 65vmin;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 2vmin;
 }
 
 .vignette{
