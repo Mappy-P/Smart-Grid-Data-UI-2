@@ -15,7 +15,7 @@ def home():
 def about():
     return render_template('about.html')
 
-@views.route('/data')
+@views.route('/data-optimization')
 def data():
     return render_template('data_optimization.html')
 
@@ -62,7 +62,7 @@ def demo():
                 predictionResults = models.predictPrijzen(start, duration)
             elif typeOfCalculation == '4':
                 cars = list()
-                for i in range(6):
+                for i in range(20):
                     #print("i: ", i)
                     try:
                         #print(request.form.get(('aankomstUur' + str(i + 1))))
