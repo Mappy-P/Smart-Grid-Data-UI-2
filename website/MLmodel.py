@@ -36,20 +36,32 @@ class DemoModel:
       self.type = 'consumptie'
     elif model == (r'website/assets/Solar_model.h5'):
       self.type = 'productie'
-    else:
+    elif model == (r'website/assets/Belpex_model.h5'):
       self.type = 'prijzen'
+    elif model == (r'website/assets/Belpex_finaal12u.h5'):
+      self.type = 'belpex12'
+    else:
+      self.type = 'twaalf'
     
   def createDataSet(self, start, duration):
     if self.type =='consumptie':
-      self.X, self.Y = split_series(self.df['Value'], 1440, 96)
+      self.X, self.Y = split_series(self.df['Value'], 1440, 96) #1440 / 24 --> 15 days
       self.X = self.X[start:start + duration + 1]
       self.Y = self.Y[start:start + duration + 1]
     elif self.type == 'productie':
-      self.X, self.Y = split_series(self.df['Value'], 325, 65)
-      self.X = self.X[start + 10:start + 10 + duration + 1]
+      self.X, self.Y = split_series(self.df['Value'], 325, 65) #(326 / 16) --> 5 days
+      self.X = self.X[start + 10:start + 10 + duration + 1] # + 10 days to compensate
       self.Y = self.Y[start + 10:start + 10 + duration + 1]
     elif self.type == 'prijzen':
       self.X, self.Y = split_series(self.df['Value'], 85, 17)
+      self.X = self.X[start + 10:start + 10 + duration + 1]
+      self.Y = self.Y[start + 10:start + 10 + duration + 1]
+    elif self.type == 'twaalf':
+      self.X, self.Y = split_series(self.df['Value'][24:], 325, 65)
+      self.X = self.X[start + 10:start + 10 + duration + 1]
+      self.Y = self.Y[start + 10:start + 10 + duration + 1]
+    elif self.type == 'belpex12':
+      self.X, self.Y = split_series(self.df['Value'][6:], 85, 17)
       self.X = self.X[start + 10:start + 10 + duration + 1]
       self.Y = self.Y[start + 10:start + 10 + duration + 1]
     
@@ -82,6 +94,14 @@ class DemoModel:
       realValues = self.df['Value'][start*17 + 255: start*17 + 255 + (duration + 1)*17]
       dates = self.df['Date'][start*17 + 255: start*17 + 255 + (duration + 1)*17]
       print(self.df['Date'][start*17 + 255])
+    elif self.type == 'twaalf':
+      realValues = self.df['Value'][start*65 + 975 + 24: start*65 + 975 + 24 + (duration + 1)*65]
+      dates = self.df['Timestamp'][start*65 + 24 + 975: start*65 + 24 + 975 + (duration + 1)*65]
+      print(self.df['Timestamp'][start*65 + 24 + 975])
+    elif self.type == 'belpex12':
+      realValues = self.df['Value'][start*17 + 6 + 255: start*17 + 6 + 255 + (duration + 1)*17]
+      dates = self.df['Date'][start*17 + 255 + 6: start*17 + 255 + 6+ (duration + 1)*17]
+      print(self.df['Date'][start*17 + 255  + 6])
     realValuesInList = list()
     datesInList = list()
     for x in realValues:
