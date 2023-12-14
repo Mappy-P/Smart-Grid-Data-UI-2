@@ -47,6 +47,13 @@ def demo():
             duration = (endDate - startDate).days
             beginDateData = datetime.strptime('2018-01-16', '%Y-%m-%d')
             start = (startDate - beginDateData).days
+            if start < 0 or duration + start > 2082:
+                predictie = None
+                datums = None
+                werkelijk = None
+                soort = None
+                flash("Choose a start-date and end-date between 16-01-2018 and 29-09-2023!", category='error')
+                return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk)
             if typeOfCalculation == '1':
                 predictionResults = models.predictConsumptie(start, duration)
             elif typeOfCalculation == '2':
