@@ -75,7 +75,7 @@ def simulate_day(date, cars, predicted_consumption, predicted_consumption12, rea
 
 def charge_vis_data(cars):
     N = 24*4
-    xs = [*range(N)]
+    xs = [str(x//4)+":"+str((x % 4)*15).ljust(-len(str((x % 4)*15))) for x in range(N)]
     yys = []
     for car in cars:
         ys = []
