@@ -19,6 +19,7 @@
   }
   
   function proceedCalc(){
+    //document.getElementById("metrics").style.display = 'none';
     var date = document.getElementById('startDate').value;
     var aantalAutos = document.getElementById('aantalAutos').value;
     console.log(document.getElementById('aantalAutos').value);
@@ -28,6 +29,11 @@
       document.getElementById('endDate').value = date;
       document.getElementById('firstRow').style.display = 'none';
       document.getElementById('secondRow').style.display = 'block';
+
+      var stats = document.querySelectorAll('.generalStatistics');
+      stats.forEach(stat => {
+        stat.style.display = 'none';
+      });
 
       var outputDiv = document.getElementById('autosOutput');
       outputDiv.innerHTML = '';
@@ -274,6 +280,7 @@
 
   function submitForm() {
     document.getElementById("calcData").submit();  // uncomment deze regel als je het formulier wilt indienen
+    //document.getElementById("metrics").style.display = 'block';
   }
 
 
