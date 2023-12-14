@@ -15,7 +15,7 @@ def home():
 def about():
     return render_template('about.html')
 
-@views.route('/data')
+@views.route('/data-optimization')
 def data():
     return render_template('data_optimization.html')
 
