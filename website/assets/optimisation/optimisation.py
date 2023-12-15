@@ -34,6 +34,7 @@ class ChargingPlanner:
         self.__recompute(offset)
 
     def __recompute(self, offset):
+        print(self.solar_surplus)
         for car in self.cars:
             car.reset(offset)
         #for car in self.cars:
