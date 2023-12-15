@@ -11,10 +11,10 @@ def simulate_day(date, cars, predicted_consumption, predicted_consumption12, rea
     real_injection_price = max(0, average_real_price/10)
     charge_cap = 11/4
 
-    predicted_surplus = [max(0., x-y)/10 for x, y in zip(predicted_production, predicted_consumption)]
-    predicted_surplus12 = [max(0., x-y)/10 for x, y in zip(predicted_production12, predicted_consumption12)]
+    predicted_surplus = [max(0., x-y)/2.0 for x, y in zip(predicted_production, predicted_consumption)]
+    predicted_surplus12 = [max(0., x-y)/2.0 for x, y in zip(predicted_production12, predicted_consumption12)]
     #print("pred surplus 12 len: ", len(predicted_surplus12))
-    real_surplus = [max(0., x-y)/10 for x, y in zip(real_production, real_consumption)]
+    real_surplus = [max(0., x-y)/2.0 for x, y in zip(real_production, real_consumption)]
     print("real_surplus")
     print(real_surplus)
 
