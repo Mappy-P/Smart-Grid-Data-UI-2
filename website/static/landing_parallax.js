@@ -32,7 +32,7 @@ function update(cursorPosition) {
             parseFloat(getComputedStyle(el).left) < window.innerWidth / 2 ? 1 : -1;
         let zValue = (cursorPosition - parseFloat(getComputedStyle(el).left)) * isInLeft *0.1;
 
-        if (yValue < 0){
+        if (yValue < 20){
             console.log('bovenste helft scherm');
             el.style.transform = `translateX(calc(-50% + ${
                 -xValue*speedx
