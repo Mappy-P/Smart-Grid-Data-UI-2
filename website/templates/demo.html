@@ -6,14 +6,33 @@
 <div id = "alertId" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
   <div class="row">
     <div class="col">
-      <strong>Choose a date or amount of cars before proceeding!</strong>
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a date or amount of cars before proceeding!</strong>
     </div>
     <div class="col">
       <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
     </div>
   </div>
 </div>
-<div class="container-fluid">
+<div id = "alertId2" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a maximun of 20 cars!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" id="loading" style="display: none;">
+  <div style="position: absolute; left: 50%; transform: translate(-50%, 0%);">
+    <img src="{{ url_for('static', filename='/imgs/car-loading.gif') }}" id="loading" style="height: 70vmin; width: 70vmin;"></img>
+  </div>
+  <div>
+    <strong style="text-align: center; font-size: 6vmin;">Loading...</strong>
+  </div>
+</div>
+<div class="container-fluid" id="content-sim">
   <form method="POST" id="calcData">
   <div id='firstRow' class="row justify-content-center" style="display: block;">
     <div class="col">
