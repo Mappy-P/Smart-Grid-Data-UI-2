@@ -15,6 +15,8 @@ class DumbChargingPlanner:
         self.predicted_solar_revenue = 0.
         self.energy_to_buy = [0] * self.N
         self.predicted_energy_cost = 0.
+        self.six = 6*4
+        self.ten = 22*4+1
 
     #start_time inclusive end_time exclusive
     def add_car(self, to_charge, start_time, end_time):
@@ -44,7 +46,7 @@ class DumbChargingPlanner:
         self.energy_to_buy = [0]*self.N
         
         for car in self.cars:
-            for time in range(car.get_start(), car.get_end() + 1):
+            for time in range(car.get_start(), car.get_end()):
                 if self.energy_to_sell[time] > 0:
                     charge_amount = min(self.charge_cap, car.get_to_charge_left())
                     self.energy_to_sell[time] -= charge_amount
@@ -57,10 +59,10 @@ class DumbChargingPlanner:
                     #print(self.predicted_energy_cost)
         #print('injection here')
         #print(self.injection_price)
-        for time in range(self.N):
+        for time in range(self.six, self.ten):
             if (self.energy_price[time] >= 0. and self.energy_to_sell[time] > 0):
                 self.predicted_solar_revenue += min(self.energy_price[time], self.injection_price)*self.energy_to_sell[time]
-        for time in range(self.N):
+        for time in range(self.six, self.ten):
             self.predicted_energy_cost += self.energy_to_buy[time]*self.energy_price[time]
         self.cars.sort(key=lambda x: x.get_id())
 
@@ -81,7 +83,7 @@ class DumbChargingPlanner:
         real_solar_revenue = 0.
         #six = 24
         #ten = 89
-        for time in range(self.N):
+        for time in range(self.six, self.ten):
             if (real_energy_price[time] < 0.):
                 continue
             energy_used = 0.
@@ -99,7 +101,7 @@ class DumbChargingPlanner:
         real_energy_cost = 0.
         #six = 24
         #ten = 89
-        for time in range(self.N):
+        for time in range(self.six, self.ten):
             energy_used = 0.
             for car in self.cars:
                 energy_used += car.get_charging(time)
