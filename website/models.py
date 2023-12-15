@@ -79,15 +79,15 @@ def simulate(date, cars):
     predicted_prices12 = ([0] * (12*4)) + [float(x) for i in range(4) for x in predicted_prices12]
     predicted_prices12 = predicted_prices12[:96]
 
-    print(predicted_consumption12)
-    print(predicted_production12)
-    print(predicted_prices12)
-    print(len(predicted_consumption12))
-    print(len(predicted_production12))
-    print(len(predicted_prices12))
-    print(len(predicted_consumption))
-    print(len(predicted_production))
-    print(len(predicted_prices))
+    #print(predicted_consumption12)
+    #print(predicted_production12)
+    #print(predicted_prices12)
+    #print(len(predicted_consumption12))
+    #print(len(predicted_production12))
+    #print(len(predicted_prices12))
+    #print(len(predicted_consumption))
+    #print(len(predicted_production))
+    #print(len(predicted_prices))
 
 
     #print(len(predicted_consumption))
