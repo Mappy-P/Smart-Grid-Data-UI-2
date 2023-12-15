@@ -63,8 +63,8 @@ def simulate(date, cars):
     predicted_production12, _, _, _ = predictProductie12(date, 0)
     predicted_prices12, _, _, _ = predictPrijzen12(date, 0)
 
-    predicted_consumption = [float(x) * 0.9 for x in predicted_consumption]
-    real_consumption = [float(x) * 0.9 for x in real_consumption]
+    predicted_consumption = [float(x) * 0.95 for x in predicted_consumption]
+    real_consumption = [float(x) * 0.95 for x in real_consumption]
     predicted_production = ([0] * (6*4)) + [float(x) for x in predicted_production] + ([0] * (2*4-1))
     real_production = ([0] * (6*4)) + [float(x) for x in real_production] + ([0] * (2*4-1))
     predicted_prices = ([0] * (6*4)) + [float(x) for i in range(4) for x in predicted_prices] + ([0] * ((2-1)*4))
@@ -72,7 +72,7 @@ def simulate(date, cars):
 
     
 
-    predicted_consumption12 = ([0] * (12*4)) + [float(x) * 0.9 for x in predicted_consumption12]
+    predicted_consumption12 = ([0] * (12*4)) + [float(x) * 0.95 for x in predicted_consumption12]
     predicted_consumption12 = predicted_consumption12[:96]
     predicted_production12 = ([0] * (12*4)) + [float(x) for x in predicted_production12]
     predicted_production12 = predicted_production12[:96]
