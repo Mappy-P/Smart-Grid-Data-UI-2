@@ -6,14 +6,43 @@
 <div id = "alertId" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
   <div class="row">
     <div class="col">
-      <strong>Choose a date or amount of cars before proceeding!</strong>
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a date or amount of cars before proceeding!</strong>
     </div>
     <div class="col">
       <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
     </div>
   </div>
 </div>
-<div class="container-fluid">
+<div id = "alertId2" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a maximun of 20 cars!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
+<div id = "alertId3" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a minimum of 10 cars!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" id="loading" style="display: none;">
+  <div style="position: absolute; left: 50%; transform: translate(-50%, 0%);">
+    <img src="{{ url_for('static', filename='/imgs/car-loading.gif') }}" id="loading" style="height: 70vmin; width: 70vmin;"></img>
+  </div>
+  <div>
+    <strong style="text-align: center; font-size: 6vmin;">Loading...</strong>
+  </div>
+</div>
+<div class="container-fluid" id="content-sim">
   <form method="POST" id="calcData">
   <div id='firstRow' class="row justify-content-center" style="display: block;">
     <div class="col">
@@ -47,8 +76,8 @@
                     </div>
                     <div class="row" id="aantalAutosRow" style="display: none;">
                       <div class="col">
-                        <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 20):</label>
-                        <input value="1" type="number" id="aantalAutos" name="aantalAutos" min="1" max="20" onkeydown="return event.key != 'Enter';">
+                        <label for="aantalAutos">Choose the amount of cars that will arrive (between 10 and 20):</label>
+                        <input value="10" type="number" id="aantalAutos" name="aantalAutos" min="10" max="20" onkeydown="return event.key != 'Enter';">
                       </div>
                     </div>
                 </div>
@@ -75,7 +104,7 @@
           <div class="col" style="height: 11vmin; padding: 1vmin;">
             <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5vmin; padding-bottom: 1vmin;">Type of Car:</h2>
             <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: 15 kwh</p>
-            <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electrical: 75 kwh</p>
+            <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electric: 75 kwh</p>
           </div>
           <div class="col" style="padding: 1vmin;">
             <h2 style="font-size: 3vmin;">Battery Percentage at arrival</h2>

@@ -94,7 +94,13 @@ def demo():
 
                         break
 
-                cars = np.asarray(cars)
+                charge_cap = 11/4
+                for car in cars:
+                    if (car.get_end()-car.get_start())*charge_cap < car.get_to_charge():
+                        flash('Car '+str(car.get_id())+' can not be charged the required amount in the available time. Please try with different values', category='error')
+
+                        return render_template('demo.html')
+                cars.sort(key=lambda x: x.get_start())
                 #print('Dit zijn de autos:')
                 #print(cars)
 

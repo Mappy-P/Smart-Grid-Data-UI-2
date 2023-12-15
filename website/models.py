@@ -11,7 +11,7 @@ linkproductie = (r'website/assets/Solar_model.h5') #Het ML model van solar produ
 linkproductie12 = (r'website/assets/Solar_model12u-3.h5')
 linkproductiedata = (r'website/assets/data/Solar_6totenmet10.csv')
 
-linkprijzen = (r'website/assets/Belpex_model.h5') #Het ML model van Belpex prijzen
+linkprijzen = (r'website/assets/Belpex_finaal.h5') #Het ML model van Belpex prijzen
 linkprijzen12 = (r'website/assets/Belpex_finaal12u.h5')
 linkprijzendata = (r'website/assets/data/Belpex_6tot10.csv')
 
@@ -63,8 +63,8 @@ def simulate(date, cars):
     predicted_production12, _, _, _ = predictProductie12(date, 0)
     predicted_prices12, _, _, _ = predictPrijzen12(date, 0)
 
-    predicted_consumption = [float(x) * 0.9 for x in predicted_consumption]
-    real_consumption = [float(x) * 0.9 for x in real_consumption]
+    predicted_consumption = [float(x) * 0.95 for x in predicted_consumption]
+    real_consumption = [float(x) * 0.95 for x in real_consumption]
     predicted_production = ([0] * (6*4)) + [float(x) for x in predicted_production] + ([0] * (2*4-1))
     real_production = ([0] * (6*4)) + [float(x) for x in real_production] + ([0] * (2*4-1))
     predicted_prices = ([0] * (6*4)) + [float(x) for i in range(4) for x in predicted_prices] + ([0] * ((2-1)*4))
@@ -72,22 +72,22 @@ def simulate(date, cars):
 
     
 
-    predicted_consumption12 = ([0] * (12*4)) + [float(x) * 0.9 for x in predicted_consumption12]
+    predicted_consumption12 = ([0] * (12*4)) + [float(x) * 0.95 for x in predicted_consumption12]
     predicted_consumption12 = predicted_consumption12[:96]
     predicted_production12 = ([0] * (12*4)) + [float(x) for x in predicted_production12]
     predicted_production12 = predicted_production12[:96]
     predicted_prices12 = ([0] * (12*4)) + [float(x) for i in range(4) for x in predicted_prices12]
     predicted_prices12 = predicted_prices12[:96]
 
-    print(predicted_consumption12)
-    print(predicted_production12)
-    print(predicted_prices12)
-    print(len(predicted_consumption12))
-    print(len(predicted_production12))
-    print(len(predicted_prices12))
-    print(len(predicted_consumption))
-    print(len(predicted_production))
-    print(len(predicted_prices))
+    #print(predicted_consumption12)
+    #print(predicted_production12)
+    #print(predicted_prices12)
+    #print(len(predicted_consumption12))
+    #print(len(predicted_production12))
+    #print(len(predicted_prices12))
+    #print(len(predicted_consumption))
+    #print(len(predicted_production))
+    #print(len(predicted_prices))
 
 
     #print(len(predicted_consumption))

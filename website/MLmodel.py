@@ -36,7 +36,7 @@ class DemoModel:
       self.type = 'consumptie'
     elif model == (r'website/assets/Solar_model.h5'):
       self.type = 'productie'
-    elif model == (r'website/assets/Belpex_model.h5'):
+    elif model == (r'website/assets/Belpex_finaal.h5'):
       self.type = 'prijzen'
     elif model == (r'website/assets/Belpex_finaal12u.h5'):
       self.type = 'belpex12'

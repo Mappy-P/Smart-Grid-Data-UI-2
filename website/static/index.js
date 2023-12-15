@@ -40,3 +40,13 @@ endDate.addEventListener('change',(e)=>{
   let endDateVal = e.target.value
   document.getElementById('endDateSelected').innerText = endDateVal
 })  
+
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+// Voeg een klasse toe aan de body als de browser Safari is
+if (isSafari) {
+    var parallaxes = document.querySelectorAll('.parallax');
+    parallaxes.forEach((parallax => {
+      parallax.style.setAttribute('will-change', 'transform');
+    }))
+}

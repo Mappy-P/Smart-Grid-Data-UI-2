@@ -324,7 +324,7 @@ function updatePicker($input)
 		+ '<td></td>'
 		+ '</tr><tr>'
 		+ '<td class="text-right">{{10}}</td>'
-		+ '<td class="text-center align-bottom" colspan="3"><a id="' + input_id + '-picker-add-link" class="btn btn-link px-1 mx-0 chevron-btn" data-step="1" href="javascript:void(0)"><i class="fas fa-chevron-up fa-lg"></i></a></td>'
+		+ '<td class="text-center align-bottom" colspan="3"><a id="' + input_id + '-picker-add-link" class="btn btn-link px-1 mx-0 chevron-btn" data-step="1" href="javascript:void(0)"><i class="fa fa-chevron-up fa-lg"></i></a></td>'
 		+ '<td class="text-left">{{2}}</td>'
 		+ '</tr><tr>'
 		+ '<td class="text-right">{{9}}</td>'
@@ -332,7 +332,7 @@ function updatePicker($input)
 		+ '<td class="text-left">{{3}}</td>'
 		+ '</tr><tr>'
 		+ '<td class="text-right">{{8}}</td>'
-		+ '<td class="text-center" colspan="3"><a id="' + input_id + '-picker-sub-link" class="btn btn-link px-1 mx-0 chevron-btn" data-step="-1" href="javascript:void(0)"><i class="fas fa-chevron-down fa-lg"></i></a></td>'
+		+ '<td class="text-center" colspan="3"><a id="' + input_id + '-picker-sub-link" class="btn btn-link px-1 mx-0 chevron-btn" data-step="-1" href="javascript:void(0)"><i class="fa fa-chevron-down fa-lg"></i></a></td>'
 		+ '<td class="text-left">{{4}}</td>'
 		+ '</tr><tr>'
 		+ '<td></td>'
@@ -361,25 +361,25 @@ function updatePicker($input)
 				+ '</span></button>';
 		})
 		+ '</div><div class="keyboard-input' + (clock_enabled ? ' d-none' : '') + '"><table class="mx-auto text-center"><tr>'
-		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="hour" data-step="1" href="javascript:void(0)"><i class="fas fa-chevron-up fa-lg"></i></a></td>'
+		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="hour" data-step="1" href="javascript:void(0)"><i class="fa fa-chevron-up fa-lg"></i></a></td>'
 		+ '<td></td>'
-		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="minute" data-step="1" href="javascript:void(0)"><i class="fas fa-chevron-up fa-lg"></i></a></td>'
-		+ (has_second ? '<td></td><td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="second" data-step="1" href="javascript:void(0)"><i class="fas fa-chevron-up fa-lg"></i></a></td>' : '')
-		+ (clock_24 ? '' : '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="meridiem" data-step="1" href="javascript:void(0)"><i class="fas fa-chevron-up fa-lg"></i></a></td>')
+		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="minute" data-step="1" href="javascript:void(0)"><i class="fa fa-chevron-up fa-lg"></i></a></td>'
+		+ (has_second ? '<td></td><td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="second" data-step="1" href="javascript:void(0)"><i class="fa fa-chevron-up fa-lg"></i></a></td>' : '')
+		+ (clock_24 ? '' : '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="meridiem" data-step="1" href="javascript:void(0)"><i class="fa fa-chevron-up fa-lg"></i></a></td>')
 		+ '</tr><tr>'
 		+ '<td><input type="text" class="form-control text-center border-light hour-input" minlength="1" maxlength="2" inputmode="numeric" /></td><td>:</td><td><input type="text" class="form-control text-center border-light minute-input" minlength="1" maxlength="2" inputmode="numeric" /></td>'
 		+ (has_second ? '<td>:</td><td><input type="text" class="form-control text-center border-light second-input" minlength="1" maxlength="2" inputmode="numeric" /></td>' : '')
 		+ (clock_24 ? '' : '<td><button type="button" class="btn meridiem-btn border-light"></button></td>')
 		+ '</tr><tr>'
-		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="hour" data-step="-1" href="javascript:void(0)"><i class="fas fa-chevron-down fa-lg"></i></a></td>'
+		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="hour" data-step="-1" href="javascript:void(0)"><i class="fa fa-chevron-down fa-lg"></i></a></td>'
 		+ '<td></td>'
-		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="minute" data-step="-1" href="javascript:void(0)"><i class="fas fa-chevron-down fa-lg"></i></a></td>'
-		+ (has_second ? '<td></td><td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="second" data-step="-1" href="javascript:void(0)"><i class="fas fa-chevron-down fa-lg"></i></a></td>' : '')
-		+ (clock_24 ? '' : '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="meridiem" data-step="-1" href="javascript:void(0)"><i class="fas fa-chevron-down fa-lg"></i></a></td>')
+		+ '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="minute" data-step="-1" href="javascript:void(0)"><i class="fa fa-chevron-down fa-lg"></i></a></td>'
+		+ (has_second ? '<td></td><td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="second" data-step="-1" href="javascript:void(0)"><i class="fa fa-chevron-down fa-lg"></i></a></td>' : '')
+		+ (clock_24 ? '' : '<td><a class="btn btn-link px-1 mx-0 chevron-btn" data-unit="meridiem" data-step="-1" href="javascript:void(0)"><i class="fa fa-chevron-down fa-lg"></i></a></td>')
 		+ '</tr></table></div>'
 		+ '<div class="d-flex justify-content-between">'
 		+ '<div class="invisible"><button type="button" class="btn btn-link input-toggle-btn' + (clock_enabled ? ' d-none' : '') + '" data-input="clock"><i class="far fa-clock fa-fw"></i></button><button type="button" class="btn btn-link input-toggle-btn' + (clock_enabled ? '' : ' d-none') + '" data-input="keyboard"><i class="far fa-keyboard fa-fw"></i></button></div>'
-		+ '<div><button type="button" class="btn btn-secondary mx-1 cancel-btn" data-dismiss="popover" title="Cancel"><i class="fas fa-times fa-fw"></i></button><button type="button" class="btn btn-primary mx-1 submit-btn" title="OK"><i class="fas fa-check fa-fw"></i></button></div>'
+		+ '<div><button type="button" class="btn btn-secondary mx-1 cancel-btn" data-dismiss="popover" title="Cancel"><i class="fa fa-times fa-fw"></i></button><button type="button" class="btn btn-primary mx-1 submit-btn" title="OK"><i class="fa fa-check fa-fw"></i></button></div>'
 		+ '</div>';
 
 	const $content = jQuery('#' + input_id + '-picker-content');
@@ -873,7 +873,7 @@ jQuery.fn.timepicker = function (options) {
 			placement: 'bottom',
 			sanitize: false,
 			title: '<button class="close mt-n1" data-dismiss="popover">&times;</button>' + (($label.length > 0) ? $label.html() : 'Time'),
-			template: '<div id="' + input_id + '-picker-popover" class="popover timepicker-popover bs-popover-bottom" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div id="' + input_id + '-popover-body" class="popover-body border-bottom"></div><div class="popover-footer bg-light text-right px-3 py-2 rounded-lg" hidden="hidden"><button type="button" class="btn btn-secondary btn-sm" title="Close the picker" data-dismiss="popover"><i class="fas fa-times"></i> Close</button></div></div>',
+			template: '<div id="' + input_id + '-picker-popover" class="popover timepicker-popover bs-popover-bottom" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div id="' + input_id + '-popover-body" class="popover-body border-bottom"></div><div class="popover-footer bg-light text-right px-3 py-2 rounded-lg" hidden="hidden"><button type="button" class="btn btn-secondary btn-sm" title="Close the picker" data-dismiss="popover"><i class="fa fa-times"></i> Close</button></div></div>',
 			trigger: (($toggles.length > 0) ? 'manual' : 'click'),
 			popperConfig: {
 /*

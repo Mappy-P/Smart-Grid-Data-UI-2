@@ -3,10 +3,39 @@
 {% block title %}Smart Grid Data - Demo{% endblock %}
 
 {% block content %}
+<div class="container-fluid" id="loading" style="display: none;">
+  <div style="position: absolute; left: 50%; transform: translate(-50%, 0%);">
+    <img src="{{ url_for('static', filename='/imgs/car-loading.gif') }}" id="loading" style="height: 70vmin; width: 70vmin;"></img>
+  </div>
+  <div>
+    <strong style="text-align: center; font-size: 6vmin;">Loading...</strong>
+  </div>
+</div>
+<div class="container-fluid" id="content-sim">
 <div id = "alertId" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
   <div class="row">
     <div class="col">
       <strong>Choose a date before proceeding!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
+<div id = "alertId2" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a maximun of 20 cars!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
+<div id = "alertId3" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a minimum of 10 cars!</strong>
     </div>
     <div class="col">
       <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
@@ -19,8 +48,8 @@
   <div class="col" style="padding-left: 2vw;">
       <form method="POST" id="calcData">
       <div id='firstRow' class="row justify-content-center" style="display: block;">
-        <div class="col">
         <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
+        <div class="col">
           <div class="jumbotron" style="width: 92.083vmin;">
             <h1 class="display-4" style="font-size: 6.19vmin; padding-top: 0px;">Configure the calculation:</h1>
                 <p class="lead" style="font-size: 3vmin;">DEMO</p>
@@ -50,8 +79,8 @@
                         </div>
                         <div class="row" id="aantalAutosRow" style="display: none;">
                           <div class="col">
-                            <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 6):</label>
-                            <input value="" type="number" id="aantalAutos" name="aantalAutos" min="1" max="20" onkeydown="return event.key != 'Enter';">
+                            <label for="aantalAutos">Choose the amount of cars that will arrive (between 10 and 20):</label>
+                            <input value="10" type="number" id="aantalAutos" name="aantalAutos" min="10" max="20" onkeydown="return event.key != 'Enter';">
                           </div>
                         </div>
                     </div>
@@ -72,7 +101,7 @@
               <div class="col" style="height: 11vmin; padding: 1vmin;">
                 <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5vmin; padding-bottom: 1vmin;">Type of Car:</h2>
                 <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: 15 kwh</p>
-                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electrical: 75 kwh</p>
+                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electric: 75 kwh</p>
               </div>
               <div class="col" style="padding: 1vmin;">
                 <h2 style="font-size: 3vmin;">Battery Percentage at arrival</h2>
@@ -103,16 +132,16 @@
     </div>
 
   <div class="generalStatistics col" style="padding-left: 1.5vw">
-    <h1>Metrics:</h1>
+    <h1 style="font-size: 5vmin;">Metrics:</h1>
     <div>
-      <h3>Predicted cost of Smart Charging</h3>
-      {{predicted_smart_cost}}
-      <h3>Real cost of Smart Charging:</h3>
-      {{real_smart_cost}}
-      <h3>Predicted cost of Dumb Charging</h3>
-      {{predicted_dumb_cost}}
-      <h3>Real cost of Dumb Charging:</h3>
-      {{real_dumb_cost}}
+      <h3 style="font-size: 4vmin;">Predicted cost of Smart Charging</h3>
+      &euro; {{predicted_smart_cost}}
+      <h3 style="font-size: 4vmin;">Actual cost of Smart Charging:</h3>
+      &euro; {{real_smart_cost}}
+      <h3 style="font-size: 4vmin;">Predicted cost of Naive Charging</h3>
+      &euro; {{predicted_dumb_cost}}
+      <h3 style="font-size: 4vmin;">Actual cost of Naive Charging:</h3>
+      &euro; {{real_dumb_cost}}
     </div>
   </div>
 </div>
@@ -123,11 +152,16 @@
     <div class="col">
         <h1>Smart charging scheme:</h1>
         {% for ys in smart %}
-          <div class="row">
-            <div class="col">
-              <canvas id="myChartS{{loop.index}}"></canvas>
+        <div class='row'>
+          <div class="col">
+            <div>
+              <h3 id='{{loop.index}}' class="names" style="display: none; font-size: 3vmin;"></h3>
+            </div>
+            <div>
+              <canvas id="myChartS{{loop.index}}" style="height: 10vh; width: 45vw;"></canvas>
             </div>
           </div>
+        </div>
         {% endfor %}
     </div>
     <div class="col">
@@ -135,20 +169,33 @@
         {% for ys in dumb %}
           <div class='row'>
             <div class="col">
-              <canvas id="myChartD{{loop.index}}"></canvas>
+              <div>
+                <h3 id='{{loop.index}}' class="names" style="display: none; font-size: 3vmin;"></h3>
+              </div>
+              <div>
+                <canvas id="myChartD{{loop.index}}" style="height: 10vh; width: 45vw;"></canvas>
+              </div>
             </div>
           </div>
         {% endfor %}
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col">
-      <canvas id="powersmart"></canvas>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col justify-content-center">
+        <h3 style="text-align: center; font-size: 4vmin;">Total power usage of Smart vs Naive Charging</h3>
+      </div>
     </div>
-    <div class="col">
-      <canvas id="powerdumb"></canvas>
+    <div class="row justify-content-center">
+      <div class="col">
+        <canvas id="powersmart"></canvas>
+      </div>
+      <div class="col">
+        <canvas id="powerdumb"></canvas>
+      </div>
     </div>
   </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -178,6 +225,14 @@
           legend: {
             display: false
           }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
+          }
         }
       }
   };
@@ -196,7 +251,7 @@
   const dataD{{loop.index}} = {
       labels: labels,
       datasets: [{
-          label: 'Charge Dumb',
+          label: 'Charge Naive',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ ys | tojson}},
@@ -212,6 +267,14 @@
         plugins: {
           legend: {
             display: false
+          }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
           }
         }
       }
@@ -247,6 +310,14 @@
           legend: {
             display: false
           }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
+          }
         }
       }
   };
@@ -263,7 +334,7 @@
   const dataPD = {
       labels: labels,
       datasets: [{
-          label: 'Power use of Dumb Charging',
+          label: 'Power use of Naive Charging',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ power_dumb | tojson}},
@@ -279,6 +350,14 @@
         plugins: {
           legend: {
             display: false
+          }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
           }
         }
       }

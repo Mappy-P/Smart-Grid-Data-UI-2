@@ -19,13 +19,22 @@
   }
   
   function proceedCalc(){
-    //document.getElementById("metrics").style.display = 'none';
     var date = document.getElementById('startDate').value;
     var aantalAutos = document.getElementById('aantalAutos').value;
     console.log(document.getElementById('aantalAutos').value);
     if (date == '' || aantalAutos== ''){
       document.getElementById('alertId').style.display = 'block';
-    }else{
+    }
+    else{
+      if(parseInt(aantalAutos) > 20){
+        document.getElementById('alertId2').style.display = 'block';
+      }
+      else{
+      if(parseInt(aantalAutos) < 10)
+      {
+        document.getElementById('alertId3').style.display = 'block';
+      }
+      else{
       document.getElementById('endDate').value = date;
       document.getElementById('firstRow').style.display = 'none';
       document.getElementById('secondRow').style.display = 'block';
@@ -78,7 +87,7 @@
         Type.style.width = '13vmin';
 
         var hybrydeOptie = document.createElement('option');
-        Type.appendChild(hybrydeOptie);
+        // Type.appendChild(hybrydeOptie);
         hybrydeOptieText = document.createElement('p');
         hybrydeOptieText.innerHTML = 'Hybrid Car';
         hybrydeOptie.appendChild(hybrydeOptieText);
@@ -90,6 +99,7 @@
         elektrischeOptieText.innerHTML = 'Electrical Car';
         elektrischeOptie.appendChild(elektrischeOptieText);
         elektrischeOptie.value = 2;
+        Type.appendChild(hybrydeOptie);
 
         var huidigPercentageHolder = document.createElement('div');
         huidigPercentageHolder.classList.add('row');
@@ -101,7 +111,7 @@
         huidigPercentage.type = 'range';
         huidigPercentage.min = 0;
         huidigPercentage.max = 100;
-        huidigPercentage.value = 50;
+        huidigPercentage.value = 20;
         huidigPercentage.step = 2;
         // huidigPercentage.classList.add('col');
         huidigPercentage.classList.add('inputPercentage');
@@ -143,7 +153,7 @@
         gewenstPercentage.type = 'range';
         gewenstPercentage.min = 50;
         gewenstPercentage.max = 100;
-        gewenstPercentage.value = 70;
+        gewenstPercentage.value = 80;
         gewenstPercentage.step = 2;
         // gewenstPercentage.classList.add('col');
         gewenstPercentage.classList.add('outputPercentage');
@@ -273,15 +283,26 @@
       });
     }
   }
+  }
+  }
 
   function dismiss(){
     document.getElementById('alertId').style.display = 'none';
+    document.getElementById('alertId2').style.display = 'none';
+    document.getElementById('alertId3').style.display = 'none';
   }
 
   function submitForm() {
-    document.getElementById("calcData").submit();  // uncomment deze regel als je het formulier wilt indienen
-    //document.getElementById("metrics").style.display = 'block';
+    document.getElementById("calcData").submit();
+    document.getElementById('content-sim').style.display='none';
+    document.getElementById('loading').style.display='block';
   }
+
+  const names = document.querySelectorAll('.names');
+            names.forEach(naam =>{
+              naam.innerHTML = 'Car ' + naam.id + ':';
+              naam.style.display = 'block';
+            })
 
 
 
