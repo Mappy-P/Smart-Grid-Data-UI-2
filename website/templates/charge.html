@@ -3,10 +3,29 @@
 {% block title %}Smart Grid Data - Demo{% endblock %}
 
 {% block content %}
+<div class="container-fluid" id="loading" style="display: none;">
+  <div style="position: absolute; left: 50%; transform: translate(-50%, 0%);">
+    <img src="{{ url_for('static', filename='/imgs/car-loading.gif') }}" id="loading" style="height: 70vmin; width: 70vmin;"></img>
+  </div>
+  <div>
+    <strong style="text-align: center; font-size: 6vmin;">Loading...</strong>
+  </div>
+</div>
+<div class="container-fluid" id="content-sim">
 <div id = "alertId" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
   <div class="row">
     <div class="col">
       <strong>Choose a date before proceeding!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
+<div id = "alertId2" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a maximun of 20 cars!</strong>
     </div>
     <div class="col">
       <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
@@ -50,8 +69,8 @@
                         </div>
                         <div class="row" id="aantalAutosRow" style="display: none;">
                           <div class="col">
-                            <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 6):</label>
-                            <input value="" type="number" id="aantalAutos" name="aantalAutos" min="1" max="20" onkeydown="return event.key != 'Enter';">
+                            <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 20):</label>
+                            <input value="1" type="number" id="aantalAutos" name="aantalAutos" min="1" max="20" onkeydown="return event.key != 'Enter';">
                           </div>
                         </div>
                     </div>
@@ -103,15 +122,15 @@
     </div>
 
   <div class="generalStatistics col" style="padding-left: 1.5vw">
-    <h1>Metrics:</h1>
+    <h1 style="font-size: 5vmin;">Metrics:</h1>
     <div>
-      <h3>Predicted cost of Smart Charging</h3>
+      <h3 style="font-size: 4vmin;">Predicted cost of Smart Charging</h3>
       {{predicted_smart_cost}}
-      <h3>Real cost of Smart Charging:</h3>
+      <h3 style="font-size: 4vmin;">Real cost of Smart Charging:</h3>
       {{real_smart_cost}}
-      <h3>Predicted cost of Dumb Charging</h3>
+      <h3 style="font-size: 4vmin;">Predicted cost of Dumb Charging</h3>
       {{predicted_dumb_cost}}
-      <h3>Real cost of Dumb Charging:</h3>
+      <h3 style="font-size: 4vmin;">Real cost of Dumb Charging:</h3>
       {{real_dumb_cost}}
     </div>
   </div>
@@ -123,11 +142,16 @@
     <div class="col">
         <h1>Smart charging scheme:</h1>
         {% for ys in smart %}
-          <div class="row">
-            <div class="col">
-              <canvas id="myChartS{{loop.index}}"></canvas>
+        <div class='row'>
+          <div class="col">
+            <div>
+              <h3 id='{{loop.index}}' class="names" style="display: none; font-size: 3vmin;"></h3>
+            </div>
+            <div>
+              <canvas id="myChartS{{loop.index}}" style="height: 10vh; width: 45vw;"></canvas>
             </div>
           </div>
+        </div>
         {% endfor %}
     </div>
     <div class="col">
@@ -135,20 +159,33 @@
         {% for ys in dumb %}
           <div class='row'>
             <div class="col">
-              <canvas id="myChartD{{loop.index}}"></canvas>
+              <div>
+                <h3 id='{{loop.index}}' class="names" style="display: none; font-size: 3vmin;"></h3>
+              </div>
+              <div>
+                <canvas id="myChartD{{loop.index}}" style="height: 10vh; width: 45vw;"></canvas>
+              </div>
             </div>
           </div>
         {% endfor %}
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col">
-      <canvas id="powersmart"></canvas>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col justify-content-center">
+        <h3 style="text-align: center; font-size: 4vmin;">Total power usage of Smart vs Dumb Charging</h3>
+      </div>
     </div>
-    <div class="col">
-      <canvas id="powerdumb"></canvas>
+    <div class="row justify-content-center">
+      <div class="col">
+        <canvas id="powersmart"></canvas>
+      </div>
+      <div class="col">
+        <canvas id="powerdumb"></canvas>
+      </div>
     </div>
   </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
