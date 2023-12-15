@@ -11,7 +11,7 @@ linkproductie = (r'website/assets/Solar_model.h5') #Het ML model van solar produ
 linkproductie12 = (r'website/assets/Solar_model12u-3.h5')
 linkproductiedata = (r'website/assets/data/Solar_6totenmet10.csv')
 
-linkprijzen = (r'website/assets/Belpex_model.h5') #Het ML model van Belpex prijzen
+linkprijzen = (r'website/assets/Belpex_finaal.h5') #Het ML model van Belpex prijzen
 linkprijzen12 = (r'website/assets/Belpex_finaal12u.h5')
 linkprijzendata = (r'website/assets/data/Belpex_6tot10.csv')
 

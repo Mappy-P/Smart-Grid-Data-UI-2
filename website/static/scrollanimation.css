@@ -46,6 +46,7 @@ section {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    will-change: transform;
   }
 
 @media(prefers-reduced-motion) {
