@@ -87,7 +87,7 @@
         Type.style.width = '13vmin';
 
         var hybrydeOptie = document.createElement('option');
-        Type.appendChild(hybrydeOptie);
+        // Type.appendChild(hybrydeOptie);
         hybrydeOptieText = document.createElement('p');
         hybrydeOptieText.innerHTML = 'Hybrid Car';
         hybrydeOptie.appendChild(hybrydeOptieText);
@@ -99,6 +99,7 @@
         elektrischeOptieText.innerHTML = 'Electrical Car';
         elektrischeOptie.appendChild(elektrischeOptieText);
         elektrischeOptie.value = 2;
+        Type.appendChild(hybrydeOptie);
 
         var huidigPercentageHolder = document.createElement('div');
         huidigPercentageHolder.classList.add('row');
