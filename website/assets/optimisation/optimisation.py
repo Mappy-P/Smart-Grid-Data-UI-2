@@ -60,7 +60,7 @@ class ChargingPlanner:
                 i += 1
         self.predicted_solar_revenue = 0.
         for time in range(self.N):
-            if (self.energy_price[time] >= 0 and self.energy_to_sell[time] > 0.): # VRAAG JORIS
+            if (self.energy_price[time] >= 0 and self.energy_to_sell[time] > 0.):
                 self.predicted_solar_revenue += self.energy_to_sell[time]*min(self.injection_price, self.energy_price[time])
         self.get_scheme()
 

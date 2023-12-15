@@ -19,8 +19,8 @@
   <div class="col" style="padding-left: 2vw;">
       <form method="POST" id="calcData">
       <div id='firstRow' class="row justify-content-center" style="display: block;">
-        <div class="col">
         <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
+        <div class="col">
           <div class="jumbotron" style="width: 92.083vmin;">
             <h1 class="display-4" style="font-size: 6.19vmin; padding-top: 0px;">Configure the calculation:</h1>
                 <p class="lead" style="font-size: 3vmin;">DEMO</p>
@@ -72,7 +72,7 @@
               <div class="col" style="height: 11vmin; padding: 1vmin;">
                 <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5vmin; padding-bottom: 1vmin;">Type of Car:</h2>
                 <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: 15 kwh</p>
-                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electrical: 75 kwh</p>
+                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electric: 75 kwh</p>
               </div>
               <div class="col" style="padding: 1vmin;">
                 <h2 style="font-size: 3vmin;">Battery Percentage at arrival</h2>
@@ -102,50 +102,60 @@
       </form>
     </div>
 
-  <div class="generalStatistics col" style="padding-left: 1.5vw">
-    <h1>Metrics:</h1>
-    <div>
-      <h3>Predicted cost of Smart Charging</h3>
-      {{predicted_smart_cost}}
-      <h3>Real cost of Smart Charging:</h3>
-      {{real_smart_cost}}
-      <h3>Predicted cost of Dumb Charging</h3>
-      {{predicted_dumb_cost}}
-      <h3>Real cost of Dumb Charging:</h3>
-      {{real_dumb_cost}}
-    </div>
+  <div class="generalStatistics col justify-content-center" style="padding-left: 1.5vw; padding-top: 7.0vw">
+      <div>
+        <h1>Metrics:</h1>
+        <div>
+          <h5>Predicted cost of Smart Charging:</h5>
+          {{predicted_smart_cost}}
+          <h5>Actual cost of Smart Charging:</h5>
+          {{real_smart_cost}}
+          <h5>Predicted cost of Naive Charging:</h5>
+          {{predicted_dumb_cost}}
+          <h5>Actual cost of Naive Charging:</h5>
+          {{real_dumb_cost}}
+        </div>
+      </div>
   </div>
 </div>
 </div>
 
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col">
-        <h1>Smart charging scheme:</h1>
-        {% for ys in smart %}
-          <div class="row">
-            <div class="col">
-              <canvas id="myChartS{{loop.index}}"></canvas>
-            </div>
-          </div>
-        {% endfor %}
+    <div class="col-6 text-center">
+      <h2>Smart charging scheme:</h2> 
     </div>
-    <div class="col">
-      <h1>Dumb charging scheme:</h1>
-        {% for ys in dumb %}
-          <div class='row'>
-            <div class="col">
-              <canvas id="myChartD{{loop.index}}"></canvas>
-            </div>
-          </div>
-        {% endfor %}
+    <div class="col-6 text-center">
+      <h2>Naive charging scheme:</h2>  
     </div>
   </div>
+  {% for ys in smart %}
+  <hr>
   <div class="row justify-content-center">
-    <div class="col">
+    <div class="col-6">
+      <canvas id="myChartS{{loop.index}}"></canvas>
+    </div>
+    <div class="col-6">
+      <canvas id="myChartD{{loop.index}}"></canvas>
+    </div>
+  </div>
+  {% endfor %}
+  <hr>
+
+  <div class="row justify-content-center">
+    <div class="col-6 text-center">
+      <h3>Smart charging power:</h3>
+    </div>
+    <div class="col-6 text-center">
+      <h3>Naive charging power:</h3>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-6">
       <canvas id="powersmart"></canvas>
     </div>
-    <div class="col">
+    <div class="col-6">
       <canvas id="powerdumb"></canvas>
     </div>
   </div>
@@ -204,7 +214,7 @@
   const dataD{{loop.index}} = {
       labels: labels,
       datasets: [{
-          label: 'Charge Dumb',
+          label: 'Charge Naive',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ ys | tojson}},
@@ -287,7 +297,7 @@
   const dataPD = {
       labels: labels,
       datasets: [{
-          label: 'Power use of Dumb Charging',
+          label: 'Power use of Naive Charging',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ power_dumb | tojson}},
