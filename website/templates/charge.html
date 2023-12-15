@@ -38,8 +38,8 @@
   <div class="col" style="padding-left: 2vw;">
       <form method="POST" id="calcData">
       <div id='firstRow' class="row justify-content-center" style="display: block;">
-        <div class="col">
         <h1>Smart Grid Data <span class="badge bg-secondary">DEMO</span></h1>
+        <div class="col">
           <div class="jumbotron" style="width: 92.083vmin;">
             <h1 class="display-4" style="font-size: 6.19vmin; padding-top: 0px;">Configure the calculation:</h1>
                 <p class="lead" style="font-size: 3vmin;">DEMO</p>
@@ -91,7 +91,7 @@
               <div class="col" style="height: 11vmin; padding: 1vmin;">
                 <h2 style="font-size: 3vmin; padding-bottom: 0px; height: 5vmin; padding-bottom: 1vmin;">Type of Car:</h2>
                 <p class = 'uitleg1'style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin;">Hybrid: 15 kwh</p>
-                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electrical: 75 kwh</p>
+                <p class="uitleg2" style="font-size: 2vmin; padding-top:0px; padding-bottom: 0px; height: 2.5vmin">Electric: 75 kwh</p>
               </div>
               <div class="col" style="padding: 1vmin;">
                 <h2 style="font-size: 3vmin;">Battery Percentage at arrival</h2>
@@ -215,6 +215,14 @@
           legend: {
             display: false
           }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
+          }
         }
       }
   };
@@ -233,7 +241,7 @@
   const dataD{{loop.index}} = {
       labels: labels,
       datasets: [{
-          label: 'Charge Dumb',
+          label: 'Charge Naive',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ ys | tojson}},
@@ -249,6 +257,14 @@
         plugins: {
           legend: {
             display: false
+          }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
           }
         }
       }
@@ -284,6 +300,14 @@
           legend: {
             display: false
           }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
+          }
         }
       }
   };
@@ -300,7 +324,7 @@
   const dataPD = {
       labels: labels,
       datasets: [{
-          label: 'Power use of Dumb Charging',
+          label: 'Power use of Naive Charging',
           backgroundColor: 'rgb(51, 51, 255)',
           borderColor: 'rgb(51, 51, 255)',
           data: {{ power_dumb | tojson}},
@@ -316,6 +340,14 @@
         plugins: {
           legend: {
             display: false
+          }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'kWh'
+            }
           }
         }
       }
