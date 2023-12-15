@@ -30,6 +30,11 @@
         document.getElementById('alertId2').style.display = 'block';
       }
       else{
+      if(parseInt(aantalAutos) < 10)
+      {
+        document.getElementById('alertId3').style.display = 'block';
+      }
+      else{
       document.getElementById('endDate').value = date;
       document.getElementById('firstRow').style.display = 'none';
       document.getElementById('secondRow').style.display = 'block';
@@ -278,10 +283,12 @@
     }
   }
   }
+  }
 
   function dismiss(){
     document.getElementById('alertId').style.display = 'none';
     document.getElementById('alertId2').style.display = 'none';
+    document.getElementById('alertId3').style.display = 'none';
   }
 
   function submitForm() {

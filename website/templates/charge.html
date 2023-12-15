@@ -32,6 +32,16 @@
     </div>
   </div>
 </div>
+<div id = "alertId3" class="alert alert-danger" role="alert" style="display: none; padding-left: none; padding-right: none;">
+  <div class="row">
+    <div class="col">
+      <strong style="top: 50%; transform: translateY(-50%);">Choose a minimum of 10 cars!</strong>
+    </div>
+    <div class="col">
+      <button type="button" onclick="dismiss()" aria-label="Close" style="height: 100%; float: right">Close</button>
+    </div>
+  </div>
+</div>
 
 <div cass="container-fluid">
 <div class="row">
@@ -69,7 +79,7 @@
                         </div>
                         <div class="row" id="aantalAutosRow" style="display: none;">
                           <div class="col">
-                            <label for="aantalAutos">Choose the amount of cars that will arrive (between 1 and 20):</label>
+                            <label for="aantalAutos">Choose the amount of cars that will arrive (between 10 and 20):</label>
                             <input value="1" type="number" id="aantalAutos" name="aantalAutos" min="1" max="20" onkeydown="return event.key != 'Enter';">
                           </div>
                         </div>
