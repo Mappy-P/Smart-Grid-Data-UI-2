@@ -1,7 +1,5 @@
-import csv
 from .car import Car
 
-   
 class ChargingPlanner:
 
     def __init__(self, solar_surplus, energy_price, injection_price, charge_cap):
@@ -39,10 +37,8 @@ class ChargingPlanner:
         print(self.solar_surplus)
         for car in self.cars:
             car.reset(offset)
-        #for car in self.cars:
-        #    print(car.get_id(), ' tocharge ',car.get_to_charge_left())
+
         self.cars.sort(key=lambda car: car.get_to_charge_left()/(car.get_end()-max(car.get_start(), offset)), reverse=True)
-        #self.cars.sort(key=lambda car: car.get_end())
         #first loop -- charge with solar surplus
         for time in range(offset, self.N):
             self.energy_to_sell[time] = self.solar_surplus[time]
@@ -57,7 +53,6 @@ class ChargingPlanner:
                     break
                 car = self.cars[i]
                 charge_amount = min(self.charge_cap, car.get_to_charge_left(), self.energy_to_sell[time])
-                #print('tc', car.get_to_charge())
                 car.set_charging(time, charge_amount)
                 self.energy_to_sell[time] -= charge_amount
                 i += 1
@@ -66,10 +61,6 @@ class ChargingPlanner:
             if (self.energy_price[time] >= 0 and self.energy_to_sell[time] > 0.):
                 self.predicted_solar_revenue += self.energy_to_sell[time]*min(self.injection_price, self.energy_price[time])
         self.get_scheme()
-
-        #for car in self.cars:
-            #print(car.get_id(), ' tocharge ',car.get_to_charge_left())
-
 
         #second loop -- complete charging with electricity grid
         self.predicted_energy_cost = 0.
@@ -87,15 +78,9 @@ class ChargingPlanner:
                     time_price.append((time, self.energy_price[time]))
             time_price.sort(key=lambda x: x[1])
             i = 0
-            #print(time_price)
             charging_possible = 0.
-            #for (time, price) in time_price:
-            #    charging_possible += self.charge_cap-car.get_charging(time)
-            #print(charging_possible)
 
             while car.get_to_charge_left() > self.EPS:
-                #print(car.get_id())
-                #print(car.get_to_charge_left())
 
                 if (i == len(time_price)):
                     raise Exception('ERROR: not able to charge everything even though we should be able to')
@@ -106,7 +91,6 @@ class ChargingPlanner:
                     self.energy_to_buy[time_price[i][0]] += charge_amount
                     i += 1
         for time in range(self.six, self.ten):
-            #print(self.energy_to_buy[time])
             self.predicted_energy_cost += self.energy_to_buy[time]*self.energy_price[time]
         self.cars.sort(key=lambda x: x.get_id())
         self.get_scheme()
@@ -114,25 +98,11 @@ class ChargingPlanner:
     def get_cars(self):
         return self.cars
 
-    def get_scheme(self): # visual representation of charging scheme
-        for car in self.cars:
-            for time in range(self.N): 
-                if car.get_charging(time) > 11/4*0.99: # hash if car is charging at that point in time at full capacity
-                    print('#',end='')
-                elif car.get_charging(time) > 0.45: # circle if car is charging at that point in time at partial capacity
-                    print('o',end='')
-                else: # dit if car is not charging
-                    print('.',end='')
-            print()
-        print('------------------------------------------------------------------------------------------------')
-
     def get_predicted_energy_cost(self):
         return self.predicted_energy_cost
 
     def get_real_energy_cost(self, real_solar_surplus, real_energy_price):
         real_energy_cost = 0.
-        #six = 24
-        #ten = 89
         for time in range(self.six, self.ten):
             energy_used = 0.
             for car in self.cars:
@@ -149,8 +119,6 @@ class ChargingPlanner:
 
     def get_real_solar_revenue(self, real_solar_surplus, real_energy_price, real_injection_price):
         real_solar_revenue = 0.
-        #six = 24
-        #ten = 89
         for time in range(self.six, self.ten):
             if (real_energy_price[time] < 0.):
                 continue
@@ -167,140 +135,4 @@ class ChargingPlanner:
 
     def get_real_profit(self, real_solar_surplus, real_energy_price, real_injection_price):
         return self.get_real_solar_revenue(real_solar_surplus, real_energy_price, real_injection_price)-self.get_real_energy_cost(real_solar_surplus, real_energy_price)
-
-#c1 = Car(1, 77, 32, 90)
-#c2 = Car(2, 77, 21, 60)
-#c3 = Car(3, 74.25, 21, 55)
-
-
-
-#cars_to_add = [c1,c2,c3]
-
-#file = open('website/assets/optimisation/examples/energie2018-10-09.csv', encoding='utf-8-sig')
-#csvreader = csv.reader(file)
-
-#available_solar = []
-#for row in csvreader:
-#    available_solar.append(float(row[0])/10)
-
-#file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
-#csvreader = csv.reader(file)
-
-#energy_price = []
-#for row in csvreader:
-#    energy_price.append(float(row[0])/100) #prijs in cent
-
-#charge_cap = 11/4
-#injection_price = 0.1
-
-#planner = ChargingPlanner(available_solar, energy_price, injection_price, charge_cap)
-#for car in cars_to_add:
-#    planner.add_car(car.get_to_charge_left(), car.get_start(), car.get_end())
-
-#planner.get_scheme()
-#print(planner.get_predicted_solar_revenue())
-#print(planner.get_predicted_energy_cost())
-#print(planner.get_predicted_profit())
-
-#file = open('website/assets/optimisation/examples/available_solar_example.csv', encoding='utf-8-sig')
-#csvreader = csv.reader(file)
-
-#new_available_solar = []
-#for row in csvreader:
-#    new_available_solar.append(float(row[0])/10)
-
-#file = open('website/assets/optimisation/examples/stroomprijs1-01-18.csv', encoding='utf-8-sig')
-#csvreader = csv.reader(file)
-
-#new_energy_price = []
-#for row in csvreader:
-#    new_energy_price.append(float(row[0])/100) #prijs in cent
-
-#planner.update(45, new_available_solar, new_energy_price)
-
-#print(planner.get_predicted_solar_revenue())
-#print(planner.get_predicted_energy_cost())
-#print(planner.get_predicted_profit())
-
-
-#check validiteit van input data
-
-
-#optimisation
-#N = 24*4 #number of 15-min interval per day
-#load_cap = 11/4 #laadpaal capaciteit per kwartier
-#revenue = 0
-#injection_price = 0.1
-#energy_to_sell = available_solar
-#for time in range(N):
-#    charge_now = int(available_solar[time]/load_cap)
-#    cars_charged = 0
-#    i = 0
-#    while cars_charged < charge_now:
-#        while i < len(cars) and (time < sorted_cars[i].get_start() or time >= sorted_cars[i].get_end() or sorted_cars[i].get_charge_kwartier() <= 0):
-#            i += 1
-#        if i == len(cars):
-#            break
-#        car = sorted_cars[i]
-#        sorted_cars[i].set_charging(time)
-#        energy_to_sell[time] -= load_cap
-#        cars_charged += 1
-#        i += 1
-#    revenue += energy_to_sell[time]*injection_price
-            
-
-
-
-#sorted_id_cars = sorted(sorted_cars, key=lambda x: x.id)
-#for car in sorted_id_cars:
-#    for time in range(N):
-#        if(car.get_charging(time)):
-#            print('#',end='')
-#        else:
-#            print('.',end='')
-#    print()
-
-#print('------------------------------------------------------------------------------------------------')
-
-#energy_to_buy = [0]*N
-#energy_total_cost = 0
-
-#for car in sorted_cars:
-#    if car.get_charge_kwartier() == 0:
-#        continue
-#    kwartier_prijs = []
-#    for time in range(N):
-#        if (time < car.get_start() or time >= car.get_end() or car.get_charging(time)):
-#            continue
-#        kwartier_prijs.append((time, energy_price[time]))
-#    kwartier_prijs.sort(key=lambda x: x[1])
-#    print(kwartier_prijs)
-#    for i in range(car.get_charge_kwartier()):
-#        if (car.get_charge_kwartier() > 0):
-#            car.set_charging(kwartier_prijs[i][0])
-#            energy_to_buy[kwartier_prijs[i][0]] += load_cap
-#sorted_id_cars = sorted(sorted_cars, key=lambda x: x.id)
-#for time in range(N):
-#    energy_total_cost += energy_to_buy[time]*energy_price[time]
-#
-#for car in sorted_id_cars:
-#    for time in range(N):
-#        if(car.get_charging(time)):
-#            print('#',end='')
-#        else:
-#            print('.',end='')
-#    print()
-
-#print('------------------------------------------------------------------------------------------------')
-#for time in range(N):
-#    if (energy_to_buy[time] > 0):
-#        print('-',end='')
-#    elif energy_to_sell[time] > 0:
-#        print('+',end='')
-#    else:
-#        print('0',end='')
-#print()
-#print(revenue-energy_total_cost)
-
-
 

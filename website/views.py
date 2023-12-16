@@ -139,29 +139,32 @@ def demo():
 
     return render_template('demo.html', result = predictie, datums = datums, werkelijk = werkelijk, soort = soort)
 
-#@views.route('/charge', methods=['GET', 'POST'])
-#def charge():
-#    xs = []
-#    yys_smart = [[]]
-#    yys_dumb = [[]]
-#
-#    if request.method == 'POST':
-#        chosen_date = datetime.strptime(request.form.get('chosenDate'), '%Y-%m-%d')
-#        beginDateData = datetime.strptime('2018-01-16', '%Y-%m-%d')
-#        date = (chosen_date - beginDateData).days
-#        c1 = Car(1, 77, 32, 90)
-#        c2 = Car(2, 66, 25, 60)
-#     c3 = Car(3, 63.25, 25, 55)
+@views.route('/calc', methods=['GET', 'POST'])
+def charge():
 
-#     cars_to_add = [c1,c2,c3]
-#     xs, yys_smart, yys_dumb, predicted_smart_cost, real_smart_cost, predicted_dumb_cost, real_dumb_cost = models.simulate(date, cars_to_add)
-#     predicted_smart_cost = str(round(predicted_smart_cost/100, 2))
-#     real_smart_cost = str(round(real_smart_cost/100, 2))
-#     predicted_dumb_cost = str(round(predicted_dumb_cost/100, 2))
-#     real_dumb_cost = str(round(real_dumb_cost/100, 2))
-#     #print(real_dumb_cost)
-#     #yys_smart = zip(yys_smart)
-#     #yys_dumb = zip(yys_dumb)
-#     return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb, predicted_smart_cost = predicted_smart_cost, real_smart_cost = real_smart_cost, predicted_dumb_cost = predicted_dumb_cost, real_dumb_cost = real_dumb_cost)
-
-# return render_template('charge.html', xs = xs, smart = yys_smart, dumb = yys_dumb)
+    startDate = datetime.strptime('2022-10-01', '%Y-%m-%d')
+    beginDateData = datetime.strptime('2018-01-16', '%Y-%m-%d')
+    start = (startDate - beginDateData).days
+    duration = 1
+    
+    cars = []
+    total_smart_cost = 0.
+    total_dumb_cost = 0.
+    for i in range(20):
+        car = Car(i+1, 30, 8*4, 17*4)
+        cars.append(car)
+    for j in range(7):
+        xs, yys_smart, yys_dumb, predicted_smart_cost, real_smart_cost, predicted_dumb_cost, real_dumb_cost = models.simulate(start+j, cars)
+        
+        predicted_smart_cost = round(predicted_smart_cost/100, 2)
+        real_smart_cost = round(real_smart_cost/100, 2)
+        predicted_dumb_cost = round(predicted_dumb_cost/100, 2)
+        real_dumb_cost = round(real_dumb_cost/100, 2)
+        print(real_smart_cost)
+        print(real_dumb_cost)
+        total_smart_cost += real_smart_cost
+        total_dumb_cost += real_dumb_cost
+    print(total_smart_cost)
+    print(total_dumb_cost)
+    
+    return render_template('home.html')
