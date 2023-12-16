@@ -11,25 +11,29 @@
     <hr class="my-4">
     <div class="container">
       <div class ="row">
-        <div class = "col nopadding">
-          <h2 style=" text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);">Smart Grid Data problem</h2>
-          <p style = 'padding-bottom: 30px;'>As our P&O3-engineering project at the KU Leuven, we choose to work around Smart Grid Data. In this project we're being given a demand response problem.
+        <div class = "col-sm-12 col-md-6">
+          <h2 style=" text-shadow: 0.27vh 0vh 0.27vh rgba(0, 0, 0, 0.32);">Smart Grid Data problem</h2>
+          <p style = 'padding-bottom: 2.7vh;'>As our P&O3-engineering project at the KU Leuven, we choose to work around Smart Grid Data. In this project we're being given a demand response problem.
             The problem requires us to create an algorithm that efficiently charges cars, that are parked at EnergyVille, a company that specialises in research for sustainable energy.
              The company has a lot of solarpannels which supplies a lot of green energy that we want to put as much as possible in charging the cars.
               In order for us to create a efficient algorithm we have to first predict the incoming solar energy data. This is made possible with something called "machine learning" </p>
-                      
-                      <img class="lijst hidden col" src="{{ url_for('static', filename='/imgs/intro-to-neural-networks-scikit-learn-3.png') }}" style="height: 270px; width: auto;"/>
+            </div> 
+            <div class = "col-sm-12 col-md-6">      
+                      <img class="img-fluid" src="{{ url_for('static', filename='/imgs/energyville1_pv_met_mijnschacht.jpg') }}" style="max-height: 25vh; width: auto;"/>
           </div>            
-                    <div class="col nopadding">
-                      <img  class="lijst hidden col" src="{{ url_for('static', filename='/imgs/energyville1_pv_met_mijnschacht.jpg') }}" style="height: 290px; width: auto;"/>
-                      
-                    <h2 style = 'padding-top: 50px; text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);"'>What's machine learning?</h2>
+                    <div class = "row">
+                      <div class = "col-sm-12 col-md-6 order-sm-2 order-md-1">
+                      <img  class="img-fluid" src="{{ url_for('static', filename='/imgs/intro-to-neural-networks-scikit-learn-3.png') }}" style="max-height: 24vh; width: auto;"/>
+                    </div>
+                    <div class = "col-sm-12 col-md-6 order-sm-1 order-md-2">
+                    <h2 style = 'padding-top: 4.72vh; text-shadow: 0.27vh 0vh 0.27vh rgba(0, 0, 0, 0.32);"'>What's machine learning?</h2>
                     <p > Machine learning is a field of artificial intelligence that focuses on developing algorithms and models capable of learning from data.
                     These are clever systems that can recognize certain patterns that humans most of the times can't see. Machine learning has various applications, 
                     from image recognition and language processing to predictive analytics which we are going to use it for.
                     <a href="/ml" style="color: blue;">Click here</a> 
                     for more information about the machine learning we use.
                      </p>
+                    </div>
 
                     </div>
          
@@ -46,42 +50,43 @@
         <div class = "row">
 
           
-          <h2 style = 'padding-top: 10px; text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);'>For reference</h2>
+          <h2 style = 'padding-top: 0.925vh; text-shadow: 0.27vh 0vh 0.27vh rgba(0, 0, 0, 0.32);'>For reference</h2>
           </div>
-          <div style = "padding-top: 50px" class = "row">
+          <div class ="row">
+            <p class="hidden2" style = 'padding-top: 3.7;'>For reference we compare a dumb charging strategy with our algorithm. 
+              The "dumb" strategy charges the cars immediately when the they're plugged in and it stops when the battery is full.
+               This method is great for use at home but not when charging a lot of cars a day. 
+               On the dumb charging graph you can see a big peak in the morning when all the employee's arrive at the company and start charging their cars.
+              As you may realize there's not a lot of sun shining in the morning thus the company needs to buy a lot of energy which isn't very efficient.
+            The other graph shows a way of charging where the peak is more spread around the day and more concentrated at noon because that's the moment the sun shines the brightest.
+          If you want to learn more about the algorithms
+          <a href="/data-optimization" style="color: blue;">click here</a>
+          .
+        </p>
+  
+          </div>
+          <div style = "padding-top: 4.63vh" class = "row">
             
-            <div class = "col nopadding">
+            <div class = "col-sm-12 col-md-6">
               
-              <img  class="lijst hidden col" src="{{ url_for('static', filename='/imgs/direct_charging.png') }}" style="height: 290px; width: auto;"/>
+              <img  class="img-fluid" src="{{ url_for('static', filename='/imgs/direct_charging.png') }}" style="max-height: 26.85vh; width: auto;"/>
 
 
 
           </div>
-          <div class = "col nopadding">
+          <div class = "col-sm-12 col-md-6">
             
-            <img  class="lijst hidden col-sm" src="{{ url_for('static', filename='/imgs/smart_charging.png') }}" style="height: 290px; width: auto;"/>
+            <img  class="img-fluid" src="{{ url_for('static', filename='/imgs/smart_charging.png') }}" style="max-height: 26.85vh; width: auto;"/>
           </div>
           
        
 
         </div>
-        <div class ="row">
-          <p class="hidden2" style = 'padding-top: 40px;'>For reference we compare a dumb charging strategy compared with our algorithm. 
-            The "dumb" strategy charges the cars immediately when the it's plugged in and it stops when the battery is full.
-             This method great for use at home but not when charging a lot of cars a day. 
-             On the left graph we see the direct charging method, there's a big peak in the morning when all the employee's arrive at the company and start charging their cars.
-            As you may realize there's not a lot of sun shining in the morning thus the company needs to also buy a lot of energy.
-          The right graph shows a way of charging where the peak is more spread around the day and more concentrated at noon because that's the moment the sun shines the brightest.
-        If you want to learn more about the algorithms
-        <a href="/data-optimization" style="color: blue;">click here</a>
-        .
-      </p>
-
-        </div>
+        
       
 
         <div class ="row">
-          <h1  style = 'padding-top: 35px;  text-shadow: 3px 0px 3px rgba(0, 0, 0, 0.32);'>Our demo</h1>
+          <h1  style = 'padding-top: 3.24vh;  text-shadow: 0.27vh 0vh 0.27vh rgba(0, 0, 0, 0.32);'>Our demo</h1>
           <br>
           <p class= "hidden2"> 
             We've made a demo for you to use and see the difference between "dumb" charging and our way of "smart" charging. With "dumb" we mean charging the cars immediately without considiring waiting for more sun to come true and charge the cars a green way.
