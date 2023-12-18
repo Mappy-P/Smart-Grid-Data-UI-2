@@ -12,7 +12,7 @@
         <hr class="my-4">
         <div class="container">
                 <div class = "row">
-                <div class = "col nopadding">
+                <div class = "col-sm-12 col-md-6">
                     <h2>Objective</h2>
                     <p style = "font-size: 1,48vh;">
                         The main goal of the algorithm is trying to find an efficient
@@ -21,15 +21,15 @@
                           
                 
                 </div>
-                <div class = "col nopadding">
-                    <img class="lijst hidden col foto" src="{{ url_for('static', filename='/imgs/charging (2).png') }}" style="height: 15,7vh; width: auto;align-self: center;@media only screen and (max-width: 767px) { .hide-on-mobile { display: none; } }"/>
+                <div class = "col-sm-12 col-md-6">
+                    <img class="img-fluid" src="{{ url_for('static', filename='/imgs/charging (2).png') }}" style="height: 15,7vh; width: auto;align-self: center;"/>
                 </div>
                 </div>
                <div class = "row">
-                <div class = "col nopadding">   
-                    <img class="lijst hidden col foto" src="{{ url_for('static', filename='/imgs/neural.png') }}" style="height: 15,7vh; width: auto;@media only screen and (max-width: 767px) { .hide-on-mobile { display: none; } }"/>
+                <div class = "col-sm-12 col-md-6 order-sm-2 order-md-1">   
+                    <img class="img-fluid" src="{{ url_for('static', filename='/imgs/neural.png') }}" style="height: 15,7vh; width: auto;"/>
                 </div>  
-                <div class = "col nopadding"> 
+                <div class = "col-sm-12 col-md-6 order-sm-1 order-md-2"> 
                     <h2>Input</h2>
                   
                     <p>The inputs of the algorithm consists of predicted data of the green solar energy and consumption energy of the company.
@@ -57,7 +57,7 @@
             </div>
                 
                 <div class = "row">
-                <div class = "col-md-6 col-12 nopadding">  
+                <div class = "col-sm-12 col-md-6">  
                     <h4 style = "padding-top:4,63vh">First Loop</h4>
                     <p>The first loop will only use available solar energy to charge the cars,
                          this loop will make a partial charging scheme.
@@ -66,16 +66,16 @@
                             Most of the time the cars aren’t completely charged and
                              that’s were the second loop comes in to play.</p>
                 </div>
-                <div class = "col-md-6 col-12 nopadding">         
-                    <img class="lijst hidden col foto" src="{{ url_for('static', filename='/imgs/loop_1.png') }}" style="height: 27,78vh; width: auto;align-self: center;"/>
+                <div class = "col-sm-12 col-md-6">         
+                    <img class="img-fluid" src="{{ url_for('static', filename='/imgs/loop_1.png') }}" style="height: 27,78vh; width: auto;align-self: center;"/>
                         
                 </div>
                 </div>
                 <div class = "row">
-                <div class = "col nopadding">         
-                    <img class="lijst hidden col foto" src="{{ url_for('static', filename='/imgs/loop_2.png') }}" style="height: 25vh; width: auto;align-self: center;"/>
+                <div class = "col-sm-12 col-md-6 order-sm-2 order-md-1">         
+                    <img class="img-fluid" src="{{ url_for('static', filename='/imgs/loop_2.png') }}" style="max-height: 27.78vh; width: 100%;align-self: center;"/>
                 </div>
-                <div class = "col nopadding">
+                <div class = "col-sm-12 col-md-6 order-sm-1 order-md-2">
                     <h4 style = "padding-top:4,63vh">Second Loop</h4>
                     <p>Now that the partial scheme is made some cars still need to be charged at full capacity, so some extra energy needs to be bought. Thanks to machine learning we have an idea of when the Belpex prices will be at their lowest and we know when to buy energy and charge the cars who still need to be charged.</p>
                 </div>
