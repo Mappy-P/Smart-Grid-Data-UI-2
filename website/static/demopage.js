@@ -304,5 +304,11 @@
               naam.style.display = 'block';
             })
 
+  document.getElementById('startDate').onchange = endDateStartDate;
+  
+  function endDateStartDate(){
+    document.getElementById('endDate').value = document.getElementById('startDate').value;
+  }
+
 
 
