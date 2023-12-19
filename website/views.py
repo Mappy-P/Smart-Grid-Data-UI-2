@@ -98,7 +98,7 @@ def demo():
                 for car in cars:
                     if car.get_start() < 6*4:
                         flash('Car\'s cannot arrive before 06:00 am!', category='error')
-                    elif if (car.get_end() - car.get_start() < 0):
+                    elif (car.get_end() - car.get_start() < 0):
                         flash('The time of arrival for car ' + str(car.get_id()) + r" is after it's time of departure. This is not possible", category = 'error')
                     elif car.get_end() > 22*4:
                         flash('Car\'s cannot leave after 22:00 pm!', category='error')
