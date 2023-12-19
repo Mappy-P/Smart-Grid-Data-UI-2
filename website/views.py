@@ -98,12 +98,15 @@ def demo():
                 for car in cars:
                     if car.get_start() < 6*4:
                         flash('Car\'s cannot arrive before 06:00 am!', category='error')
+                    elif if (car.get_end() - car.get_start() < 0):
+                        flash('The time of arrival for car ' + str(car.get_id()) + r" is after it's time of departure. This is not possible", category = 'error')
                     elif car.get_end() > 22*4:
                         flash('Car\'s cannot leave after 22:00 pm!', category='error')
                     elif (car.get_end()-car.get_start())*charge_cap < car.get_to_charge():
                         flash('Car '+str(car.get_id())+' can not be charged the required amount in the available time. Please try with different values!', category='error')
 
                     return render_template('demo.html')
+
                 cars.sort(key=lambda x: x.get_start())
                 #print('Dit zijn de autos:')
                 #print(cars)
